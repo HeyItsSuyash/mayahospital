@@ -1,0 +1,740 @@
+/* Professional Modern Healthcare Typography: Inter & Plus Jakarta Sans */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Imperial Royal Plum, Champagne Gold & Soft Lilac Cream Design Tokens */
+:root {
+  --primary-color: #240b3b !important;       /* Deep Imperial Royal Velvet Plum */
+  --secondary-color: #d4af37 !important;     /* Radiant Champagne Gold */
+  --tertiary-color: #170526 !important;      /* Darkest Amethyst / Midnight Plum */
+  --darkblue: #170526 !important;
+  --black: #10031c !important;
+  --white: #ffffff !important;
+  --grey: #806b8c !important;
+  --fadeblue: #faf6fd !important;            /* Luxurious Soft Lilac-Tinted Cream */
+  --red: #c94a29 !important;                 /* Accent alert color */
+  --body-color: #3b284c !important;          /* Deep rich warm slate plum */
+  --luxury-serif: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  --serif-font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  --heading-font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  --body-font: 'Inter', system-ui, -apple-system, sans-serif !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--body-font) !important;
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  color: var(--body-color) !important;
+  background-color: #ffffff !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, .heading, .subtitle {
+  font-family: var(--heading-font) !important;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
+.luxury-hero-title {
+  font-family: var(--heading-font) !important;
+  letter-spacing: -0.035em !important;
+  font-weight: 800 !important;
+}
+
+.container {
+  width: 100% !important;
+  max-width: 1260px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* Header & Sticky Nav */
+header {
+  width: 100% !important;
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 1000 !important;
+  display: block !important;
+  background: var(--primary-color) !important;
+}
+
+/* Scroll-on-Reveal Animation Classes */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.header-top {
+  width: 100%;
+  background-color: var(--primary-color) !important;
+  color: var(--white) !important;
+}
+
+.header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 10px 0 !important;
+}
+
+.logo img {
+  max-height: 68px !important;
+  width: auto;
+}
+
+.header-right {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}
+
+.inline {
+  display: inline-block !important;
+  position: relative !important;
+  padding: 16px 20px 16px 48px !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+  font-size: 14px !important;
+  line-height: 18px !important;
+  color: #fff !important;
+}
+
+.inline:first-child {
+  border-left: none !important;
+}
+
+.inline i, .inline .t-icon {
+  position: absolute !important;
+  top: 18px !important;
+  left: 14px !important;
+  color: var(--secondary-color) !important;
+  font-size: 22px !important;
+}
+
+.inline span {
+  font-size: 12px !important;
+  display: block !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.inline a {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.inline a:hover {
+  color: var(--secondary-color) !important;
+}
+
+.book-btn {
+  display: inline-block !important;
+  border-radius: 9999px !important;
+  border: 1px solid var(--secondary-color) !important;
+  padding: 11px 28px !important;
+  background-color: var(--secondary-color) !important;
+  color: #170c06 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  margin-left: 15px !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer;
+}
+
+.book-btn:hover {
+  background-color: #ffffff !important;
+  color: var(--primary-color) !important;
+  border: 1px solid #ffffff !important;
+}
+
+/* Ensure all interactive buttons throughout the site use rounded pill/curved shape instead of sharp square edges */
+button:not(.square-keep) {
+  border-radius: 9999px;
+}
+
+.btn, .read-more-btn, .fathima-btn {
+  border-radius: 9999px !important;
+}
+
+/* Menu Wrap */
+.menu-wrap {
+  width: 100% !important;
+  background-color: var(--tertiary-color) !important;
+  color: var(--white) !important;
+}
+
+.navigation ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+}
+
+.navigation ul li {
+  position: relative !important;
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+
+.navigation ul li a {
+  display: block !important;
+  padding: 16px 14px !important;
+  color: #ffffff !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+  white-space: nowrap !important;
+}
+
+.navigation ul li a:hover,
+.navigation ul li.active a {
+  background-color: var(--secondary-color) !important;
+  color: #ffffff !important;
+}
+
+/* Slider Section */
+.slider-wrap {
+  position: relative !important;
+  width: 100% !important;
+  height: 620px !important;
+  overflow: hidden !important;
+  background-color: #0b2831 !important;
+}
+
+.bgslide {
+  width: 100% !important;
+  height: 620px !important;
+  position: relative !important;
+  background-position: center right !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+.bgslide::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 65% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, rgba(11, 40, 49, 0.95) 0%, rgba(11, 40, 49, 0.75) 60%, rgba(11, 40, 49, 0) 100%) !important;
+  z-index: 1 !important;
+}
+
+.carousel-caption {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  z-index: 2 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.caption-wrap {
+  max-width: 650px !important;
+  color: #ffffff !important;
+  padding-left: 20px !important;
+}
+
+.caption-wrap h2 {
+  font-size: 46px !important;
+  line-height: 54px !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  margin-bottom: 15px !important;
+  position: relative !important;
+}
+
+.caption-wrap h2.bigtext {
+  font-size: 72px !important;
+  line-height: 72px !important;
+  font-weight: 300 !important;
+  letter-spacing: -2px !important;
+  margin-bottom: 20px !important;
+}
+
+.caption-wrap p {
+  font-size: 18px !important;
+  line-height: 28px !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-bottom: 25px !important;
+}
+
+/* Top Links Bar (Health Checkup, Packages, Ask a Question...) */
+.bg-fadeblue {
+  background-color: var(--fadeblue) !important;
+}
+
+.toplinks {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 30px 0 !important;
+  flex-wrap: wrap !important;
+}
+
+.toplinks a {
+  flex: 0 0 20% !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important;
+  padding: 0 20px !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
+  text-decoration: none !important;
+  color: var(--body-color) !important;
+  transition: all 0.3s ease !important;
+}
+
+.toplinks a:last-child {
+  border-right: none !important;
+}
+
+.toplinks a img {
+  width: 44px !important;
+  height: 44px !important;
+  object-fit: contain !important;
+  transition: transform 0.3s ease !important;
+}
+
+.toplinks a:hover img {
+  transform: translateY(-5px) !important;
+}
+
+.toplinks a h3 {
+  font-size: 14px !important;
+  line-height: 18px !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+  color: var(--black) !important;
+}
+
+.toplinks a:hover h3 {
+  color: var(--secondary-color) !important;
+}
+
+/* Section Headings */
+.subtitle {
+  display: inline-block !important;
+  padding-top: 14px !important;
+  position: relative !important;
+  margin-bottom: 12px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: var(--secondary-color) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+.subtitle:before {
+  content: '' !important;
+  position: absolute !important;
+  width: 32px !important;
+  height: 2px !important;
+  background-color: var(--red) !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+.text-center .subtitle:before {
+  right: 0 !important;
+  margin: 0 auto !important;
+}
+
+.heading {
+  font-size: 42px !important;
+  line-height: 50px !important;
+  color: var(--black) !important;
+  font-weight: 800 !important;
+  margin-bottom: 25px !important;
+}
+
+.heading.text-white {
+  color: #ffffff !important;
+}
+
+/* Doctors Section & Cards */
+.doctor-single {
+  width: 100% !important;
+  text-decoration: none !important;
+  display: block !important;
+}
+
+.doc-img {
+  background: url('https://www.fathimahospital.com/wp-content/themes/fathimahosptial/images/doc-bg.jpg') no-repeat bottom left !important;
+  background-size: 95% !important;
+  line-height: 0 !important;
+  padding: 60px 40px 0 0px !important;
+  margin-bottom: 20px !important;
+  overflow: hidden !important;
+  border-bottom-right-radius: 45% !important;
+  transition: all 300ms ease-in-out !important;
+}
+
+.doctor-single:hover .doc-img {
+  background-size: 90% !important;
+}
+
+.doc-img img {
+  width: 100% !important;
+  height: 280px !important;
+  object-fit: cover !important;
+  object-position: top !important;
+  transition: transform 300ms ease-in-out !important;
+}
+
+.doctor-single:hover .doc-img img {
+  transform: scale(1.08) !important;
+}
+
+.doc-cont {
+  padding-left: 20px !important;
+  border-left: 2px solid var(--red) !important;
+  text-align: left !important;
+}
+
+.doc-cont h3 {
+  font-size: 19px !important;
+  line-height: 22px !important;
+  color: var(--black) !important;
+  font-weight: 700 !important;
+  margin: 0 0 6px 0 !important;
+}
+
+.special-text {
+  color: #797979 !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+  margin: 0 !important;
+}
+
+/* Safe Hands & Services Section (bg2) */
+.section-service {
+  background-color: #f7fafc !important;
+  padding: 90px 0 !important;
+}
+
+.service-box {
+  padding: 85px 35px 35px 35px !important;
+  position: relative !important;
+  background-color: var(--primary-color) !important;
+  color: var(--white) !important;
+  border-radius: 20px !important;
+  margin-bottom: 25px !important;
+  box-sizing: border-box !important;
+  transition: transform 0.3s ease !important;
+}
+
+.service-box:hover {
+  transform: translateY(-5px) !important;
+}
+
+.service-box img {
+  position: absolute !important;
+  top: 30px !important;
+  right: 30px !important;
+  width: 48px !important;
+  height: 48px !important;
+}
+
+.service-box h3.text-lightblue {
+  color: var(--secondary-color) !important;
+  font-size: 22px !important;
+  line-height: 28px !important;
+  margin-bottom: 12px !important;
+  font-weight: 700 !important;
+}
+
+.service-box p {
+  font-size: 13.5px !important;
+  line-height: 22px !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  margin: 0 !important;
+}
+
+.highlight-text {
+  font-size: 18px !important;
+  line-height: 28px !important;
+  color: #555555 !important;
+  margin-bottom: 25px !important;
+}
+
+.ladydoc {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 20px !important;
+}
+
+/* Testimonials Section */
+.section-testimonials {
+  padding: 90px 0 !important;
+  background-color: #ffffff !important;
+}
+
+.testimonial-single {
+  width: 100% !important;
+  border-radius: 12px !important;
+  background: url('https://www.fathimahospital.com/wp-content/themes/fathimahosptial/images/icons/quotes.png') no-repeat 40px 40px !important;
+  background-color: var(--fadeblue) !important;
+  padding: 45px 50px 25px 120px !important;
+  box-sizing: border-box !important;
+  border: 1px solid rgba(0, 184, 174, 0.15) !important;
+}
+
+.testimonial-single p {
+  font-size: 14.5px !important;
+  line-height: 24px !important;
+  color: #444444 !important;
+  margin-bottom: 15px !important;
+}
+
+.testimonial-single .name {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--black) !important;
+  padding-top: 12px !important;
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+.pulse-img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* News & Events Section */
+.section-news {
+  background-color: var(--primary-color) !important;
+  padding: 90px 0 !important;
+}
+
+.news-single {
+  background: #1e4651 !important;
+  padding: 45px 30px !important;
+  border-radius: 20px !important;
+  color: #ffffff !important;
+  transition: all 300ms ease-in-out !important;
+}
+
+.news-single:hover {
+  background-color: #174f5e !important;
+  transform: translateY(-5px) !important;
+}
+
+.news-single .date {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 8px 14px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+  border-radius: 6px !important;
+  color: #ffffff !important;
+  margin-bottom: 15px !important;
+}
+
+.news-single h4.subhead {
+  font-size: 20px !important;
+  line-height: 26px !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  margin-bottom: 15px !important;
+}
+
+.news-single p {
+  font-size: 13.5px !important;
+  line-height: 22px !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Footer Section */
+footer, .footer-section-wrap {
+  background: #180527 !important;
+  background-image: linear-gradient(180deg, #220838 0%, #130420 100%) !important;
+  padding-top: 70px !important;
+  color: #ffffff !important;
+}
+
+footer a, .footer a {
+  color: #ffffff !important;
+}
+
+footer a:hover, .footer a:hover {
+  color: var(--secondary-color) !important;
+}
+
+footer p, .footer p {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+footer h3, footer h4, .footer h3, .footer h4 {
+  color: #ffffff !important;
+}
+
+.footer-div {
+  flex: 0 0 20% !important;
+  box-sizing: border-box !important;
+  padding-right: 15px !important;
+}
+
+.footer-div:first-child {
+  flex: 0 0 32% !important;
+}
+
+.footer-div h3 {
+  position: relative !important;
+  font-size: 17px !important;
+  padding-bottom: 10px !important;
+  margin-bottom: 18px !important;
+  color: var(--secondary-color) !important;
+  font-weight: 700 !important;
+}
+
+.footer-div h3:after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 32px !important;
+  height: 2px !important;
+  background: var(--red) !important;
+}
+
+.f-contact {
+  position: relative !important;
+  padding: 0 0 0 64px !important;
+  margin-bottom: 18px !important;
+  font-size: 14px !important;
+}
+
+.f-contact span {
+  display: inline-flex !important;
+  width: 48px !important;
+  height: 48px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: var(--secondary-color) !important;
+  position: absolute !important;
+  border-radius: 100% !important;
+  top: 0 !important;
+  left: 0 !important;
+  color: var(--white) !important;
+}
+
+.f-contact p {
+  margin: 0 !important;
+  line-height: 22px !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.f-contact a {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.f-contact a:hover {
+  color: var(--secondary-color) !important;
+}
+
+ul.footerlinks {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+ul.footerlinks li {
+  margin-bottom: 8px !important;
+}
+
+ul.footerlinks li a {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 13.5px !important;
+  text-decoration: none !important;
+  display: block !important;
+  transition: all 0.3s ease !important;
+}
+
+ul.footerlinks li a:hover {
+  color: var(--secondary-color) !important;
+  padding-left: 5px !important;
+}
+
+.footer-bottom {
+  background: var(--darkblue) !important;
+  padding: 25px 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 13px !important;
+}
+
+.footer-bottom .copy {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.footer-social {
+  display: flex !important;
+  gap: 12px !important;
+}
+
+.footer-social a {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.footer-social a:hover {
+  background: var(--secondary-color) !important;
+}
+
+/* Floating WhatsApp Button (matching Fathima) */
+.fathima-whatsapp {
+  position: fixed !important;
+  bottom: 25px !important;
+  right: 25px !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  align-items: center !important;
+  background-color: #25d366 !important;
+  color: #ffffff !important;
+  padding: 10px 18px 10px 12px !important;
+  border-radius: 50px !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+  transition: transform 0.3s ease !important;
+}
+
+.fathima-whatsapp:hover {
+  transform: scale(1.05) !important;
+}
