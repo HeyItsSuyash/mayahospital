@@ -53,18 +53,120 @@ h2, h3 {
   font-weight: 700 !important;
 }
 
-/* Navlink bottom border animation for regular links (excluding mega dropdowns) */
+/* ==========================================================================
+   UNIFIED HEADER NAVIGATION ITEMS (PERFECT BASELINE & VERTICAL ALIGNMENT)
+   ========================================================================== */
+.maya-nav-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  max-width: 1680px !important;
+  margin: 0 auto !important;
+  padding: 0 clamp(24px, 4vw, 56px) !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+}
+
+.maya-nav-left {
+  display: flex !important;
+  align-items: center !important;
+  flex: 0 0 auto !important;
+}
+
+.maya-nav-center {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 1 1 auto !important;
+  margin: 0 24px !important;
+}
+
+.maya-nav-right {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex: 0 0 auto !important;
+  gap: 16px !important;
+}
+
+.stone-nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 38px !important;
+  height: 40px !important;
+}
+
+.maya-dropdown-wrap {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 40px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.maya-nav-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 40px !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-decoration: none !important;
+  font-family: var(--heading-font), 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  transition: color 0.25s ease !important;
+}
+
+.maya-nav-link:hover {
+  color: #ffffff !important;
+}
+
+.maya-nav-link::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 2px !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 2px !important;
+  background-color: #ffffff !important;
+  transform: scaleX(0) !important;
+  transform-origin: bottom center !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.maya-nav-link:hover::after,
+.maya-nav-link.active::after {
+  transform: scaleX(1) !important;
+}
+
+/* Retain backwards compatibility for any other link using nav-link-animated */
 .nav-link-animated {
   position: relative;
-  display: inline-block;
-  padding-bottom: 4px;
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  line-height: 1;
   font-family: var(--heading-font) !important;
 }
 
 .nav-link-animated::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: 2px;
   left: 0;
   width: 100%;
   height: 2px;
@@ -388,12 +490,12 @@ button:not(.square-keep) {
   color: var(--secondary-color) !important;
 }
 
-/* Section Headings */
+/* Section Headings - Static lines on both sides */
 .subtitle {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 10px !important;
+  gap: 12px !important;
   margin-bottom: 12px !important;
   font-family: var(--heading-font), 'Plus Jakarta Sans', sans-serif !important;
   font-size: 12px !important;
@@ -402,26 +504,24 @@ button:not(.square-keep) {
   text-transform: uppercase !important;
   letter-spacing: 3px !important;
   padding: 0 !important;
+  position: relative !important;
 }
 
-.subtitle:before {
-  content: '' !important;
-  display: inline-block !important;
-  position: static !important;
-  width: 24px !important;
-  height: 1px !important;
-  background-color: #7c3aed !important;
-  margin: 0 !important;
-}
-
+.subtitle:before,
 .subtitle:after {
   content: '' !important;
   display: inline-block !important;
   position: static !important;
-  width: 24px !important;
-  height: 1px !important;
+  width: 26px !important;
+  height: 2px !important;
   background-color: #7c3aed !important;
   margin: 0 !important;
+  animation: none !important;
+  -webkit-animation: none !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  transition: none !important;
+  pointer-events: none !important;
 }
 
 .heading {
@@ -805,4 +905,784 @@ ul.footerlinks li a:hover {
 
 .fathima-whatsapp:hover {
   transform: scale(1.05) !important;
+}
+
+/* ==========================================================================
+   THEME-CONSISTENT ANIMATED DIALOG BOX (ENQUIRY & APPOINTMENT MODALS)
+   ========================================================================== */
+@keyframes mayaFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mayaPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.maya-dialog-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px !important;
+  background-color: rgba(18, 4, 30, 0.78) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  animation: mayaFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  box-sizing: border-box !important;
+}
+
+.maya-dialog-box {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 620px !important;
+  max-height: 90vh !important;
+  background-color: #ffffff !important;
+  border-radius: 28px !important;
+  box-shadow: 0 30px 80px rgba(18, 4, 30, 0.5), 0 0 0 1px rgba(124, 58, 237, 0.2) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  animation: mayaPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  box-sizing: border-box !important;
+}
+
+.maya-dialog-header {
+  background-color: #240b3b !important;
+  background-image: linear-gradient(135deg, #240b3b 0%, #351052 100%) !important;
+  color: #ffffff !important;
+  padding: 22px 28px !important;
+  position: relative !important;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.3) !important;
+  box-sizing: border-box !important;
+}
+
+.maya-dialog-close-btn {
+  position: absolute !important;
+  top: 18px !important;
+  right: 18px !important;
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.maya-dialog-close-btn:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  transform: rotate(90deg) !important;
+}
+
+.maya-dialog-header-inner {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+}
+
+.maya-dialog-logo {
+  width: 48px !important;
+  height: 48px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)) !important;
+  flex-shrink: 0 !important;
+}
+
+.maya-dialog-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  color: #c084fc !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  margin-bottom: 4px !important;
+}
+
+.maya-dialog-title {
+  font-family: var(--heading-font), 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.maya-dialog-subtitle {
+  font-size: 11.5px !important;
+  color: rgba(237, 233, 254, 0.8) !important;
+  margin: 4px 0 0 0 !important;
+}
+
+.maya-dialog-body {
+  padding: 24px 28px !important;
+  overflow-y: auto !important;
+  flex: 1 !important;
+  box-sizing: border-box !important;
+}
+
+.maya-dialog-form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+.form-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.form-row-2 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
+
+@media (max-width: 580px) {
+  .form-row-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.form-label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  color: #240b3b !important;
+}
+
+.form-label-icon {
+  color: #7c3aed !important;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100% !important;
+  padding: 11px 14px !important;
+  border-radius: 12px !important;
+  border: 1.5px solid #e2e8f0 !important;
+  background-color: #ffffff !important;
+  font-family: var(--body-font), sans-serif !important;
+  font-size: 13.5px !important;
+  color: #1e293b !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+  outline: none !important;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15) !important;
+}
+
+.form-textarea {
+  resize: vertical !important;
+  min-height: 75px !important;
+}
+
+.enquiry-topic-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.enquiry-topic-chip {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 9px 12px !important;
+  border-radius: 10px !important;
+  border: 1.5px solid #ede9fe !important;
+  background: #faf5ff !important;
+  color: #4b5563 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-align: left !important;
+}
+
+.enquiry-topic-chip:hover {
+  background: #f3e8ff !important;
+  border-color: #c084fc !important;
+  color: #240b3b !important;
+}
+
+.enquiry-topic-chip.is-selected {
+  background: #240b3b !important;
+  border-color: #240b3b !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(36, 11, 59, 0.25) !important;
+}
+
+.enquiry-topic-chip.is-selected .topic-icon {
+  color: #c084fc !important;
+}
+
+.maya-dialog-emergency-notice {
+  background: #fdf2f8 !important;
+  border: 1px solid rgba(244, 63, 94, 0.2) !important;
+  border-radius: 14px !important;
+  padding: 10px 14px !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  color: #881337 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.maya-dialog-submit-btn {
+  width: 100% !important;
+  padding: 13px 20px !important;
+  border-radius: 9999px !important;
+  background-color: #240b3b !important;
+  background-image: linear-gradient(135deg, #240b3b 0%, #4a1575 100%) !important;
+  color: #ffffff !important;
+  font-family: var(--heading-font), 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  border: none !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  box-shadow: 0 8px 24px rgba(36, 11, 59, 0.3) !important;
+  transition: all 0.25s ease !important;
+}
+
+.maya-dialog-submit-btn:hover {
+  background-image: linear-gradient(135deg, #351052 0%, #601b94 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 28px rgba(36, 11, 59, 0.4) !important;
+}
+
+/* Success View */
+.maya-dialog-success {
+  text-align: center !important;
+  padding: 20px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 14px !important;
+}
+
+.maya-dialog-success-icon-wrap {
+  width: 72px !important;
+  height: 72px !important;
+  border-radius: 50% !important;
+  background-color: #f3e8ff !important;
+  color: #7c3aed !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.25) !important;
+  animation: mayaPopIn 0.4s ease forwards !important;
+}
+
+.maya-dialog-success-title {
+  font-family: var(--heading-font), 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: #240b3b !important;
+  margin: 0 !important;
+}
+
+.maya-dialog-success-desc {
+  font-size: 14px !important;
+  color: #4b5563 !important;
+  line-height: 1.5 !important;
+  max-width: 440px !important;
+  margin: 0 !important;
+}
+
+.maya-dialog-summary-card {
+  width: 100% !important;
+  max-width: 420px !important;
+  background: #faf5ff !important;
+  border: 1px solid #ede9fe !important;
+  border-radius: 16px !important;
+  padding: 14px 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+}
+
+.summary-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  font-size: 12.5px !important;
+}
+
+.summary-label {
+  color: #6b7280 !important;
+  font-weight: 500 !important;
+}
+
+.summary-val {
+  color: #1f2937 !important;
+  font-weight: 600 !important;
+}
+
+/* ==========================================================================
+   HONEYCOMB GRID: DOCTOR HEXAGONS + LIGHTER SHADE FILLER HEXAGONS
+   ========================================================================== */
+.honeycomb-scroll-wrapper {
+  width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+  padding-bottom: 25px !important;
+}
+
+.honeycomb-scroll-wrapper::-webkit-scrollbar {
+  display: none !important;
+}
+
+.honeycomb-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: max-content !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 20px 0 !important;
+}
+
+.honeycomb-row {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 16px !important;
+  margin-top: -46px !important;
+  position: relative !important;
+}
+
+.honeycomb-row:first-child {
+  margin-top: 0 !important;
+}
+
+/* Hexagon Card Dimensions & Geometry */
+.hex-card {
+  width: 220px !important;
+  height: 250px !important;
+  position: relative !important;
+  clip-path: polygon(
+    50% 1.5%,
+    98.5% 25%,
+    98.5% 75%,
+    50% 98.5%,
+    1.5% 75%,
+    1.5% 25%
+  ) !important;
+  border-radius: 18px !important;
+  border: none !important;
+  background-color: #240b3b !important;
+  cursor: pointer !important;
+  transition: transform 0.25s ease, z-index 0.1s ease, box-shadow 0.25s ease !important;
+  flex-shrink: 0 !important;
+  z-index: 1 !important;
+}
+
+.hex-card:hover,
+.hex-card.is-active-mobile {
+  z-index: 50 !important;
+}
+
+.hex-content {
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: 18px !important;
+  border: none !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Doctor Image Inside Hexagon */
+.hex-image-holder {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  background-color: #240b3b !important;
+  transition: opacity 0.25s ease !important;
+}
+
+.hex-img {
+  height: 92% !important;
+  width: auto !important;
+  max-width: 95% !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+/* ==========================================================================
+   LIGHTER SHADE FILLER HEXAGONS
+   ========================================================================== */
+.hex-filler-card {
+  background: linear-gradient(145deg, #4c1d95 0%, #6d28d9 100%) !important;
+  box-shadow: 0 8px 20px rgba(76, 29, 149, 0.25) !important;
+  transition: all 0.3s ease !important;
+}
+
+.hex-filler-card:hover {
+  background: linear-gradient(145deg, #5b21b6 0%, #7c3aed 100%) !important;
+  transform: translateY(-4px) scale(1.02) !important;
+}
+
+.hex-filler-content {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+  text-align: center !important;
+}
+
+.hex-filler-inner {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  padding: 15px !important;
+  transition: transform 0.25s ease !important;
+}
+
+.hex-filler-card:hover .hex-filler-inner {
+  transform: scale(1.08) !important;
+  color: #ffffff !important;
+}
+
+.hex-filler-icon {
+  font-size: 32px !important;
+  color: #e9d5ff !important;
+  opacity: 0.85 !important;
+  transition: opacity 0.25s ease, transform 0.25s ease !important;
+}
+
+.hex-filler-card:hover .hex-filler-icon {
+  opacity: 1 !important;
+  color: #ffffff !important;
+}
+
+.hex-filler-label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #ede9fe !important;
+  font-family: var(--heading-font), sans-serif !important;
+  text-align: center !important;
+}
+
+/* ==========================================================================
+   HOVER STATE: PERFECT HORIZONTAL & VERTICAL CENTERING
+   ========================================================================== */
+.hex-hover-panel {
+  position: absolute !important;
+  inset: 0 !important;
+  background-color: #ffffff !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity 0.25s ease, visibility 0.25s ease !important;
+  border-radius: 18px !important;
+  border: none !important;
+  z-index: 20 !important;
+  padding: 16px !important;
+  box-sizing: border-box !important;
+}
+
+.hex-card:hover .hex-hover-panel,
+.hex-card.is-active-mobile .hex-hover-panel {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.hex-text-inner {
+  width: 100% !important;
+  max-width: 180px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+.hex-doc-name {
+  font-family: var(--heading-font), 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 15.5px !important;
+  font-weight: 700 !important;
+  color: #240b3b !important;
+  margin: 0 auto 6px auto !important;
+  line-height: 1.25 !important;
+  text-align: center !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+.hex-doc-edu {
+  font-family: var(--body-font), sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  color: #7c3aed !important;
+  margin: 0 auto 8px auto !important;
+  line-height: 1.35 !important;
+  text-align: center !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+.hex-doc-spec {
+  font-family: var(--body-font), sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: #4b5563 !important;
+  margin: 0 auto 10px auto !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+.hex-book-badge {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.8px !important;
+  color: #ffffff !important;
+  background-color: #7c3aed !important;
+  padding: 4px 12px !important;
+  border-radius: 9999px !important;
+  text-transform: uppercase !important;
+  display: inline-block !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.hex-book-badge:hover {
+  background-color: #6d28d9 !important;
+}
+
+.mobile-swipe-hint {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7c3aed;
+  background: #f5f3ff;
+  border: 1px solid #ddd6fe;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   RESPONSIVENESS & BREAKPOINTS (TABLETS & MOBILE)
+   ========================================================================== */
+.maya-mobile-nav-toggle {
+  display: none;
+}
+
+@media (max-width: 1440px) {
+  .hex-filler-ultrawide {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hex-card {
+    width: 180px !important;
+    height: 205px !important;
+  }
+  .honeycomb-row {
+    margin-top: -38px !important;
+    gap: 12px !important;
+  }
+  .hex-doc-name {
+    font-size: 14px !important;
+  }
+  .hex-doc-edu {
+    font-size: 11px !important;
+  }
+  .hex-doc-spec {
+    font-size: 11.5px !important;
+  }
+  .hex-filler-icon {
+    font-size: 26px !important;
+  }
+  .hex-filler-label {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 1280px) {
+  .stone-nav-links {
+    gap: 26px !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .maya-nav-center {
+    display: none !important;
+  }
+  .maya-desktop-cta {
+    display: none !important;
+  }
+  .maya-mobile-nav-toggle {
+    display: block !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-swipe-hint {
+    display: inline-flex !important;
+  }
+  .hex-card {
+    width: 155px !important;
+    height: 175px !important;
+  }
+  .honeycomb-row {
+    margin-top: -32px !important;
+    gap: 10px !important;
+  }
+  .hex-doc-name {
+    font-size: 13px !important;
+  }
+  .hex-doc-edu {
+    font-size: 10.5px !important;
+  }
+  .hex-doc-spec {
+    font-size: 11px !important;
+  }
+  .hex-book-badge {
+    font-size: 9px !important;
+    padding: 3px 8px !important;
+  }
+
+  /* Responsive Section Layouts */
+  .section-service .smd50 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    padding-right: 0 !important;
+    margin-bottom: 30px !important;
+  }
+  .section-service .service-box {
+    flex: 0 0 100% !important;
+  }
+  .section-testimonials .smd60 {
+    flex: 0 0 100% !important;
+    padding-right: 0 !important;
+    margin-bottom: 30px !important;
+  }
+  .section-testimonials .smd40 {
+    flex: 0 0 100% !important;
+  }
+
+  /* Toplinks Responsive Grid on Mobile */
+  .toplinks a {
+    flex: 0 0 50% !important;
+    padding: 12px 14px !important;
+    box-sizing: border-box !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  }
+  .toplinks a:last-child {
+    flex: 0 0 100% !important;
+    border-bottom: none !important;
+  }
+}
+
+/* Mobile Slide-Out Drawer Navigation */
+.maya-mobile-drawer-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  background-color: rgba(14, 3, 24, 0.7) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  animation: mayaFadeIn 0.25s ease forwards !important;
+}
+
+.maya-mobile-drawer {
+  width: 85% !important;
+  max-width: 360px !important;
+  height: 100vh !important;
+  background-color: #160526 !important;
+  background-image: linear-gradient(180deg, #1b072c 0%, #0d0216 100%) !important;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.7) !important;
+  padding: 24px 22px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+  animation: mayaPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+.mobile-nav-item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-family: var(--heading-font), 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  padding: 13px 4px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  transition: all 0.2s ease !important;
+}
+
+.mobile-nav-item:hover {
+  color: #c084fc !important;
+  padding-left: 8px !important;
 }

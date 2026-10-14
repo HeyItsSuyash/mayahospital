@@ -7040,32 +7040,9 @@ background: var(--primary-color);
 }
  .subtitle:after {
      content: '';
-     height: 3px;
-     width: 5px;
-     left: -5px;
-     top: 0;
-     background: #fff;
-     position: absolute;
-     -webkit-animation-duration: 5s;
-     animation-duration: 5s;
-     -webkit-animation-timing-function: linear;
-     animation-timing-function: linear;
-     -webkit-animation-iteration-count: infinite;
-     animation-iteration-count: infinite;
-     -webkit-animation-name: moveLeftRight;
-     animation-name: moveLeftRight;
+     display: none !important;
+     animation: none !important;
 }
-@-webkit-keyframes moveLeftRight {
-  0% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0); }
-  50% {
-    -webkit-transform: translateX(32px);
-    transform: translateX(32px);
-    }
-  100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0); } }
 
 
 .heading{

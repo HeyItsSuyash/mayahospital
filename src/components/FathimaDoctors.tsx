@@ -1,13 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 interface DoctorsProps {
   onOpenAppointmentModal: (docName?: string) => void;
 }
 
-// 12 Real Doctors & Clinical Specialists spanning Maya Hospital's departments
-// 16 Doctors & Clinical Specialists for rich, organic honeycomb mosaic spanning page
+// 16 Doctors & Clinical Specialists spanning Maya Hospital's departments
 const DOCTOR_LIST = [
   {
     name: "Dr. Maya Verma",
@@ -73,7 +72,7 @@ const DOCTOR_LIST = [
     name: "Dr. Neha Saxena",
     degrees: "MBBS, DCH, DNB",
     speciality: "Neonatal Intensive Care (NICU)",
-    image: "https://images.unsplash.com/photo-1594824813583-094183d2999e?auto=format&fit=crop&q=80&w=600"
+    image: "https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&q=80&w=600"
   },
   {
     name: "Dr. Manoj Tripathi",
@@ -107,19 +106,52 @@ const DOCTOR_LIST = [
   }
 ];
 
+// Aesthetic lighter-shade filler hexagon component to fill empty spaces around doctors
+const FillerHexagon: React.FC<{
+  icon?: string;
+  label?: string;
+  extraClass?: string;
+  onClick?: () => void;
+}> = ({ icon = "fa-heart-pulse", label = "Maya Healthcare", extraClass = "", onClick }) => {
+  return (
+    <div
+      className={`hex-card hex-filler-card ${extraClass}`}
+      onClick={onClick}
+      title={label}
+    >
+      <div className="hex-content hex-filler-content">
+        <div className="hex-filler-inner">
+          <i className={`fa-solid ${icon} hex-filler-icon`}></i>
+          <span className="hex-filler-label">{label}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function FathimaDoctors({ onOpenAppointmentModal }: DoctorsProps) {
+  // Mobile active doctor card state (for tap-to-inspect credentials)
+  const [activeMobileCard, setActiveMobileCard] = useState<string | null>(null);
+
   // 16 Doctors arranged in 3 organic honeycomb rows with subtle natural disorder
-  // Row 1: 5 Doctors
-  // Row 2: 6 Doctors (offset to interlock)
-  // Row 3: 5 Doctors
+  // Row 1: 5 Doctors (framed with lighter shade hexagons on left and right)
+  // Row 2: 6 Doctors (offset to interlock, framed with lighter shade hexagons)
+  // Row 3: 5 Doctors (framed with lighter shade hexagons on left and right)
   const row1 = DOCTOR_LIST.slice(0, 5);
   const row2 = DOCTOR_LIST.slice(5, 11);
   const row3 = DOCTOR_LIST.slice(11, 16);
 
   // Subtle organic disorder offsets (slight vertical shifts for natural honeycomb texture)
-  const subtleDisorderOffsets = [
-    "0px", "6px", "-4px", "8px", "-2px", "5px"
-  ];
+  const subtleDisorderOffsets = ["0px", "6px", "-4px", "8px", "-2px", "5px"];
+
+  const handleCardClick = (docName: string) => {
+    // If mobile card is already active, open appointment modal; otherwise activate it
+    if (activeMobileCard === docName) {
+      onOpenAppointmentModal(docName);
+    } else {
+      setActiveMobileCard(docName);
+    }
+  };
 
   return (
     <section
@@ -133,9 +165,9 @@ export default function FathimaDoctors({ onOpenAppointmentModal }: DoctorsProps)
         width: "100%"
       }}
     >
-      <div style={{ width: "100%", maxWidth: "1680px", margin: "0 auto", padding: "0 16px", boxSizing: "border-box" }}>
+      <div style={{ width: "100%", maxWidth: "1800px", margin: "0 auto", padding: "0 16px", boxSizing: "border-box" }}>
         {/* Section Heading */}
-        <div style={{ textAlign: "center", marginBottom: "55px" }}>
+        <div style={{ textAlign: "center", marginBottom: "45px" }}>
           <span className="subtitle">MEET OUR TEAM</span>
           <h2 className="heading" style={{ marginBottom: "15px" }}>
             Our Dedicated Doctors
@@ -149,288 +181,210 @@ export default function FathimaDoctors({ onOpenAppointmentModal }: DoctorsProps)
               lineHeight: "24px"
             }}
           >
-            Hover over any specialist to view their clinical expertise, qualifications, and consultation scope.
+            Hover or tap on any specialist to view their clinical expertise, qualifications, and consultation scope.
           </p>
+
+          {/* Mobile swipe hint visible only on touch/mobile */}
+          <div className="mobile-swipe-hint">
+            <i className="fa-solid fa-arrows-left-right" style={{ marginRight: "6px" }}></i>
+            Swipe horizontally to explore all 16 specialists
+          </div>
         </div>
 
         {/* Honeycomb Interlocking Canvas across full page width */}
-        <div className="honeycomb-container">
-          {/* Row 1: 5 Hexagons */}
-          <div className="honeycomb-row">
-            {row1.map((doc, idx) => (
-              <div
-                key={doc.name}
-                className="hex-card"
-                style={{
-                  transform: `translateY(${subtleDisorderOffsets[idx % subtleDisorderOffsets.length]})`
-                }}
-                onClick={() => onOpenAppointmentModal(doc.name)}
-              >
-                <div className="hex-content">
-                  {/* Default State: Doctor Image against solid theme-consistent purple */}
-                  <div className="hex-image-holder">
-                    <img src={doc.image} alt={doc.name} className="hex-img" />
-                  </div>
+        <div className="honeycomb-scroll-wrapper">
+          <div className="honeycomb-container">
+            {/* =============================================================
+                Row 1: Flanked by lighter shade hexagons on left and right
+                ============================================================= */}
+            <div className="honeycomb-row">
+              {/* Extra filler on wide screens */}
+              <FillerHexagon
+                icon="fa-hospital"
+                label="Maya Hospital"
+                extraClass="hex-filler-ultrawide"
+                onClick={() => onOpenAppointmentModal()}
+              />
+              {/* Left Filler Hexagon (Lighter Shade) */}
+              <FillerHexagon
+                icon="fa-notes-medical"
+                label="Clinical Care"
+                onClick={() => onOpenAppointmentModal()}
+              />
 
-                  {/* Hover State: Turns pure WHITE with precisely centered Name, Education & Speciality */}
-                  <div className="hex-hover-panel">
-                    <div className="hex-text-inner">
-                      <h4 className="hex-doc-name">{doc.name}</h4>
-                      <p className="hex-doc-edu">{doc.degrees}</p>
-                      <p className="hex-doc-spec">{doc.speciality}</p>
+              {row1.map((doc, idx) => {
+                const isActive = activeMobileCard === doc.name;
+                return (
+                  <div
+                    key={doc.name}
+                    className={`hex-card ${isActive ? "is-active-mobile" : ""}`}
+                    style={{
+                      transform: `translateY(${subtleDisorderOffsets[idx % subtleDisorderOffsets.length]})`
+                    }}
+                    onClick={() => handleCardClick(doc.name)}
+                  >
+                    <div className="hex-content">
+                      {/* Default State: Doctor Image against solid theme-consistent purple */}
+                      <div className="hex-image-holder">
+                        <img src={doc.image} alt={doc.name} className="hex-img" />
+                      </div>
+
+                      {/* Hover State: Turns pure WHITE with PRECISELY centered Name, Education & Speciality */}
+                      <div className="hex-hover-panel">
+                        <div className="hex-text-inner">
+                          <h4 className="hex-doc-name">{doc.name}</h4>
+                          <p className="hex-doc-edu">{doc.degrees}</p>
+                          <p className="hex-doc-spec">{doc.speciality}</p>
+                          <span className="hex-book-badge">Book Appointment</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                );
+              })}
 
-          {/* Row 2: 6 Hexagons (Staggered to interlock naturally) */}
-          <div className="honeycomb-row offset-row">
-            {row2.map((doc, idx) => (
-              <div
-                key={doc.name}
-                className="hex-card"
-                style={{
-                  transform: `translateY(${subtleDisorderOffsets[(idx + 2) % subtleDisorderOffsets.length]})`
-                }}
-                onClick={() => onOpenAppointmentModal(doc.name)}
-              >
-                <div className="hex-content">
-                  <div className="hex-image-holder">
-                    <img src={doc.image} alt={doc.name} className="hex-img" />
-                  </div>
+              {/* Right Filler Hexagon (Lighter Shade) */}
+              <FillerHexagon
+                icon="fa-stethoscope"
+                label="Expert Doctors"
+                onClick={() => onOpenAppointmentModal()}
+              />
+              {/* Extra filler on wide screens */}
+              <FillerHexagon
+                icon="fa-heart-pulse"
+                label="24x7 Emergency"
+                extraClass="hex-filler-ultrawide"
+                onClick={() => onOpenAppointmentModal()}
+              />
+            </div>
 
-                  <div className="hex-hover-panel">
-                    <div className="hex-text-inner">
-                      <h4 className="hex-doc-name">{doc.name}</h4>
-                      <p className="hex-doc-edu">{doc.degrees}</p>
-                      <p className="hex-doc-spec">{doc.speciality}</p>
+            {/* =============================================================
+                Row 2: 6 Hexagons (Staggered to interlock naturally)
+                Flanked by lighter shade hexagons on both ends
+                ============================================================= */}
+            <div className="honeycomb-row offset-row">
+              {/* Extra filler on wide screens */}
+              <FillerHexagon
+                icon="fa-shield-halved"
+                label="Quality Care"
+                extraClass="hex-filler-ultrawide"
+                onClick={() => onOpenAppointmentModal()}
+              />
+              {/* Left Filler Hexagon (Lighter Shade) */}
+              <FillerHexagon
+                icon="fa-user-doctor"
+                label="Specialist OPD"
+                onClick={() => onOpenAppointmentModal()}
+              />
+
+              {row2.map((doc, idx) => {
+                const isActive = activeMobileCard === doc.name;
+                return (
+                  <div
+                    key={doc.name}
+                    className={`hex-card ${isActive ? "is-active-mobile" : ""}`}
+                    style={{
+                      transform: `translateY(${subtleDisorderOffsets[(idx + 2) % subtleDisorderOffsets.length]})`
+                    }}
+                    onClick={() => handleCardClick(doc.name)}
+                  >
+                    <div className="hex-content">
+                      <div className="hex-image-holder">
+                        <img src={doc.image} alt={doc.name} className="hex-img" />
+                      </div>
+
+                      <div className="hex-hover-panel">
+                        <div className="hex-text-inner">
+                          <h4 className="hex-doc-name">{doc.name}</h4>
+                          <p className="hex-doc-edu">{doc.degrees}</p>
+                          <p className="hex-doc-spec">{doc.speciality}</p>
+                          <span className="hex-book-badge">Book Appointment</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                );
+              })}
 
-          {/* Row 3: 5 Hexagons */}
-          <div className="honeycomb-row">
-            {row3.map((doc, idx) => (
-              <div
-                key={doc.name}
-                className="hex-card"
-                style={{
-                  transform: `translateY(${subtleDisorderOffsets[(idx + 4) % subtleDisorderOffsets.length]})`
-                }}
-                onClick={() => onOpenAppointmentModal(doc.name)}
-              >
-                <div className="hex-content">
-                  <div className="hex-image-holder">
-                    <img src={doc.image} alt={doc.name} className="hex-img" />
-                  </div>
+              {/* Right Filler Hexagon (Lighter Shade) */}
+              <FillerHexagon
+                icon="fa-syringe"
+                label="Safe Surgery"
+                onClick={() => onOpenAppointmentModal()}
+              />
+              {/* Extra filler on wide screens */}
+              <FillerHexagon
+                icon="fa-bed-pulse"
+                label="Modern ICU"
+                extraClass="hex-filler-ultrawide"
+                onClick={() => onOpenAppointmentModal()}
+              />
+            </div>
 
-                  <div className="hex-hover-panel">
-                    <div className="hex-text-inner">
-                      <h4 className="hex-doc-name">{doc.name}</h4>
-                      <p className="hex-doc-edu">{doc.degrees}</p>
-                      <p className="hex-doc-spec">{doc.speciality}</p>
+            {/* =============================================================
+                Row 3: Flanked by lighter shade hexagons on left and right
+                ============================================================= */}
+            <div className="honeycomb-row">
+              {/* Extra filler on wide screens */}
+              <FillerHexagon
+                icon="fa-mortar-pestle"
+                label="24x7 Pharmacy"
+                extraClass="hex-filler-ultrawide"
+                onClick={() => onOpenAppointmentModal()}
+              />
+              {/* Left Filler Hexagon (Lighter Shade) */}
+              <FillerHexagon
+                icon="fa-truck-medical"
+                label="Ambulance Care"
+                onClick={() => onOpenAppointmentModal()}
+              />
+
+              {row3.map((doc, idx) => {
+                const isActive = activeMobileCard === doc.name;
+                return (
+                  <div
+                    key={doc.name}
+                    className={`hex-card ${isActive ? "is-active-mobile" : ""}`}
+                    style={{
+                      transform: `translateY(${subtleDisorderOffsets[(idx + 4) % subtleDisorderOffsets.length]})`
+                    }}
+                    onClick={() => handleCardClick(doc.name)}
+                  >
+                    <div className="hex-content">
+                      <div className="hex-image-holder">
+                        <img src={doc.image} alt={doc.name} className="hex-img" />
+                      </div>
+
+                      <div className="hex-hover-panel">
+                        <div className="hex-text-inner">
+                          <h4 className="hex-doc-name">{doc.name}</h4>
+                          <p className="hex-doc-edu">{doc.degrees}</p>
+                          <p className="hex-doc-spec">{doc.speciality}</p>
+                          <span className="hex-book-badge">Book Appointment</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                );
+              })}
+
+              {/* Right Filler Hexagon (Lighter Shade) */}
+              <FillerHexagon
+                icon="fa-award"
+                label="NABH Standards"
+                onClick={() => onOpenAppointmentModal()}
+              />
+              {/* Extra filler on wide screens */}
+              <FillerHexagon
+                icon="fa-hand-holding-medical"
+                label="Compassionate"
+                extraClass="hex-filler-ultrawide"
+                onClick={() => onOpenAppointmentModal()}
+              />
+            </div>
           </div>
         </div>
       </div>
-
-      <style jsx global>{`
-        .honeycomb-container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justifyContent: center;
-          width: 100%;
-          padding: 30px 0;
-          overflow-x: auto;
-          overflow-y: visible;
-        }
-
-        .honeycomb-row {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 16px;
-          margin-top: -46px; /* True honeycomb vertical interlocking */
-          position: relative;
-        }
-
-        .honeycomb-row:first-child {
-          margin-top: 0;
-        }
-
-        .honeycomb-row.offset-row {
-          /* Perfect half-width offset for mathematical honeycomb nesting */
-          margin-left: 0;
-        }
-
-        /* Hexagonal Card Geometry: Interlocking, subtle border-radius, NO borders, theme purple */
-        .hex-card {
-          width: 220px;
-          height: 250px;
-          position: relative;
-          clip-path: polygon(
-            50% 1.5%,
-            98.5% 25%,
-            98.5% 75%,
-            50% 98.5%,
-            1.5% 75%,
-            1.5% 25%
-          );
-          border-radius: 18px;
-          border: none !important;
-          background-color: #240b3b; /* Theme-consistent imperial purple without glow */
-          cursor: pointer;
-          transition: background-color 0.3s ease, z-index 0.1s ease;
-          flex-shrink: 0;
-          z-index: 1;
-        }
-
-        /* When hovered, elevate z-index so hover panel is always fully in front */
-        .hex-card:hover {
-          z-index: 40 !important;
-        }
-
-        .hex-content {
-          position: absolute;
-          inset: 0;
-          border-radius: 18px;
-          border: none !important;
-          overflow: hidden;
-          display: flex;
-          align-items: center;
-          justifyContent: center;
-        }
-
-        /* Default Image Container */
-        .hex-image-holder {
-          position: absolute;
-          inset: 0;
-          display: flex;
-          align-items: flex-end;
-          justifyContent: center;
-          background-color: #240b3b;
-          transition: opacity 0.25s ease;
-        }
-
-        .hex-img {
-          height: 92%;
-          width: auto;
-          max-width: 95%;
-          object-fit: contain;
-          display: block;
-        }
-
-        /* Hover Panel: Turns pure WHITE with just Name, Education & Speciality, perfectly vertically and horizontally centered */
-        .hex-hover-panel {
-          position: absolute;
-          inset: 0;
-          background-color: #ffffff;
-          display: flex;
-          align-items: center;
-          justifyContent: center;
-          opacity: 0;
-          visibility: hidden;
-          transition: opacity 0.25s ease, visibility 0.25s ease;
-          border-radius: 18px;
-          border: none !important;
-          z-index: 10;
-        }
-
-        .hex-card:hover .hex-hover-panel {
-          opacity: 1;
-          visibility: visible;
-        }
-
-        .hex-text-inner {
-          width: 100%;
-          max-width: 170px;
-          padding: 10px;
-          text-align: center;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justifyContent: center;
-        }
-
-        .hex-doc-name {
-          font-family: var(--heading-font), 'Plus Jakarta Sans', sans-serif;
-          font-size: 16px;
-          font-weight: 700;
-          color: #240b3b;
-          margin: 0 0 6px 0;
-          line-height: 1.25;
-          text-align: center;
-          width: 100%;
-        }
-
-        .hex-doc-edu {
-          font-family: var(--body-font), sans-serif;
-          font-size: 11.5px;
-          font-weight: 600;
-          color: #7c3aed;
-          margin: 0 0 8px 0;
-          line-height: 1.35;
-          text-align: center;
-          width: 100%;
-        }
-
-        .hex-doc-spec {
-          font-family: var(--body-font), sans-serif;
-          font-size: 12px;
-          font-weight: 500;
-          color: #4b5563;
-          margin: 0;
-          line-height: 1.4;
-          text-align: center;
-          width: 100%;
-        }
-
-        @media (max-width: 1280px) {
-          .hex-card {
-            width: 180px;
-            height: 205px;
-          }
-          .honeycomb-row {
-            margin-top: -38px;
-            gap: 12px;
-          }
-          .hex-doc-name {
-            font-size: 14px;
-          }
-          .hex-doc-edu {
-            font-size: 11px;
-          }
-          .hex-doc-spec {
-            font-size: 11.5px;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .honeycomb-container {
-            flex-direction: column;
-            align-items: center;
-          }
-          .honeycomb-row {
-            flex-wrap: wrap;
-            margin-top: 0;
-            gap: 14px;
-          }
-          .hex-card {
-            width: 160px;
-            height: 182px;
-          }
-        }
-      `}</style>
     </section>
   );
 }

@@ -51,34 +51,34 @@ export default function AppointmentModal({
   };
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200" onClick={onClose}>
+    <div className="maya-dialog-backdrop" onClick={onClose}>
       <div 
-        className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden"
+        className="maya-dialog-box"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-[#240b3b] text-white p-6 relative border-b border-purple-500/20">
+        <div className="maya-dialog-header">
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+            className="maya-dialog-close-btn"
           >
-            <X className="w-5 h-5" />
+            <X size={18} />
           </button>
-          <div className="flex items-center gap-3">
+          <div className="maya-dialog-header-inner">
             <img
               src="/White Caduceus Laurel Monogram.png"
               alt="Maya Hospital Monogram"
-              className="w-12 h-12 object-contain"
+              className="maya-dialog-logo"
             />
             <div>
-              <div className="flex items-center gap-2 text-[#c084fc] text-xs font-bold uppercase tracking-wider mb-1">
-                <Calendar className="w-4 h-4" />
+              <div className="maya-dialog-badge">
+                <Calendar size={13} style={{ color: "#c084fc" }} />
                 <span>Online OPD Registration</span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white" style={{ fontFamily: "var(--heading-font), 'Plus Jakarta Sans', sans-serif" }}>
+              <h3 className="maya-dialog-title">
                 Book a Doctor Appointment
               </h3>
-              <p className="text-xs text-purple-200/80 mt-1">
+              <p className="maya-dialog-subtitle">
                 Maya Hospital And Multi-speciality Centre • Meerpur, Lakhimpur Kheri
               </p>
             </div>
