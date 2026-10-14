@@ -75,7 +75,7 @@ export default function MayaPageLoader() {
         <div style={{ textAlign: "center" }}>
           <h2
             style={{
-              fontFamily: "var(--heading-font), 'Montserrat', sans-serif",
+              fontFamily: "var(--heading-font), 'Plus Jakarta Sans', sans-serif",
               fontSize: "18px",
               fontWeight: 700,
               letterSpacing: "3px",
@@ -86,47 +86,20 @@ export default function MayaPageLoader() {
           >
             MAYA HOSPITAL
           </h2>
-          <span
-            style={{
-              display: "block",
-              fontFamily: "var(--heading-font), 'Montserrat', sans-serif",
-              fontSize: "10px",
-              fontWeight: 600,
-              letterSpacing: "4px",
-              color: "var(--secondary-color)",
-              textTransform: "uppercase",
-              marginTop: "6px"
-            }}
-          >
-            Lakhimpur Kheri
-          </span>
         </div>
 
-        {/* Sleek Minimal Loading Line */}
+        {/* Smooth Modern Spinner */}
         <div
           style={{
-            width: "140px",
-            height: "2px",
-            backgroundColor: "rgba(255, 255, 255, 0.12)",
-            borderRadius: "2px",
-            overflow: "hidden",
-            position: "relative",
-            marginTop: "6px"
+            marginTop: "10px",
+            width: "36px",
+            height: "36px",
+            border: "3px solid rgba(255, 255, 255, 0.15)",
+            borderTopColor: "#c084fc",
+            borderRadius: "50%",
+            animation: "loaderSpin 0.85s linear infinite"
           }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              height: "100%",
-              width: "45%",
-              backgroundColor: "var(--secondary-color)",
-              borderRadius: "2px",
-              animation: "loaderProgress 1.2s infinite ease-in-out"
-            }}
-          />
-        </div>
+        />
       </div>
 
       <style jsx global>{`
@@ -140,12 +113,12 @@ export default function MayaPageLoader() {
             opacity: 1;
           }
         }
-        @keyframes loaderProgress {
+        @keyframes loaderSpin {
           0% {
-            left: -45%;
+            transform: rotate(0deg);
           }
           100% {
-            left: 100%;
+            transform: rotate(360deg);
           }
         }
       `}</style>

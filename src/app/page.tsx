@@ -9,7 +9,6 @@ import MayaFacilitiesGrid from "@/components/MayaFacilitiesGrid";
 import FathimaDoctors from "@/components/FathimaDoctors";
 import FathimaServiceSection from "@/components/FathimaServiceSection";
 import FathimaTestimonialsSection from "@/components/FathimaTestimonialsSection";
-import FathimaNewsSection from "@/components/FathimaNewsSection";
 import FathimaFooter from "@/components/FathimaFooter";
 import AppointmentModal from "@/components/AppointmentModal";
 import SupportModals from "@/components/SupportModals";
@@ -111,11 +110,6 @@ export default function Home() {
         {/* Patient Testimonials */}
         <div className="reveal-on-scroll">
           <FathimaTestimonialsSection />
-        </div>
-
-        {/* Insights & News & Events */}
-        <div className="reveal-on-scroll">
-          <FathimaNewsSection />
         </div>
 
         {/* Hospital Location Section (Google Map & Justdial Link) */}

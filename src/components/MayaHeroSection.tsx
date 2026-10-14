@@ -33,66 +33,25 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
   }, []);
 
   return (
-    <section
-      className="maya-hero-wrap"
-      style={{
-        position: "relative",
-        height: "100vh",
-        minHeight: "720px",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        overflow: "hidden",
-        backgroundColor: "#080c14"
-      }}
-    >
-      {/* Background Image: Focused Surgical Team in a Modern Operating Room */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: "url('/Focused Surgical Team in a Modern Operating Room.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center 38%",
-          backgroundRepeat: "no-repeat"
-        }}
-      />
-
-      {/* Natural Dark Photographic Vignette & Legibility Overlays (NO PURPLE TINT) */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: "linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.20) 35%, rgba(0, 0, 0, 0.70) 80%, rgba(0, 0, 0, 0.90) 100%)",
-          pointerEvents: "none"
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: "linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0.15) 100%)",
-          pointerEvents: "none"
-        }}
-      />
-
+    <>
       {/* =========================================================================
-          NAVBAR: Sticky, Transparent at top -> Solid Amethyst Velvet on scroll
+          NAVBAR: Fixed persistent sticky header across the entire website
+          Transparent at top -> Solid Amethyst Velvet on scroll
           ========================================================================= */}
       <header
         style={{
-          position: "sticky",
+          position: "fixed",
           top: 0,
           left: 0,
+          right: 0,
           zIndex: 1000,
           width: "100%",
-          padding: scrolled ? "14px 0" : "24px 0",
-          backgroundColor: scrolled ? "rgba(22, 6, 36, 0.97)" : "transparent",
+          padding: scrolled ? "14px 0" : "22px 0",
+          backgroundColor: scrolled ? "rgba(22, 6, 36, 0.98)" : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(212, 175, 55, 0.28)" : "none",
-          boxShadow: scrolled ? "0 10px 30px rgba(0, 0, 0, 0.6)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(124, 58, 237, 0.25)" : "none",
+          boxShadow: scrolled ? "0 10px 30px rgba(0, 0, 0, 0.5)" : "none",
           transition: "all 0.3s ease-in-out"
         }}
       >
@@ -102,9 +61,9 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
             justifyContent: "space-between",
             alignItems: "center",
             width: "100%",
-            maxWidth: "1600px",
+            maxWidth: "1380px", // Reduced navbar width as requested
             margin: "0 auto",
-            padding: "0 48px",
+            padding: "0 32px",
             boxSizing: "border-box"
           }}
         >
@@ -122,7 +81,7 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
               src="/White Caduceus Laurel Monogram.png"
               alt="Maya Hospital Monogram Logo"
               style={{
-                height: scrolled ? "44px" : "52px",
+                height: scrolled ? "52px" : "62px",
                 width: "auto",
                 objectFit: "contain",
                 filter: "drop-shadow(0 2px 10px rgba(0,0,0,0.5))",
@@ -132,28 +91,17 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
             <div style={{ display: "flex", flexDirection: "column" }}>
               <span
                 style={{
-                  fontFamily: "var(--heading-font), sans-serif",
-                  fontSize: "14px",
-                  fontWeight: 800,
-                  letterSpacing: "1px",
+                  fontFamily: "var(--heading-font), 'Plus Jakarta Sans', sans-serif",
+                  fontSize: scrolled ? "20px" : "24px",
+                  fontWeight: 600,
+                  letterSpacing: "-0.015em",
                   color: "#ffffff",
-                  lineHeight: "1.1"
+                  lineHeight: "1.05",
+                  textShadow: "0 2px 12px rgba(0,0,0,0.6)",
+                  transition: "font-size 0.3s ease"
                 }}
               >
                 MAYA HOSPITAL
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--body-font), sans-serif",
-                  fontSize: "9.5px",
-                  fontWeight: 600,
-                  letterSpacing: "3px",
-                  color: "var(--secondary-color)",
-                  textTransform: "uppercase",
-                  marginTop: "3px"
-                }}
-              >
-                LAKHIMPUR KHERI
               </span>
             </div>
           </Link>
@@ -190,26 +138,27 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
                   onClick={() => setOpenMenu(openMenu === "departments" ? null : "departments")}
                 >
                   <span>DEPARTMENTS</span>
-                  <span style={{ fontSize: "10px", transform: openMenu === "departments" ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s ease" }}>▼</span>
+                  <span style={{ fontSize: "10px", transform: openMenu === "departments" ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.4s ease" }}>▼</span>
                 </button>
 
                 {openMenu === "departments" && (
                   <div
+                    className="dropdown-slow-fade"
                     style={{
                       position: "absolute",
                       top: "100%",
                       left: "-120px",
                       width: "560px",
-                      backgroundColor: "#1d0730",
-                      borderRadius: "20px",
-                      boxShadow: "0 25px 60px rgba(0,0,0,0.75)",
-                      border: "1px solid rgba(212, 175, 55, 0.35)",
-                      padding: "24px",
+                      backgroundColor: "#160526",
+                      borderRadius: "0px",
+                      boxShadow: "0 25px 60px rgba(0,0,0,0.85)",
+                      border: "none",
+                      padding: "24px 28px",
                       display: "grid",
                       gridTemplateColumns: "1fr 1fr",
-                      gap: "14px",
+                      gap: "0px",
                       zIndex: 2000,
-                      backdropFilter: "blur(16px)"
+                      backdropFilter: "blur(20px)"
                     }}
                   >
                     {[
@@ -228,27 +177,29 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
                           display: "flex",
                           alignItems: "flex-start",
                           gap: "12px",
-                          padding: "12px",
-                          borderRadius: "14px",
-                          backgroundColor: "rgba(255, 255, 255, 0.05)",
+                          padding: "16px 14px",
+                          borderRadius: "0px",
+                          backgroundColor: "transparent",
                           textDecoration: "none",
+                          borderBottom: i < 4 ? "1px solid rgba(255, 255, 255, 0.12)" : "none",
+                          borderRight: i % 2 === 0 ? "1px solid rgba(255, 255, 255, 0.12)" : "none",
                           transition: "background-color 0.2s ease"
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = "rgba(168, 85, 247, 0.22)";
+                          e.currentTarget.style.backgroundColor = "rgba(168, 85, 247, 0.14)";
                         }}
                         onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
+                          e.currentTarget.style.backgroundColor = "transparent";
                         }}
                       >
-                        <div style={{ color: "#d8b4fe", fontSize: "18px", marginTop: "2px" }}>
+                        <div style={{ color: "#ffffff", fontSize: "17px", marginTop: "2px" }}>
                           <i className={`fa-solid ${dept.icon}`}></i>
                         </div>
                         <div>
-                          <div style={{ color: "#ffffff", fontSize: "13px", fontWeight: 700, marginBottom: "2px" }}>
+                          <div style={{ color: "#ffffff", fontSize: "13px", fontWeight: 600, marginBottom: "3px" }}>
                             {dept.name}
                           </div>
-                          <div style={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "11px", lineHeight: "1.3" }}>
+                          <div style={{ color: "rgba(255, 255, 255, 0.65)", fontSize: "11px", lineHeight: "1.35" }}>
                             {dept.desc}
                           </div>
                         </div>
@@ -278,26 +229,27 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
                   onClick={() => setOpenMenu(openMenu === "services" ? null : "services")}
                 >
                   <span>SERVICES</span>
-                  <span style={{ fontSize: "10px", transform: openMenu === "services" ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s ease" }}>▼</span>
+                  <span style={{ fontSize: "10px", transform: openMenu === "services" ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.4s ease" }}>▼</span>
                 </button>
 
                 {openMenu === "services" && (
                   <div
+                    className="dropdown-slow-fade"
                     style={{
                       position: "absolute",
                       top: "100%",
                       left: "-140px",
                       width: "560px",
-                      backgroundColor: "#1d0730",
-                      borderRadius: "20px",
-                      boxShadow: "0 25px 60px rgba(0,0,0,0.75)",
-                      border: "1px solid rgba(212, 175, 55, 0.35)",
-                      padding: "24px",
+                      backgroundColor: "#160526",
+                      borderRadius: "0px",
+                      boxShadow: "0 25px 60px rgba(0,0,0,0.85)",
+                      border: "none",
+                      padding: "24px 28px",
                       display: "grid",
                       gridTemplateColumns: "1fr 1fr",
-                      gap: "14px",
+                      gap: "0px",
                       zIndex: 2000,
-                      backdropFilter: "blur(16px)"
+                      backdropFilter: "blur(20px)"
                     }}
                   >
                     {[
@@ -316,27 +268,29 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
                           display: "flex",
                           alignItems: "flex-start",
                           gap: "12px",
-                          padding: "12px",
-                          borderRadius: "14px",
-                          backgroundColor: "rgba(255, 255, 255, 0.05)",
+                          padding: "16px 14px",
+                          borderRadius: "0px",
+                          backgroundColor: "transparent",
                           textDecoration: "none",
+                          borderBottom: i < 4 ? "1px solid rgba(255, 255, 255, 0.12)" : "none",
+                          borderRight: i % 2 === 0 ? "1px solid rgba(255, 255, 255, 0.12)" : "none",
                           transition: "background-color 0.2s ease"
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = "rgba(168, 85, 247, 0.22)";
+                          e.currentTarget.style.backgroundColor = "rgba(168, 85, 247, 0.14)";
                         }}
                         onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
+                          e.currentTarget.style.backgroundColor = "transparent";
                         }}
                       >
-                        <div style={{ color: "#d8b4fe", fontSize: "18px", marginTop: "2px" }}>
+                        <div style={{ color: "#ffffff", fontSize: "17px", marginTop: "2px" }}>
                           <i className={`fa-solid ${serv.icon}`}></i>
                         </div>
                         <div>
-                          <div style={{ color: "#ffffff", fontSize: "13px", fontWeight: 700, marginBottom: "2px" }}>
+                          <div style={{ color: "#ffffff", fontSize: "13px", fontWeight: 600, marginBottom: "3px" }}>
                             {serv.name}
                           </div>
-                          <div style={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "11px", lineHeight: "1.3" }}>
+                          <div style={{ color: "rgba(255, 255, 255, 0.65)", fontSize: "11px", lineHeight: "1.35" }}>
                             {serv.desc}
                           </div>
                         </div>
@@ -351,31 +305,32 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
               <Link href="#location" className="nav-link-animated" style={stoneNavLinkStyle}>LOCATION</Link>
             </nav>
 
-            {/* Rounded Pill CTA Button (NOT square) */}
+            {/* Ghost CTA Button - Transparent with clean border, NO moving animation */}
             <button
               onClick={handleEnquireClick}
               style={{
                 backgroundColor: "transparent",
                 color: "#ffffff",
-                border: "1px solid rgba(255, 255, 255, 0.45)",
+                border: "1.5px solid rgba(255, 255, 255, 0.7)",
                 borderRadius: "9999px",
                 padding: "11px 28px",
                 fontSize: "12.5px",
-                fontWeight: 600,
+                fontWeight: 700,
                 letterSpacing: "2px",
                 textTransform: "uppercase",
                 cursor: "pointer",
-                transition: "all 0.3s ease",
-                fontFamily: "var(--heading-font), 'Montserrat', sans-serif"
+                transition: "background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease",
+                fontFamily: "var(--heading-font), 'Plus Jakarta Sans', sans-serif",
+                boxShadow: "none"
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "var(--secondary-color)";
-                e.currentTarget.style.backgroundColor = "var(--secondary-color)";
-                e.currentTarget.style.color = "#170c06";
+                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
+                e.currentTarget.style.borderColor = "#ffffff";
+                e.currentTarget.style.color = "#ffffff";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.45)";
                 e.currentTarget.style.backgroundColor = "transparent";
+                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.7)";
                 e.currentTarget.style.color = "#ffffff";
               }}
             >
@@ -385,8 +340,55 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
         </div>
       </header>
 
-      {/* Spacer for sticky header */}
-      <div style={{ height: "40px" }} />
+      {/* =========================================================================
+          HERO SECTION: Full screen cinematic backdrop with operating room visual
+          ========================================================================= */}
+      <section
+        className="maya-hero-wrap"
+        style={{
+          position: "relative",
+          height: "100vh",
+          minHeight: "720px",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          overflow: "hidden",
+          backgroundColor: "#080c14"
+        }}
+      >
+        {/* Background Image: Focused Surgical Team in a Modern Operating Room */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: "url('/Focused Surgical Team in a Modern Operating Room.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center 38%",
+            backgroundRepeat: "no-repeat"
+          }}
+        />
+
+        {/* Natural Dark Photographic Vignette & Legibility Overlays (NO PURPLE TINT) */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.20) 35%, rgba(0, 0, 0, 0.70) 80%, rgba(0, 0, 0, 0.90) 100%)",
+            pointerEvents: "none"
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0.15) 100%)",
+            pointerEvents: "none"
+          }}
+        />
+
+        {/* Spacer for fixed header */}
+        <div style={{ height: "90px" }} />
 
       {/* =========================================================================
           HERO MAIN CONTENT
@@ -406,22 +408,20 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
         }}
       >
         <div style={{ maxWidth: "860px" }}>
-          {/* Subtle gold accent rule */}
+          {/* Subtle accent rule */}
           <div
             style={{
               display: "inline-flex",
               alignItems: "center",
               gap: "10px",
               marginBottom: "16px",
-              color: "var(--secondary-color)",
+              color: "#ffffff",
               fontSize: "11px",
               letterSpacing: "3.5px",
               textTransform: "uppercase",
               fontWeight: 600
             }}
           >
-            <span style={{ width: "24px", height: "1px", backgroundColor: "var(--secondary-color)" }}></span>
-            <span>MULTI-SPECIALITY & CRITICAL CARE</span>
           </div>
 
           {/* Impactful Mission & Healthcare Promise Title with Montserrat */}
@@ -439,12 +439,12 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
             }}
           >
             Here for you,<br />
-            <span style={{ color: "var(--secondary-color)" }}>when it matters most.</span>
+            <span style={{ color: "#ffffff" }}>when it matters most.</span>
           </h1>
 
           <p
             style={{
-              color: "rgba(255, 255, 255, 0.85)",
+              color: "rgba(255, 255, 255, 0.88)",
               fontSize: "16px",
               lineHeight: "28px",
               maxWidth: "540px",
@@ -462,8 +462,8 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
             <button
               onClick={onOpenAppointmentModal}
               style={{
-                backgroundColor: "var(--secondary-color)",
-                color: "#170c06",
+                backgroundColor: "#ffffff",
+                color: "var(--primary-color)",
                 border: "none",
                 borderRadius: "9999px",
                 padding: "14px 34px",
@@ -474,15 +474,16 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
                 cursor: "pointer",
                 display: "inline-flex",
                 alignItems: "center",
-                transition: "all 0.25s ease"
+                transition: "all 0.25s ease",
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)"
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#ffffff";
-                e.currentTarget.style.color = "var(--primary-color)";
+                e.currentTarget.style.backgroundColor = "#c084fc";
+                e.currentTarget.style.color = "#ffffff";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--secondary-color)";
-                e.currentTarget.style.color = "#170c06";
+                e.currentTarget.style.backgroundColor = "#ffffff";
+                e.currentTarget.style.color = "var(--primary-color)";
               }}
             >
               <span>Consult Specialist</span>
@@ -508,9 +509,9 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
                 transition: "all 0.25s ease"
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "var(--secondary-color)";
-                e.currentTarget.style.color = "var(--secondary-color)";
-                e.currentTarget.style.backgroundColor = "rgba(212, 175, 55, 0.08)";
+                e.currentTarget.style.borderColor = "#ffffff";
+                e.currentTarget.style.color = "#ffffff";
+                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.12)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.65)";
@@ -528,6 +529,7 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
       {/* Hero bottom spacer to ensure balance */}
       <div style={{ height: "40px" }} />
     </section>
+    </>
   );
 }
 
@@ -539,7 +541,7 @@ const stoneNavLinkStyle: React.CSSProperties = {
   letterSpacing: "1.8px",
   textTransform: "uppercase",
   transition: "all 0.25s ease",
-  fontFamily: "var(--heading-font), 'Montserrat', sans-serif"
+  fontFamily: "var(--heading-font), 'Plus Jakarta Sans', sans-serif"
 };
 
 

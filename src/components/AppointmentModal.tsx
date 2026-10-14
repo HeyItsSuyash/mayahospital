@@ -51,13 +51,13 @@ export default function AppointmentModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200" onClick={onClose}>
       <div 
         className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-[#240b3b] text-white p-6 relative border-b border-[#d4af37]/30">
+        <div className="bg-[#240b3b] text-white p-6 relative border-b border-purple-500/20">
           <button
             onClick={onClose}
             className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
@@ -71,14 +71,14 @@ export default function AppointmentModal({
               className="w-12 h-12 object-contain"
             />
             <div>
-              <div className="flex items-center gap-2 text-[#d4af37] text-xs font-bold uppercase tracking-wider mb-1">
+              <div className="flex items-center gap-2 text-[#c084fc] text-xs font-bold uppercase tracking-wider mb-1">
                 <Calendar className="w-4 h-4" />
                 <span>Online OPD Registration</span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-black text-white">
+              <h3 className="text-xl sm:text-2xl font-bold text-white" style={{ fontFamily: "var(--heading-font), 'Plus Jakarta Sans', sans-serif" }}>
                 Book a Doctor Appointment
               </h3>
-              <p className="text-xs text-amber-200/80 mt-1">
+              <p className="text-xs text-purple-200/80 mt-1">
                 Maya Hospital And Multi-speciality Centre • Meerpur, Lakhimpur Kheri
               </p>
             </div>
@@ -236,12 +236,12 @@ export default function AppointmentModal({
                   placeholder="e.g. Fever for 3 days, joint pain, prenatal routine visit, ultrasound inquiry..."
                   value={symptoms}
                   onChange={(e) => setSymptoms(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-2xl border border-stone-200 text-sm focus:outline-none focus:border-[#cda250]"
+                  className="w-full px-4 py-2.5 rounded-2xl border border-stone-200 text-sm focus:outline-none focus:border-[#7c3aed]"
                 />
               </div>
 
               {/* Notice */}
-              <div className="bg-[#fbf7f2] text-[#24140a] border border-[#cda250]/30 p-3.5 rounded-2xl text-[11.5px] leading-relaxed">
+              <div className="bg-[#faf6fd] text-[#3b284c] border border-purple-500/20 p-3.5 rounded-2xl text-[11.5px] leading-relaxed">
                 ℹ️ For emergency injuries, chest pain, or acute labor pain, please head straight to our Emergency Unit on Aira Road Meerpur or call <strong>{HOSPITAL_INFO.emergencyPhone}</strong>.
               </div>
 
@@ -249,7 +249,7 @@ export default function AppointmentModal({
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#d4af37] to-[#b38634] hover:from-[#b38634] hover:to-[#966d24] text-[#170526] font-bold text-sm shadow-lg shadow-[#d4af37]/25 tracking-wider uppercase transition-all"
+                  className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#6d28d9] hover:from-[#6d28d9] hover:to-[#5b21b6] text-white font-bold text-sm shadow-lg shadow-purple-500/25 tracking-wider uppercase transition-all"
                 >
                   Confirm Appointment Request
                 </button>

@@ -110,48 +110,49 @@ export default function SuchiChatbot({ onOpenAppointment }: SuchiChatbotProps) {
             zIndex: 9999,
             display: "flex",
             alignItems: "center",
-            gap: "12px",
+            gap: "10px",
             cursor: "pointer"
           }}
           onClick={() => setIsOpen(true)}
         >
-          {/* Friendly Theme-Consistent Purple Speech Bubble */}
+          {/* Friendly Theme-Consistent Speech Bubble (Pill shape, vertically centered with avatar, NO triangular pointer, NO border) */}
           <div
             style={{
               backgroundColor: "#2e0c4f",
+              backgroundImage: "linear-gradient(135deg, #3b0764 0%, #2e0c4f 100%)",
               color: "#ffffff",
               padding: "10px 18px",
-              borderRadius: "24px",
-              boxShadow: "0 10px 25px rgba(46, 12, 79, 0.35)",
-              border: "1px solid rgba(168, 85, 247, 0.4)",
+              borderRadius: "9999px",
+              boxShadow: "0 8px 24px rgba(46, 12, 79, 0.4)",
+              border: "none",
               fontSize: "13px",
               fontWeight: 600,
               display: "flex",
               alignItems: "center",
-              gap: "8px",
               letterSpacing: "0.2px",
-              marginBottom: "8px",
+              marginBottom: "0px",
               position: "relative"
             }}
           >
-            <span>hi, how can i help you?</span>
+            <span>Hi, Suchi this side, how can I help you?</span>
           </div>
 
-          {/* Animated Avatar Circle (No white border, seamless purple gradient ring) */}
+          {/* Animated Avatar Circle (Seamless purple ring) */}
           <div
             style={{
               position: "relative",
-              width: "64px",
-              height: "64px",
+              width: "60px",
+              height: "60px",
               borderRadius: "50%",
               padding: "0",
-              boxShadow: "0 10px 28px rgba(36, 11, 59, 0.45)",
-              transition: "transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+              boxShadow: "0 8px 25px rgba(36, 11, 59, 0.45)",
+              transition: "transform 0.25s ease",
               overflow: "hidden",
-              border: "2px solid #7c3aed"
+              border: "2.5px solid #7c3aed",
+              flexShrink: 0
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "scale(1.08)";
+              e.currentTarget.style.transform = "scale(1.05)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "scale(1)";

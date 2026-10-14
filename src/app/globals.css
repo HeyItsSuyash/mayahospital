@@ -1,10 +1,12 @@
-/* Professional Modern Healthcare Typography: Montserrat & Inter */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Professional Modern Healthcare Typography: Plus Jakarta Sans & Inter */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Imperial Royal Plum, Champagne Gold & Soft Lilac Cream Design Tokens */
+/* Imperial Royal Plum, Amethyst & Soft Lilac Cream Design Tokens */
 :root {
   --primary-color: #240b3b !important;       /* Deep Imperial Royal Velvet Plum */
-  --secondary-color: #d4af37 !important;     /* Radiant Champagne Gold */
+  --secondary-color: #7c3aed !important;     /* Majestic Imperial Purple Accent */
+  --accent-purple: #9333ea !important;
+  --accent-light: #c084fc !important;
   --tertiary-color: #170526 !important;      /* Darkest Amethyst / Midnight Plum */
   --darkblue: #170526 !important;
   --black: #10031c !important;
@@ -13,9 +15,10 @@
   --fadeblue: #faf6fd !important;            /* Luxurious Soft Lilac-Tinted Cream */
   --red: #c94a29 !important;                 /* Accent alert color */
   --body-color: #3b284c !important;          /* Deep rich warm slate plum */
-  --luxury-serif: 'Montserrat', system-ui, -apple-system, sans-serif !important;
-  --serif-font: 'Montserrat', system-ui, -apple-system, sans-serif !important;
-  --heading-font: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+  --brand-font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  --luxury-serif: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  --serif-font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  --heading-font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
   --body-font: 'Inter', system-ui, -apple-system, sans-serif !important;
 }
 
@@ -30,24 +33,24 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6, .heading, .subtitle {
+h1, h2, h3, h4, h5, h6, .heading, .subtitle, .stone-nav-links, .nav-link-animated, .fathima-service-title {
   font-family: var(--heading-font) !important;
   letter-spacing: -0.015em;
   font-weight: 600 !important;
 }
 
 h1 {
-  font-weight: 600 !important;
+  font-weight: 700 !important;
 }
 
 h2, h3 {
-  font-weight: 500 !important;
+  font-weight: 600 !important;
 }
 
 .luxury-hero-title {
   font-family: var(--heading-font) !important;
   letter-spacing: -0.025em !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
 }
 
 /* Navlink bottom border animation for regular links (excluding mega dropdowns) */
@@ -55,6 +58,7 @@ h2, h3 {
   position: relative;
   display: inline-block;
   padding-bottom: 4px;
+  font-family: var(--heading-font) !important;
 }
 
 .nav-link-animated::after {
@@ -64,10 +68,10 @@ h2, h3 {
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #d4af37;
+  background-color: #ffffff;
   transform: scaleX(0);
   transform-origin: bottom center;
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-link-animated:hover::after,
@@ -85,28 +89,45 @@ h2, h3 {
   box-sizing: border-box !important;
 }
 
-/* Header & Sticky Nav */
+/* Header & Persistent Sticky / Fixed Nav */
 header {
   width: 100% !important;
-  position: sticky !important;
+  position: fixed !important;
   top: 0 !important;
   left: 0 !important;
+  right: 0 !important;
   z-index: 1000 !important;
   display: block !important;
-  background: var(--primary-color) !important;
 }
 
-/* Scroll-on-Reveal Animation Classes */
+/* Smooth mid-slow Scroll-on-Reveal Animation Classes */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(32px);
+  transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .reveal-on-scroll.is-revealed {
   opacity: 1 !important;
   transform: translateY(0) !important;
+}
+
+/* Slow Smooth Mega Dropdown Reveal Animation */
+.dropdown-slow-fade {
+  animation: dropdownSlowOpen 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: top center;
+}
+
+@keyframes dropdownSlowOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .header-top {
@@ -174,23 +195,24 @@ header {
 .book-btn {
   display: inline-block !important;
   border-radius: 9999px !important;
-  border: 1px solid var(--secondary-color) !important;
-  padding: 11px 28px !important;
+  border: 1.5px solid var(--secondary-color) !important;
+  padding: 12px 28px !important;
   background-color: var(--secondary-color) !important;
-  color: #170c06 !important;
+  color: #ffffff !important;
   font-size: 13px !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
   text-decoration: none !important;
-  margin-left: 15px !important;
-  transition: all 0.3s ease !important;
+  letter-spacing: 0.5px !important;
+  transition: all 0.25s ease !important;
   cursor: pointer;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3) !important;
 }
 
 .book-btn:hover {
   background-color: #ffffff !important;
-  color: var(--primary-color) !important;
-  border: 1px solid #ffffff !important;
+  color: #240b3b !important;
+  border: 1.5px solid #ffffff !important;
 }
 
 /* Ensure all interactive buttons throughout the site use rounded pill/curved shape instead of sharp square edges */
@@ -368,38 +390,48 @@ button:not(.square-keep) {
 
 /* Section Headings */
 .subtitle {
-  display: inline-block !important;
-  padding-top: 14px !important;
-  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
   margin-bottom: 12px !important;
-  font-size: 13px !important;
+  font-family: var(--heading-font), 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 12px !important;
   font-weight: 700 !important;
-  color: var(--secondary-color) !important;
+  color: #7c3aed !important;
   text-transform: uppercase !important;
-  letter-spacing: 1px !important;
+  letter-spacing: 3px !important;
+  padding: 0 !important;
 }
 
 .subtitle:before {
   content: '' !important;
-  position: absolute !important;
-  width: 32px !important;
-  height: 2px !important;
-  background-color: var(--red) !important;
-  top: 0 !important;
-  left: 0 !important;
+  display: inline-block !important;
+  position: static !important;
+  width: 24px !important;
+  height: 1px !important;
+  background-color: #7c3aed !important;
+  margin: 0 !important;
 }
 
-.text-center .subtitle:before {
-  right: 0 !important;
-  margin: 0 auto !important;
+.subtitle:after {
+  content: '' !important;
+  display: inline-block !important;
+  position: static !important;
+  width: 24px !important;
+  height: 1px !important;
+  background-color: #7c3aed !important;
+  margin: 0 !important;
 }
 
 .heading {
-  font-size: 42px !important;
-  line-height: 50px !important;
-  color: var(--black) !important;
-  font-weight: 800 !important;
-  margin-bottom: 25px !important;
+  font-family: var(--heading-font), 'Plus Jakarta Sans', sans-serif !important;
+  font-size: clamp(28px, 4vw, 42px) !important;
+  line-height: 1.15 !important;
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+  margin-bottom: 15px !important;
 }
 
 .heading.text-white {
@@ -475,11 +507,11 @@ button:not(.square-keep) {
   border-radius: 20px !important;
   margin-bottom: 25px !important;
   box-sizing: border-box !important;
-  transition: transform 0.3s ease !important;
+  transition: background-color 0.3s ease !important;
 }
 
 .service-box:hover {
-  transform: translateY(-5px) !important;
+  transform: none !important; /* NO movement on hover */
 }
 
 .service-box img {
@@ -490,12 +522,15 @@ button:not(.square-keep) {
   height: 48px !important;
 }
 
-.service-box h3.text-lightblue {
-  color: var(--secondary-color) !important;
+.service-box h3.service-box-title,
+.service-box h3.text-lightblue,
+.service-box h3 {
+  color: #ffffff !important; /* Pure white heading color */
   font-size: 22px !important;
   line-height: 28px !important;
   margin-bottom: 12px !important;
   font-weight: 700 !important;
+  font-family: var(--heading-font), 'Plus Jakarta Sans', sans-serif !important;
 }
 
 .service-box p {

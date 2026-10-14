@@ -69,14 +69,32 @@ export default function FathimaTestimonialsSection() {
             </div>
           </div>
 
-          {/* Right Column: Pulse Image */}
-          <div className="smd40" style={{ flex: "0 0 38%", textAlign: "center" }}>
-            <img
-              src="https://www.fathimahospital.com/wp-content/themes/fathimahosptial/images/pulse-img.png"
-              className="pulse-img"
-              alt="Heartbeat Pulse"
-              style={{ maxWidth: "100%", height: "auto" }}
-            />
+          {/* Right Column: Purple Version of the Logo */}
+          <div className="smd40" style={{ flex: "0 0 38%", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div
+              style={{
+                width: "280px",
+                height: "280px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "50%",
+                background: "radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, rgba(255, 255, 255, 0) 70%)",
+                padding: "20px"
+              }}
+            >
+              <img
+                src="/maya-purple-logo-badge.png"
+                alt="Maya Hospital Crest Logo"
+                style={{
+                  width: "100%",
+                  maxWidth: "240px",
+                  height: "auto",
+                  objectFit: "contain",
+                  filter: "drop-shadow(0 15px 35px rgba(36, 11, 59, 0.2))"
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>

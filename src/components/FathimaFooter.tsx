@@ -4,278 +4,265 @@ import { HOSPITAL_INFO } from "@/data/hospitalData";
 
 export default function FathimaFooter() {
   return (
-    <footer style={{
-      backgroundColor: "#160524",
-      backgroundImage: "linear-gradient(180deg, #200835 0%, #120320 100%)",
-      color: "#ffffff",
-      paddingTop: "70px",
-      borderTop: "2px solid rgba(212, 175, 55, 0.35)"
-    }}>
+    <footer
+      style={{
+        backgroundColor: "#120320",
+        backgroundImage: "linear-gradient(180deg, #1b072c 0%, #0d0216 100%)",
+        color: "#ffffff",
+        paddingTop: "60px",
+        borderTop: "1px solid rgba(124, 58, 237, 0.25)"
+      }}
+    >
       <div className="container">
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-          gap: "40px",
-          paddingBottom: "60px"
-        }}>
-          {/* Column 1: Hospital Brand & Contact */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: "36px",
+            paddingBottom: "50px"
+          }}
+        >
+          {/* Column 1: Hospital Identity & Contact */}
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "22px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "18px" }}>
               <img
                 src="/White Caduceus Laurel Monogram.png"
-                alt="Maya Hospital Monogram Logo"
-                style={{ height: "56px", width: "auto", objectFit: "contain", filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.6))" }}
+                alt="Maya Hospital Crest"
+                style={{ height: "48px", width: "auto", objectFit: "contain" }}
               />
               <div>
-                <h4 style={{ color: "#ffffff", fontSize: "20px", fontWeight: 800, margin: 0, letterSpacing: "1px", lineHeight: "1.2" }}>
-                  MAYA <span style={{ color: "var(--secondary-color)" }}>HOSPITAL</span>
+                <h4
+                  style={{
+                    fontFamily: "var(--heading-font), 'Plus Jakarta Sans', sans-serif",
+                    color: "#ffffff",
+                    fontSize: "19px",
+                    fontWeight: 700,
+                    margin: 0,
+                    letterSpacing: "-0.01em",
+                    lineHeight: "1.2"
+                  }}
+                >
+                  MAYA HOSPITAL
                 </h4>
-                <span style={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "11px", textTransform: "uppercase", letterSpacing: "2px", fontWeight: 600 }}>
+                <span
+                  style={{
+                    color: "#c084fc",
+                    fontSize: "11px",
+                    textTransform: "uppercase",
+                    letterSpacing: "1.5px",
+                    fontWeight: 600
+                  }}
+                >
                   Multi-speciality Centre
                 </span>
               </div>
             </div>
 
-            <p style={{ color: "rgba(255, 255, 255, 0.82)", fontSize: "13.5px", lineHeight: "22px", marginBottom: "24px" }}>
-              Leading healthcare institution delivering 24x7 emergency critical care, maternity, and advanced surgeries in Lakhimpur Kheri.
+            <p style={{ color: "rgba(255, 255, 255, 0.72)", fontSize: "13.5px", lineHeight: "21px", margin: "0 0 18px 0" }}>
+              24x7 Emergency, surgical, maternity, and critical care institution in Lakhimpur Kheri.
             </p>
 
-            {/* Address */}
-            <div style={{ display: "flex", gap: "14px", alignItems: "flex-start", marginBottom: "16px" }}>
-              <div style={{
-                width: "36px",
-                height: "36px",
-                borderRadius: "50%",
-                backgroundColor: "rgba(205, 162, 80, 0.2)",
-                color: "var(--secondary-color)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0
-              }}>
-                <i className="fa-solid fa-location-dot" style={{ fontSize: "15px" }}></i>
-              </div>
-              <div style={{ fontSize: "13.5px", lineHeight: "20px", color: "#ffffff" }}>
-                <strong style={{ color: "var(--secondary-color)", display: "block", fontSize: "11.5px", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "2px" }}>Hospital Address</strong>
-                <span>Near Children&apos;s Academy School, Aira Road, Meerpur, Lakhimpur Kheri-262701, UP.</span>
-              </div>
+            <div style={{ fontSize: "13px", lineHeight: "20px", color: "rgba(255, 255, 255, 0.8)", marginBottom: "12px" }}>
+              <span style={{ color: "#ffffff", fontWeight: 600, display: "block", marginBottom: "2px" }}>Location</span>
+              Near Children&apos;s Academy School, Aira Road, Meerpur, Lakhimpur Kheri, UP 262701
             </div>
 
-            {/* Phone */}
-            <div style={{ display: "flex", gap: "14px", alignItems: "flex-start", marginBottom: "16px" }}>
-              <div style={{
-                width: "36px",
-                height: "36px",
-                borderRadius: "50%",
-                backgroundColor: "rgba(205, 162, 80, 0.2)",
-                color: "var(--secondary-color)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0
-              }}>
-                <i className="fa-solid fa-phone" style={{ fontSize: "14px" }}></i>
-              </div>
-              <div style={{ fontSize: "13.5px", lineHeight: "20px", color: "#ffffff" }}>
-                <strong style={{ color: "var(--secondary-color)", display: "block", fontSize: "11.5px", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "2px" }}>Emergency & OPD Numbers</strong>
-                <a href={`tel:${HOSPITAL_INFO.emergencyPhone.replace(/\s+/g, '')}`} style={{ color: "#ffffff", fontWeight: 700, textDecoration: "none" }}>
-                  {HOSPITAL_INFO.emergencyPhone}
-                </a>
-                <span style={{ margin: "0 6px", opacity: 0.5 }}>•</span>
-                <a href={`tel:${HOSPITAL_INFO.bookingPhone.replace(/\s+/g, '')}`} style={{ color: "rgba(255,255,255,0.9)", textDecoration: "none" }}>
-                  {HOSPITAL_INFO.bookingPhone}
-                </a>
-              </div>
+            <div style={{ fontSize: "13px", lineHeight: "20px", color: "rgba(255, 255, 255, 0.8)" }}>
+              <span style={{ color: "#ffffff", fontWeight: 600, display: "block", marginBottom: "2px" }}>24x7 Helpline</span>
+              <a
+                href={`tel:${HOSPITAL_INFO.emergencyPhone.replace(/\s+/g, '')}`}
+                style={{ color: "#c084fc", fontWeight: 600, textDecoration: "none" }}
+              >
+                {HOSPITAL_INFO.emergencyPhone}
+              </a>
+              <span style={{ margin: "0 6px", opacity: 0.4 }}>•</span>
+              <a
+                href={`tel:${HOSPITAL_INFO.bookingPhone.replace(/\s+/g, '')}`}
+                style={{ color: "rgba(255, 255, 255, 0.85)", textDecoration: "none" }}
+              >
+                {HOSPITAL_INFO.bookingPhone}
+              </a>
             </div>
           </div>
 
           {/* Column 2: Quick Links */}
           <div>
-            <h3 style={{
-              color: "#ffffff",
-              fontSize: "17px",
-              fontWeight: 700,
-              letterSpacing: "1.5px",
-              textTransform: "uppercase",
-              borderBottom: "2px solid var(--secondary-color)",
-              paddingBottom: "10px",
-              marginBottom: "20px"
-            }}>
-              Explore Hospital
+            <h3
+              style={{
+                fontFamily: "var(--heading-font), 'Plus Jakarta Sans', sans-serif",
+                color: "#ffffff",
+                fontSize: "14px",
+                fontWeight: 700,
+                letterSpacing: "1.2px",
+                textTransform: "uppercase",
+                marginBottom: "16px",
+                paddingBottom: "8px",
+                borderBottom: "1.5px solid rgba(124, 58, 237, 0.4)"
+              }}
+            >
+              Explore
             </h3>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
               {[
                 { name: "About Maya Hospital", href: "#about" },
-                { name: "Centres of Excellence", href: "#departments" },
-                { name: "Our Dedicated Doctors", href: "#doctors" },
-                { name: "24x7 Emergency & Facilities", href: "#services-facilities" },
-                { name: "Health Checkup Packages", href: "#packages" },
-                { name: "Insurance & Cashless TPA", href: "#insurance" },
-                { name: "Hospital Location & Direction", href: "#location" }
-              ].map((item, idx) => (
+                { name: "Specialist Doctors", href: "#doctors" },
+                { name: "Clinical Departments", href: "#departments" },
+                { name: "24x7 Emergency & ICU", href: "#services-facilities" },
+                { name: "Cashless Mediclaim", href: "#insurance" },
+                { name: "Hospital Directions", href: "#location" }
+              ].map((link, idx) => (
                 <li key={idx}>
                   <a
-                    href={item.href}
+                    href={link.href}
                     style={{
-                      color: "rgba(255, 255, 255, 0.88)",
-                      fontSize: "14px",
+                      color: "rgba(255, 255, 255, 0.72)",
+                      fontSize: "13.5px",
                       textDecoration: "none",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "8px",
-                      transition: "all 0.25s ease"
+                      transition: "color 0.2s ease"
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.color = "var(--secondary-color)";
-                      e.currentTarget.style.paddingLeft = "5px";
+                      e.currentTarget.style.color = "#c084fc";
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.color = "rgba(255, 255, 255, 0.88)";
-                      e.currentTarget.style.paddingLeft = "0";
+                      e.currentTarget.style.color = "rgba(255, 255, 255, 0.72)";
                     }}
                   >
-                    <span style={{ color: "var(--secondary-color)", fontSize: "10px" }}>▸</span>
-                    <span>{item.name}</span>
+                    {link.name}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 3: Medical Specialities */}
+          {/* Column 3: Medical Specialities (High-intent keywords) */}
           <div>
-            <h3 style={{
-              color: "#ffffff",
-              fontSize: "17px",
-              fontWeight: 700,
-              letterSpacing: "1.5px",
-              textTransform: "uppercase",
-              borderBottom: "2px solid var(--secondary-color)",
-              paddingBottom: "10px",
-              marginBottom: "20px"
-            }}>
+            <h3
+              style={{
+                fontFamily: "var(--heading-font), 'Plus Jakarta Sans', sans-serif",
+                color: "#ffffff",
+                fontSize: "14px",
+                fontWeight: 700,
+                letterSpacing: "1.2px",
+                textTransform: "uppercase",
+                marginBottom: "16px",
+                paddingBottom: "8px",
+                borderBottom: "1.5px solid rgba(124, 58, 237, 0.4)"
+              }}
+            >
               Specialities
             </h3>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
               {[
                 "Obstetrics & Gynaecology",
-                "General Medicine & Diabetes",
                 "Orthopaedics & Joint Surgery",
                 "General & Laparoscopic Surgery",
+                "General Medicine & Critical Care",
                 "Paediatrics & Neonatology (NICU)",
-                "24x7 Emergency & Trauma Care",
-                "Pathology & Digital Diagnostic Lab"
+                "Diagnostic Pathology & X-Ray"
               ].map((spec, idx) => (
                 <li key={idx}>
                   <a
                     href="#departments"
                     style={{
-                      color: "rgba(255, 255, 255, 0.88)",
-                      fontSize: "14px",
+                      color: "rgba(255, 255, 255, 0.72)",
+                      fontSize: "13.5px",
                       textDecoration: "none",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "8px",
-                      transition: "all 0.25s ease"
+                      transition: "color 0.2s ease"
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.color = "var(--secondary-color)";
-                      e.currentTarget.style.paddingLeft = "5px";
+                      e.currentTarget.style.color = "#c084fc";
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.color = "rgba(255, 255, 255, 0.88)";
-                      e.currentTarget.style.paddingLeft = "0";
+                      e.currentTarget.style.color = "rgba(255, 255, 255, 0.72)";
                     }}
                   >
-                    <span style={{ color: "var(--secondary-color)", fontSize: "10px" }}>▸</span>
-                    <span>{spec}</span>
+                    {spec}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 4: Timetable / Hospital Hours */}
+          {/* Column 4: Patient Services (Actionable, relevant keyword links) */}
           <div>
-            <h3 style={{
-              color: "#ffffff",
-              fontSize: "17px",
-              fontWeight: 700,
-              letterSpacing: "1.5px",
-              textTransform: "uppercase",
-              borderBottom: "2px solid var(--secondary-color)",
-              paddingBottom: "10px",
-              marginBottom: "20px"
-            }}>
-              Operational Hours
+            <h3
+              style={{
+                fontFamily: "var(--heading-font), 'Plus Jakarta Sans', sans-serif",
+                color: "#ffffff",
+                fontSize: "14px",
+                fontWeight: 700,
+                letterSpacing: "1.2px",
+                textTransform: "uppercase",
+                marginBottom: "16px",
+                paddingBottom: "8px",
+                borderBottom: "1.5px solid rgba(124, 58, 237, 0.4)"
+              }}
+            >
+              Patient Services
             </h3>
-            <div style={{
-              backgroundColor: "rgba(255, 255, 255, 0.04)",
-              borderRadius: "16px",
-              padding: "16px 20px",
-              border: "1px solid rgba(205, 162, 80, 0.25)"
-            }}>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px", fontSize: "13.5px" }}>
-                <li style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ color: "rgba(255,255,255,0.9)" }}>Trauma / Casualty:</span>
-                  <span style={{ color: "#4ade80", fontWeight: 700, backgroundColor: "rgba(74, 222, 128, 0.15)", padding: "2px 8px", borderRadius: "10px", fontSize: "11px" }}>24x7 Open</span>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
+              {[
+                { name: "Book OPD Consultation", href: "#book" },
+                { name: "24x7 Ambulance Request", href: `tel:${HOSPITAL_INFO.emergencyPhone.replace(/\s+/g, '')}` },
+                { name: "TPA & Insurance Desk", href: "#insurance" },
+                { name: "Clinical Inquiry / Enquiry", href: "#enquiry" },
+                { name: "View on Google Maps", href: `https://www.google.com/maps/search/?api=1&query=${HOSPITAL_INFO.mapCoordinates.lat},${HOSPITAL_INFO.mapCoordinates.lng}`, external: true }
+              ].map((service, idx) => (
+                <li key={idx}>
+                  <a
+                    href={service.href}
+                    target={service.external ? "_blank" : undefined}
+                    rel={service.external ? "noopener noreferrer" : undefined}
+                    style={{
+                      color: "rgba(255, 255, 255, 0.72)",
+                      fontSize: "13.5px",
+                      textDecoration: "none",
+                      transition: "color 0.2s ease"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = "#c084fc";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = "rgba(255, 255, 255, 0.72)";
+                    }}
+                  >
+                    {service.name}
+                  </a>
                 </li>
-                <li style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ color: "rgba(255,255,255,0.9)" }}>Hospital Pharmacy:</span>
-                  <span style={{ color: "#4ade80", fontWeight: 700, backgroundColor: "rgba(74, 222, 128, 0.15)", padding: "2px 8px", borderRadius: "10px", fontSize: "11px" }}>24x7 Open</span>
-                </li>
-                <li style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ color: "rgba(255,255,255,0.9)" }}>Ambulance Fleet:</span>
-                  <span style={{ color: "#4ade80", fontWeight: 700, backgroundColor: "rgba(74, 222, 128, 0.15)", padding: "2px 8px", borderRadius: "10px", fontSize: "11px" }}>Always on Call</span>
-                </li>
-                <li style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px dashed rgba(255,255,255,0.15)", paddingTop: "8px" }}>
-                  <span style={{ color: "rgba(255,255,255,0.9)" }}>OPD Consultations:</span>
-                  <strong style={{ color: "var(--secondary-color)" }}>10 AM – 8 PM</strong>
-                </li>
-                <li style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ color: "rgba(255,255,255,0.9)" }}>Patient Attendants:</span>
-                  <span style={{ color: "#ffffff" }}>10 AM – 2 PM</span>
-                </li>
-              </ul>
-            </div>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
 
-      {/* Footer Bottom Bar */}
-      <div style={{
-        backgroundColor: "#120320",
-        borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-        padding: "20px 0"
-      }}>
-        <div className="container" style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: "16px"
-        }}>
-          <p style={{ margin: 0, fontSize: "13px", color: "rgba(255, 255, 255, 0.75)" }}>
-            © 2026 Maya Hospital And Multi-speciality Centre • Meerpur, Lakhimpur Kheri, UP.
-          </p>
+      {/* Simplified, Clean Bottom Bar */}
+      <div
+        style={{
+          backgroundColor: "#0d0216",
+          borderTop: "1px solid rgba(255, 255, 255, 0.06)",
+          padding: "18px 0"
+        }}
+      >
+        <div
+          className="container"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "12px",
+            fontSize: "12.5px",
+            color: "rgba(255, 255, 255, 0.65)"
+          }}
+        >
+          <span>
+            © 2026 Maya Hospital And Multi-speciality Centre. All rights reserved.
+          </span>
 
-          <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-            <a
-              href={HOSPITAL_INFO.justdialUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: "var(--secondary-color)",
-                fontSize: "12px",
-                fontWeight: 600,
-                textDecoration: "none",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px"
-              }}
-            >
-              <span>Justdial Verified 5.0 ★</span>
-            </a>
+          <div style={{ display: "flex", gap: "18px", alignItems: "center" }}>
+            <span>Aira Road, Meerpur, Lakhimpur Kheri</span>
+            <span style={{ opacity: 0.3 }}>•</span>
+            <span style={{ color: "#c084fc", fontWeight: 500 }}>24x7 Emergency Service</span>
           </div>
         </div>
       </div>

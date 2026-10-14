@@ -47,7 +47,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div 
@@ -55,7 +55,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header: Theme-Consistent Imperial Royal Velvet Plum */}
-        <div className="bg-[#240b3b] text-white p-6 relative border-b border-[#d4af37]/30">
+        <div className="bg-[#240b3b] text-white p-6 relative border-b border-purple-500/20">
           <button
             onClick={onClose}
             className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
@@ -71,17 +71,17 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
               className="w-11 h-11 object-contain"
             />
             <div>
-              <div className="flex items-center gap-2 text-[#d4af37] text-xs font-bold uppercase tracking-wider mb-0.5">
+              <div className="flex items-center gap-2 text-[#c084fc] text-xs font-bold uppercase tracking-wider mb-0.5">
                 <HelpCircle className="w-4 h-4" />
                 <span>Patient Helpdesk & Enquiries</span>
               </div>
               <h3 
                 className="text-xl sm:text-2xl font-bold text-white"
-                style={{ fontFamily: "var(--heading-font), 'Montserrat', sans-serif" }}
+                style={{ fontFamily: "var(--heading-font), 'Plus Jakarta Sans', sans-serif" }}
               >
                 Hospital Enquiry
               </h3>
-              <p className="text-xs text-amber-200/80 mt-0.5">
+              <p className="text-xs text-purple-200/80 mt-0.5">
                 Maya Hospital & Multi-speciality Centre • Lakhimpur Kheri
               </p>
             </div>
@@ -97,7 +97,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
               </div>
               <h4 
                 className="text-2xl font-bold text-[#240b3b]"
-                style={{ fontFamily: "var(--heading-font), 'Montserrat', sans-serif" }}
+                style={{ fontFamily: "var(--heading-font), 'Plus Jakarta Sans', sans-serif" }}
               >
                 Enquiry Submitted!
               </h4>
@@ -196,7 +196,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
               {/* Concerned Department */}
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                  <Building2 className="w-3.5 h-3.5 text-[#d4af37]" />
+                  <Building2 className="w-3.5 h-3.5 text-[#7c3aed]" />
                   <span>Concerned Department (Optional)</span>
                 </label>
                 <select

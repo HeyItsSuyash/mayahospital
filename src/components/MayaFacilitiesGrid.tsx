@@ -64,11 +64,12 @@ export default function MayaFacilitiesGrid({ onOpenAppointmentModal }: Facilitie
             <div
               key={idx}
               style={{
-                backgroundColor: "#fefcf8",
+                backgroundColor: "rgba(124, 58, 237, 0.03)",
                 padding: "36px 30px",
                 borderRadius: "22px",
-                boxShadow: "0 12px 35px rgba(36, 20, 10, 0.07)",
-                border: "1px solid rgba(205, 162, 80, 0.2)",
+                boxShadow: "0 12px 35px rgba(124, 58, 237, 0.06)",
+                border: "1px solid rgba(124, 58, 237, 0.15)",
+                borderTop: "4px solid #7c3aed",
                 transition: "all 0.3s ease",
                 position: "relative",
                 overflow: "hidden"
@@ -76,7 +77,7 @@ export default function MayaFacilitiesGrid({ onOpenAppointmentModal }: Facilitie
             >
               {/* Clean Icon without bulky box container */}
               <div style={{
-                color: "var(--secondary-color)",
+                color: "#7c3aed",
                 fontSize: "32px",
                 marginBottom: "20px"
               }}>
@@ -148,8 +149,30 @@ export default function MayaFacilitiesGrid({ onOpenAppointmentModal }: Facilitie
 
             <button
               onClick={onOpenAppointmentModal}
-              className="book-btn"
-              style={{ margin: 0 }}
+              style={{
+                backgroundColor: "#7c3aed",
+                color: "#ffffff",
+                border: "1.5px solid rgba(255, 255, 255, 0.4)",
+                padding: "12px 28px",
+                borderRadius: "9999px",
+                fontWeight: 700,
+                fontSize: "13px",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+                cursor: "pointer",
+                transition: "all 0.25s ease",
+                boxShadow: "0 4px 15px rgba(0, 0, 0, 0.25)"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#ffffff";
+                e.currentTarget.style.color = "#240b3b";
+                e.currentTarget.style.borderColor = "#ffffff";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "#7c3aed";
+                e.currentTarget.style.color = "#ffffff";
+                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.4)";
+              }}
             >
               Book OPD Consultation
             </button>
