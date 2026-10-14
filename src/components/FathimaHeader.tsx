@@ -62,8 +62,8 @@ export default function FathimaHeader({ onOpenAppointmentModal }: HeaderProps) {
               <Link href="/" className="flex items-center gap-3 no-underline">
                 <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
                   <img
-                    src="/Maya Hospital Gold Crest Logo.png"
-                    alt="Maya Hospital Crest Logo"
+                    src="/White Caduceus Laurel Monogram.png"
+                    alt="Maya Hospital Monogram Logo"
                     style={{
                       height: "64px",
                       width: "auto",

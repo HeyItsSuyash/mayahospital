@@ -157,7 +157,6 @@ export default function MayaDepartmentsGrid({ onOpenAppointmentModal }: Departme
                   }}
                 >
                   <span>Consult Specialist</span>
-                  <i className="fa-solid fa-arrow-right"></i>
                 </button>
 
                 <span style={{ fontSize: "12px", color: "#999" }}>OPD Available</span>

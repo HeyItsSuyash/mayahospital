@@ -66,8 +66,8 @@ export default function AppointmentModal({
           </button>
           <div className="flex items-center gap-3">
             <img
-              src="/Maya Hospital White Logo.png"
-              alt="Maya Hospital Crest"
+              src="/White Caduceus Laurel Monogram.png"
+              alt="Maya Hospital Monogram"
               className="w-12 h-12 object-contain"
             />
             <div>

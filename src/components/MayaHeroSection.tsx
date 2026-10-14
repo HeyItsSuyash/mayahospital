@@ -5,11 +5,20 @@ import Link from "next/link";
 
 interface HeaderHeroProps {
   onOpenAppointmentModal: () => void;
+  onOpenEnquiryModal?: () => void;
 }
 
-export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroProps) {
+export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryModal }: HeaderHeroProps) {
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<"departments" | "services" | null>(null);
+
+  const handleEnquireClick = () => {
+    if (onOpenEnquiryModal) {
+      onOpenEnquiryModal();
+    } else {
+      onOpenAppointmentModal();
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +44,7 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
         flexDirection: "column",
         justifyContent: "space-between",
         overflow: "hidden",
-        backgroundColor: "#1c0630"
+        backgroundColor: "#080c14"
       }}
     >
       {/* Background Image: Focused Surgical Team in a Modern Operating Room */}
@@ -50,12 +59,12 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
         }}
       />
 
-      {/* Atmospheric Overlays matching Royal Velvet Plum & Gold mood */}
+      {/* Natural Dark Photographic Vignette & Legibility Overlays (NO PURPLE TINT) */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(180deg, rgba(22, 6, 36, 0.78) 0%, rgba(22, 6, 36, 0.45) 40%, rgba(22, 6, 36, 0.82) 85%, rgba(16, 4, 28, 0.96) 100%)",
+          background: "linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.20) 35%, rgba(0, 0, 0, 0.70) 80%, rgba(0, 0, 0, 0.90) 100%)",
           pointerEvents: "none"
         }}
       />
@@ -63,13 +72,13 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
         style={{
           position: "absolute",
           inset: 0,
-          background: "radial-gradient(circle at 50% 45%, rgba(0, 0, 0, 0.1) 0%, rgba(16, 4, 28, 0.78) 100%)",
+          background: "linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0.15) 100%)",
           pointerEvents: "none"
         }}
       />
 
       {/* =========================================================================
-          NAVBAR: Sticky, Imperial Royal Velvet Plum & Gold
+          NAVBAR: Sticky, Transparent at top -> Solid Amethyst Velvet on scroll
           ========================================================================= */}
       <header
         style={{
@@ -78,11 +87,12 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
           left: 0,
           zIndex: 1000,
           width: "100%",
-          padding: scrolled ? "14px 0" : "22px 0",
-          backgroundColor: scrolled ? "rgba(28, 9, 44, 0.96)" : "rgba(22, 6, 36, 0.75)",
-          backdropFilter: "blur(16px)",
-          borderBottom: "1px solid rgba(212, 175, 55, 0.28)",
-          boxShadow: scrolled ? "0 10px 30px rgba(0,0,0,0.5)" : "none",
+          padding: scrolled ? "14px 0" : "24px 0",
+          backgroundColor: scrolled ? "rgba(22, 6, 36, 0.97)" : "transparent",
+          backdropFilter: scrolled ? "blur(16px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(212, 175, 55, 0.28)" : "none",
+          boxShadow: scrolled ? "0 10px 30px rgba(0, 0, 0, 0.6)" : "none",
           transition: "all 0.3s ease-in-out"
         }}
       >
@@ -109,8 +119,8 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
             }}
           >
             <img
-              src="/Maya Hospital White Logo.png"
-              alt="Maya Hospital Crest"
+              src="/White Caduceus Laurel Monogram.png"
+              alt="Maya Hospital Monogram Logo"
               style={{
                 height: scrolled ? "44px" : "52px",
                 width: "auto",
@@ -158,7 +168,7 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
                 gap: "28px"
               }}
             >
-              <Link href="#about" style={stoneNavLinkStyle}>ABOUT</Link>
+              <Link href="#about" className="nav-link-animated" style={stoneNavLinkStyle}>ABOUT</Link>
 
               {/* DEPARTMENTS MEGA DROPDOWN */}
               <div
@@ -222,18 +232,16 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
                           borderRadius: "14px",
                           backgroundColor: "rgba(255, 255, 255, 0.05)",
                           textDecoration: "none",
-                          transition: "all 0.2s ease"
+                          transition: "background-color 0.2s ease"
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = "rgba(212, 175, 55, 0.2)";
-                          e.currentTarget.style.transform = "translateX(4px)";
+                          e.currentTarget.style.backgroundColor = "rgba(168, 85, 247, 0.22)";
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
-                          e.currentTarget.style.transform = "translateX(0)";
                         }}
                       >
-                        <div style={{ color: "var(--secondary-color)", fontSize: "18px", marginTop: "2px" }}>
+                        <div style={{ color: "#d8b4fe", fontSize: "18px", marginTop: "2px" }}>
                           <i className={`fa-solid ${dept.icon}`}></i>
                         </div>
                         <div>
@@ -312,18 +320,16 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
                           borderRadius: "14px",
                           backgroundColor: "rgba(255, 255, 255, 0.05)",
                           textDecoration: "none",
-                          transition: "all 0.2s ease"
+                          transition: "background-color 0.2s ease"
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = "rgba(212, 175, 55, 0.2)";
-                          e.currentTarget.style.transform = "translateX(4px)";
+                          e.currentTarget.style.backgroundColor = "rgba(168, 85, 247, 0.22)";
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
-                          e.currentTarget.style.transform = "translateX(0)";
                         }}
                       >
-                        <div style={{ color: "var(--secondary-color)", fontSize: "18px", marginTop: "2px" }}>
+                        <div style={{ color: "#d8b4fe", fontSize: "18px", marginTop: "2px" }}>
                           <i className={`fa-solid ${serv.icon}`}></i>
                         </div>
                         <div>
@@ -340,27 +346,27 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
                 )}
               </div>
 
-              <Link href="#doctors" style={stoneNavLinkStyle}>DOCTORS</Link>
-              <Link href="#packages" style={stoneNavLinkStyle}>PACKAGES</Link>
-              <Link href="#location" style={stoneNavLinkStyle}>LOCATION</Link>
+              <Link href="#doctors" className="nav-link-animated" style={stoneNavLinkStyle}>DOCTORS</Link>
+              <Link href="#packages" className="nav-link-animated" style={stoneNavLinkStyle}>PACKAGES</Link>
+              <Link href="#location" className="nav-link-animated" style={stoneNavLinkStyle}>LOCATION</Link>
             </nav>
 
             {/* Rounded Pill CTA Button (NOT square) */}
             <button
-              onClick={onOpenAppointmentModal}
+              onClick={handleEnquireClick}
               style={{
                 backgroundColor: "transparent",
                 color: "#ffffff",
                 border: "1px solid rgba(255, 255, 255, 0.45)",
                 borderRadius: "9999px",
-                padding: "10px 28px",
-                fontSize: "11px",
+                padding: "11px 28px",
+                fontSize: "12.5px",
                 fontWeight: 600,
-                letterSpacing: "2.5px",
+                letterSpacing: "2px",
                 textTransform: "uppercase",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
-                fontFamily: "var(--body-font), sans-serif"
+                fontFamily: "var(--heading-font), 'Montserrat', sans-serif"
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = "var(--secondary-color)";
@@ -385,8 +391,8 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
       {/* =========================================================================
           HERO MAIN CONTENT
           Huge modern readable typography:
-          MAYA
-          HOSPITAL
+          Here for you,
+          when it matters most.
           ========================================================================= */}
       <div
         style={{
@@ -418,23 +424,22 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
             <span>MULTI-SPECIALITY & CRITICAL CARE</span>
           </div>
 
-          {/* Massive Stacked Title with Plus Jakarta Sans */}
+          {/* Impactful Mission & Healthcare Promise Title with Montserrat */}
           <h1
             className="luxury-hero-title"
             style={{
               fontFamily: "var(--heading-font), sans-serif",
-              fontSize: "clamp(64px, 9vw, 126px)",
-              fontWeight: 800,
-              lineHeight: "0.90",
+              fontSize: "clamp(46px, 6.8vw, 92px)",
+              fontWeight: 700,
+              lineHeight: "1.06",
               color: "#ffffff",
               margin: "0 0 24px 0",
-              letterSpacing: "-0.035em",
-              textTransform: "uppercase",
+              letterSpacing: "-0.02em",
               textShadow: "0 4px 30px rgba(0,0,0,0.8)"
             }}
           >
-            MAYA<br />
-            HOSPITAL
+            Here for you,<br />
+            <span style={{ color: "var(--secondary-color)" }}>when it matters most.</span>
           </h1>
 
           <p
@@ -469,9 +474,7 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
                 cursor: "pointer",
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "10px",
-                boxShadow: "0 8px 25px rgba(212, 175, 55, 0.35)",
-                transition: "all 0.3s ease"
+                transition: "all 0.25s ease"
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = "#ffffff";
@@ -483,15 +486,15 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
               }}
             >
               <span>Consult Specialist</span>
-              <i className="fa-solid fa-arrow-right" style={{ fontSize: "11px" }}></i>
             </button>
 
+            {/* Ghost 24x7 Emergency Button (pure ghost: transparent background, clean border, no glass blur) */}
             <a
               href="tel:+919935123456"
               style={{
-                backgroundColor: "rgba(255, 255, 255, 0.12)",
+                backgroundColor: "transparent",
                 color: "#ffffff",
-                border: "1px solid rgba(255, 255, 255, 0.4)",
+                border: "1.5px solid rgba(255, 255, 255, 0.65)",
                 borderRadius: "9999px",
                 padding: "13px 30px",
                 fontSize: "12px",
@@ -499,19 +502,20 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
                 letterSpacing: "1.5px",
                 textTransform: "uppercase",
                 textDecoration: "none",
-                backdropFilter: "blur(8px)",
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "10px",
-                transition: "all 0.3s ease"
+                transition: "all 0.25s ease"
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#ffffff";
-                e.currentTarget.style.color = "#21093a";
+                e.currentTarget.style.borderColor = "var(--secondary-color)";
+                e.currentTarget.style.color = "var(--secondary-color)";
+                e.currentTarget.style.backgroundColor = "rgba(212, 175, 55, 0.08)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.12)";
+                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.65)";
                 e.currentTarget.style.color = "#ffffff";
+                e.currentTarget.style.backgroundColor = "transparent";
               }}
             >
               <i className="fa-solid fa-phone"></i>
@@ -528,14 +532,14 @@ export default function MayaHeroSection({ onOpenAppointmentModal }: HeaderHeroPr
 }
 
 const stoneNavLinkStyle: React.CSSProperties = {
-  color: "rgba(255, 255, 255, 0.8)",
+  color: "rgba(255, 255, 255, 0.9)",
   textDecoration: "none",
-  fontSize: "11px",
+  fontSize: "13px",
   fontWeight: 600,
-  letterSpacing: "2.5px",
+  letterSpacing: "1.8px",
   textTransform: "uppercase",
   transition: "all 0.25s ease",
-  fontFamily: "var(--body-font), sans-serif"
+  fontFamily: "var(--heading-font), 'Montserrat', sans-serif"
 };
 
 

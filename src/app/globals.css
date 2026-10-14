@@ -1,5 +1,5 @@
-/* Professional Modern Healthcare Typography: Inter & Plus Jakarta Sans */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Professional Modern Healthcare Typography: Montserrat & Inter */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* Imperial Royal Plum, Champagne Gold & Soft Lilac Cream Design Tokens */
 :root {
@@ -13,9 +13,9 @@
   --fadeblue: #faf6fd !important;            /* Luxurious Soft Lilac-Tinted Cream */
   --red: #c94a29 !important;                 /* Accent alert color */
   --body-color: #3b284c !important;          /* Deep rich warm slate plum */
-  --luxury-serif: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
-  --serif-font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
-  --heading-font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  --luxury-serif: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+  --serif-font: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+  --heading-font: 'Montserrat', system-ui, -apple-system, sans-serif !important;
   --body-font: 'Inter', system-ui, -apple-system, sans-serif !important;
 }
 
@@ -32,14 +32,47 @@ body {
 
 h1, h2, h3, h4, h5, h6, .heading, .subtitle {
   font-family: var(--heading-font) !important;
-  letter-spacing: -0.025em;
-  font-weight: 700;
+  letter-spacing: -0.015em;
+  font-weight: 600 !important;
+}
+
+h1 {
+  font-weight: 600 !important;
+}
+
+h2, h3 {
+  font-weight: 500 !important;
 }
 
 .luxury-hero-title {
   font-family: var(--heading-font) !important;
-  letter-spacing: -0.035em !important;
-  font-weight: 800 !important;
+  letter-spacing: -0.025em !important;
+  font-weight: 600 !important;
+}
+
+/* Navlink bottom border animation for regular links (excluding mega dropdowns) */
+.nav-link-animated {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.nav-link-animated::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #d4af37;
+  transform: scaleX(0);
+  transform-origin: bottom center;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link-animated:hover::after,
+.nav-link-animated.active::after {
+  transform: scaleX(1);
 }
 
 .container {

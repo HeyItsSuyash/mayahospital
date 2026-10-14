@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import { MessageSquare, X, Send, Sparkles, Phone, Calendar, Clock, Stethoscope, ChevronRight } from "lucide-react";
+import { MessageSquare, X, Send, Phone, Calendar, Clock, Stethoscope, ChevronRight } from "lucide-react";
 import { HOSPITAL_INFO } from "@/data/hospitalData";
 
 interface Message {
@@ -116,38 +115,40 @@ export default function SuchiChatbot({ onOpenAppointment }: SuchiChatbotProps) {
           }}
           onClick={() => setIsOpen(true)}
         >
-          {/* Friendly Light Indigo Speech Bubble */}
+          {/* Friendly Theme-Consistent Purple Speech Bubble */}
           <div
             style={{
-              backgroundColor: "#e0e7ff",
-              color: "#312e81",
+              backgroundColor: "#2e0c4f",
+              color: "#ffffff",
               padding: "10px 18px",
               borderRadius: "24px",
-              boxShadow: "0 10px 25px rgba(49, 46, 129, 0.22)",
-              border: "1px solid #c7d2fe",
+              boxShadow: "0 10px 25px rgba(46, 12, 79, 0.35)",
+              border: "1px solid rgba(168, 85, 247, 0.4)",
               fontSize: "13px",
               fontWeight: 600,
               display: "flex",
               alignItems: "center",
               gap: "8px",
-              letterSpacing: "0.2px"
+              letterSpacing: "0.2px",
+              marginBottom: "8px",
+              position: "relative"
             }}
           >
-            <span style={{ display: "inline-block", width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "#22c55e" }}></span>
             <span>hi, how can i help you?</span>
           </div>
 
-          {/* Animated Avatar Circle */}
+          {/* Animated Avatar Circle (No white border, seamless purple gradient ring) */}
           <div
             style={{
               position: "relative",
-              width: "66px",
-              height: "66px",
+              width: "64px",
+              height: "64px",
               borderRadius: "50%",
-              padding: "3px",
-              background: "linear-gradient(135deg, #7c3aed 0%, #3b1261 100%)",
-              boxShadow: "0 12px 35px rgba(59, 18, 97, 0.4)",
-              transition: "transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)"
+              padding: "0",
+              boxShadow: "0 10px 28px rgba(36, 11, 59, 0.45)",
+              transition: "transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+              overflow: "hidden",
+              border: "2px solid #7c3aed"
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "scale(1.08)";
@@ -164,20 +165,7 @@ export default function SuchiChatbot({ onOpenAppointment }: SuchiChatbotProps) {
                 height: "100%",
                 borderRadius: "50%",
                 objectFit: "cover",
-                backgroundColor: "#fff"
-              }}
-            />
-            {/* Online Pulse Dot */}
-            <span
-              style={{
-                position: "absolute",
-                bottom: "2px",
-                right: "2px",
-                width: "14px",
-                height: "14px",
-                backgroundColor: "#22c55e",
-                border: "2.5px solid #ffffff",
-                borderRadius: "50%"
+                display: "block"
               }}
             />
           </div>
@@ -225,8 +213,9 @@ export default function SuchiChatbot({ onOpenAppointment }: SuchiChatbotProps) {
                   width: "46px",
                   height: "46px",
                   borderRadius: "50%",
-                  padding: "2px",
-                  background: "linear-gradient(135deg, #ffffff 0%, #ede9fe 100%)"
+                  padding: "0",
+                  overflow: "hidden",
+                  border: "2px solid #a855f7"
                 }}
               >
                 <img
@@ -236,42 +225,16 @@ export default function SuchiChatbot({ onOpenAppointment }: SuchiChatbotProps) {
                     width: "100%",
                     height: "100%",
                     borderRadius: "50%",
-                    objectFit: "cover"
-                  }}
-                />
-                <span
-                  style={{
-                    position: "absolute",
-                    bottom: "1px",
-                    right: "1px",
-                    width: "10px",
-                    height: "10px",
-                    backgroundColor: "#22c55e",
-                    border: "2px solid #24140a",
-                    borderRadius: "50%"
+                    objectFit: "cover",
+                    display: "block"
                   }}
                 />
               </div>
 
               <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                  <h4 style={{ margin: 0, color: "#ffffff", fontSize: "15px", fontWeight: 700, letterSpacing: "0.5px" }}>
-                    Nurse Suchi
-                  </h4>
-                  <span
-                    style={{
-                      backgroundColor: "rgba(205, 162, 80, 0.25)",
-                      color: "#cda250",
-                      fontSize: "9.5px",
-                      fontWeight: 700,
-                      padding: "2px 7px",
-                      borderRadius: "12px",
-                      letterSpacing: "0.5px"
-                    }}
-                  >
-                    CARE BOT
-                  </span>
-                </div>
+                <h4 style={{ margin: 0, color: "#ffffff", fontSize: "15px", fontWeight: 700, letterSpacing: "0.5px" }}>
+                  Nurse Suchi
+                </h4>
                 <p style={{ margin: "2px 0 0", color: "rgba(255, 255, 255, 0.7)", fontSize: "11px" }}>
                   Maya Hospital Virtual Nurse • Online
                 </p>
@@ -302,23 +265,6 @@ export default function SuchiChatbot({ onOpenAppointment }: SuchiChatbotProps) {
             >
               <X size={16} />
             </button>
-          </div>
-
-          {/* Quick Notice Banner */}
-          <div
-            style={{
-              backgroundColor: "#fbf7f2",
-              padding: "8px 16px",
-              borderBottom: "1px solid #ebd9c0",
-              fontSize: "11px",
-              color: "#784a22",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px"
-            }}
-          >
-            <Sparkles size={13} style={{ color: "#cda250", flexShrink: 0 }} />
-            <span>24x7 Lakhimpur Kheri Multi-Speciality Assistance</span>
           </div>
 
           {/* Chat Messages Body */}

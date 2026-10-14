@@ -15,11 +15,14 @@ import AppointmentModal from "@/components/AppointmentModal";
 import SupportModals from "@/components/SupportModals";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import SuchiChatbot from "@/components/SuchiChatbot";
+import MayaPageLoader from "@/components/MayaPageLoader";
+import EnquiryModal from "@/components/EnquiryModal";
 import { HOSPITAL_INFO } from "@/data/hospitalData";
 
 export default function Home() {
   const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
   const [selectedDoctor, setSelectedDoctor] = useState("");
+  const [enquiryModalOpen, setEnquiryModalOpen] = useState(false);
   const [questionModalOpen, setQuestionModalOpen] = useState(false);
   const [reportModalOpen, setReportModalOpen] = useState(false);
 
@@ -58,12 +61,18 @@ export default function Home() {
 
   return (
     <>
+      {/* Theme Consistent Purple Page Loader */}
+      <MayaPageLoader />
+
       {/* Schema.org Structured Data */}
       <SchemaMarkup />
 
       <main>
         {/* Full Cinematic Hero Section with Sticky Integrated Navbar and Whitescale Logo */}
-        <MayaHeroSection onOpenAppointmentModal={() => handleOpenAppointment()} />
+        <MayaHeroSection 
+          onOpenAppointmentModal={() => handleOpenAppointment()} 
+          onOpenEnquiryModal={() => setEnquiryModalOpen(true)}
+        />
 
         {/* Top 5 Service Links */}
         <div className="reveal-on-scroll">
@@ -200,6 +209,12 @@ export default function Home() {
         isOpen={appointmentModalOpen}
         onClose={() => setAppointmentModalOpen(false)}
         initialDoctor={selectedDoctor}
+      />
+
+      {/* Dedicated Hospital Enquiry Modal */}
+      <EnquiryModal
+        isOpen={enquiryModalOpen}
+        onClose={() => setEnquiryModalOpen(false)}
       />
 
       {/* Support Modals: Ask a Question & Download Lab Report */}

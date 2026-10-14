@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="nurseBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4c1d95" />
+      <stop offset="100%" stop-color="#240b3b" />
+    </linearGradient>
+    <linearGradient id="scrubsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#6d28d9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Circular Silhouette Background -->
+  <circle cx="100" cy="100" r="98" fill="url(#nurseBg)" stroke="#a855f7" stroke-width="2" />
+  <circle cx="100" cy="100" r="88" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1.5" />
+
+  <!-- Scrubs Uniform Body -->
+  <path d="M40 196 C44 140, 68 130, 100 130 C132 130, 156 140, 160 196 Z" fill="url(#scrubsGrad)" />
+  
+  <!-- Uniform White V-Collar -->
+  <path d="M84 130 L100 152 L116 130 Z" fill="#ffffff" opacity="0.95" />
+
+  <!-- Medical Cross on Scrubs -->
+  <rect x="96" y="162" width="8" height="22" rx="2" fill="#ffffff" opacity="0.95" />
+  <rect x="89" y="169" width="22" height="8" rx="2" fill="#ffffff" opacity="0.95" />
+
+  <!-- Neck -->
+  <rect x="88" y="110" width="24" height="26" rx="10" fill="#f6d3bd" />
+  
+  <!-- Hair Base Silhouette -->
+  <ellipse cx="100" cy="78" rx="42" ry="46" fill="#1b082e" />
+  
+  <!-- Face Contour -->
+  <path d="M72 76 C72 108, 128 108, 128 76 C128 52, 72 52, 72 76 Z" fill="#fad6c0" />
+  
+  <!-- Stylized Hair Front -->
+  <path d="M70 68 C74 48, 102 44, 130 68 C124 54, 110 48, 98 48 C82 48, 74 56, 70 68 Z" fill="#240c3d" />
+  
+  <!-- Nurse Cap -->
+  <path d="M75 46 C86 38, 114 38, 125 46 L121 34 C110 30, 90 30, 79 34 Z" fill="#ffffff" />
+  <!-- Purple Cross on Nurse Cap -->
+  <rect x="98" y="35" width="4" height="10" rx="1" fill="#7c3aed" />
+  <rect x="95" y="38" width="10" height="4" rx="1" fill="#7c3aed" />
+
+  <!-- Minimalist Friendly Eyes and Smile -->
+  <path d="M82 76 Q87 81 92 76" stroke="#3b0764" stroke-width="2.5" stroke-linecap="round" fill="none" />
+  <path d="M108 76 Q113 81 118 76" stroke="#3b0764" stroke-width="2.5" stroke-linecap="round" fill="none" />
+  <path d="M93 90 Q100 96 107 90" stroke="#e11d48" stroke-width="2.5" stroke-linecap="round" fill="none" />
+</svg>

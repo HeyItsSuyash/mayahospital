@@ -22,8 +22,8 @@ export default function FathimaFooter() {
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "22px" }}>
               <img
-                src="/Maya Hospital White Logo.png"
-                alt="Maya Hospital Crest Logo"
+                src="/White Caduceus Laurel Monogram.png"
+                alt="Maya Hospital Monogram Logo"
                 style={{ height: "56px", width: "auto", objectFit: "contain", filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.6))" }}
               />
               <div>
@@ -244,7 +244,7 @@ export default function FathimaFooter() {
 
       {/* Footer Bottom Bar */}
       <div style={{
-        backgroundColor: "#110804",
+        backgroundColor: "#120320",
         borderTop: "1px solid rgba(255, 255, 255, 0.1)",
         padding: "20px 0"
       }}>
