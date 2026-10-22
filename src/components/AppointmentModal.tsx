@@ -86,172 +86,220 @@ export default function AppointmentModal({
         </div>
 
         {/* Content Body */}
-        <div className="p-6 sm:p-8 max-h-[80vh] overflow-y-auto">
+        <div className="maya-dialog-body">
           {submitted ? (
-            <div className="text-center py-8 space-y-4">
-              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-sm">
-                <CheckCircle2 className="w-10 h-10" />
+            <div className="maya-dialog-success">
+              <div className="maya-dialog-success-icon-wrap">
+                <CheckCircle2 size={44} className="maya-success-checkmark" />
               </div>
-              <h4 className="text-2xl font-bold text-[#092c57]">
+              <h4 className="maya-dialog-success-title">
                 Appointment Request Confirmed!
               </h4>
-              <p className="text-sm text-slate-600 max-w-md mx-auto">
-                Thank you <strong>{patientName}</strong>. Our OPD front desk will contact you at <strong>{phoneNumber}</strong> within 15 minutes to confirm your token and time slot.
+              <p className="maya-dialog-success-desc">
+                Thank you <strong style={{ color: "#240b3b" }}>{patientName}</strong>. Our OPD front desk will contact you at <strong style={{ color: "#240b3b" }}>{phoneNumber}</strong> within 15 minutes to confirm your token and time slot.
               </p>
 
-              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs text-left max-w-sm mx-auto space-y-1.5">
-                <div><strong>Hospital:</strong> {HOSPITAL_INFO.name}</div>
-                <div><strong>Location:</strong> Aira Road Near Children&apos;s Academy School, Meerpur</div>
-                <div><strong>Selected Unit:</strong> {selectedDept}</div>
-                {selectedDoctor && <div><strong>Consultant:</strong> {selectedDoctor}</div>}
-                <div><strong>Preferred Timing:</strong> {date || "Earliest Available"} - {timeSlot}</div>
-                <div><strong>Urgent Support:</strong> {HOSPITAL_INFO.bookingPhone}</div>
+              <div className="maya-dialog-summary-card">
+                <div className="summary-row">
+                  <span className="summary-label">Hospital:</span>
+                  <span className="summary-val">{HOSPITAL_INFO.name}</span>
+                </div>
+                <div className="summary-row">
+                  <span className="summary-label">Location:</span>
+                  <span className="summary-val">Aira Road, Meerpur</span>
+                </div>
+                <div className="summary-row">
+                  <span className="summary-label">Selected Unit:</span>
+                  <span className="summary-val">{selectedDept}</span>
+                </div>
+                {selectedDoctor && (
+                  <div className="summary-row">
+                    <span className="summary-label">Consultant:</span>
+                    <span className="summary-val">{selectedDoctor}</span>
+                  </div>
+                )}
+                <div className="summary-row">
+                  <span className="summary-label">Timing:</span>
+                  <span className="summary-val">{date || "Earliest Available"} • {timeSlot}</span>
+                </div>
+                <div className="summary-row">
+                  <span className="summary-label">OPD Desk Support:</span>
+                  <span className="summary-val" style={{ color: "#7c3aed", fontWeight: 700 }}>
+                    {HOSPITAL_INFO.bookingPhone}
+                  </span>
+                </div>
               </div>
 
-              <div className="pt-4">
+              <div style={{ paddingTop: "10px" }}>
                 <button
                   onClick={handleReset}
-                  className="px-6 py-2.5 rounded-xl bg-[#0076d7] text-white font-bold text-sm shadow hover:bg-[#005fad] transition-colors"
+                  className="maya-dialog-submit-btn"
+                  style={{ maxWidth: "260px", margin: "0 auto" }}
                 >
                   Done & Close Window
                 </button>
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Patient Name & Phone */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-700 flex items-center gap-1">
-                    <User className="w-3.5 h-3.5 text-[#0076d7]" />
-                    <span>Patient Full Name *</span>
+            <form onSubmit={handleSubmit} className="maya-dialog-form">
+              {/* Section 1: Patient Information */}
+              <div className="form-section">
+                <div className="form-section-header">
+                  <span className="form-section-badge">1</span>
+                  <span className="form-section-title">Patient Contact Details</span>
+                </div>
+                <div className="form-row-2">
+                  <div className="form-group">
+                    <label className="form-label">
+                      <User size={14} className="form-label-icon" />
+                      <span>Patient Full Name *</span>
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Rahul Verma"
+                      value={patientName}
+                      onChange={(e) => setPatientName(e.target.value)}
+                      className="form-input"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">
+                      <Phone size={14} className="form-label-icon" />
+                      <span>Contact (WhatsApp/Call) *</span>
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="10-digit mobile number"
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      className="form-input"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Section 2: Department & Doctor */}
+              <div className="form-section">
+                <div className="form-section-header">
+                  <span className="form-section-badge">2</span>
+                  <span className="form-section-title">Department & Specialist</span>
+                </div>
+                <div className="form-row-2">
+                  <div className="form-group">
+                    <label className="form-label">
+                      <Heart size={14} className="form-label-icon" />
+                      <span>Department / Speciality</span>
+                    </label>
+                    <select
+                      value={selectedDept}
+                      onChange={(e) => setSelectedDept(e.target.value)}
+                      className="form-select"
+                    >
+                      {DEPARTMENTS.map((dept) => (
+                        <option key={dept.id} value={dept.name}>
+                          {dept.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">
+                      <Stethoscope size={14} className="form-label-icon" />
+                      <span>Preferred Doctor (Optional)</span>
+                    </label>
+                    <select
+                      value={selectedDoctor}
+                      onChange={(e) => setSelectedDoctor(e.target.value)}
+                      className="form-select"
+                    >
+                      <option value="">Any Available Specialist</option>
+                      {DOCTORS.map((doc) => (
+                        <option key={doc.id} value={doc.name}>
+                          {doc.name} ({doc.department.split(" ")[0]})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              {/* Section 3: Schedule & Slot */}
+              <div className="form-section">
+                <div className="form-section-header">
+                  <span className="form-section-badge">3</span>
+                  <span className="form-section-title">Preferred Schedule & Slot</span>
+                </div>
+                <div className="form-row-2">
+                  <div className="form-group">
+                    <label className="form-label">
+                      <Calendar size={14} className="form-label-icon" />
+                      <span>Preferred Date</span>
+                    </label>
+                    <input
+                      type="date"
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                      className="form-input"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">
+                      <Clock size={14} className="form-label-icon" />
+                      <span>Preferred Slot</span>
+                    </label>
+                    <select
+                      value={timeSlot}
+                      onChange={(e) => setTimeSlot(e.target.value)}
+                      className="form-select"
+                    >
+                      <option value="Morning (10:00 AM - 01:00 PM)">Morning (10:00 AM - 01:00 PM)</option>
+                      <option value="Afternoon (01:00 PM - 04:00 PM)">Afternoon (01:00 PM - 04:00 PM)</option>
+                      <option value="Evening (05:00 PM - 08:00 PM)">Evening (05:00 PM - 08:00 PM)</option>
+                      <option value="Emergency / Immediate">Immediate Triage (Emergency)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              {/* Section 4: Symptoms / Medical Notes */}
+              <div className="form-section">
+                <div className="form-section-header">
+                  <span className="form-section-badge">4</span>
+                  <span className="form-section-title">Symptoms / Medical Reason</span>
+                </div>
+                <div className="form-group">
+                  <label className="form-label">
+                    <FileText size={14} className="form-label-icon" />
+                    <span>Brief Symptoms or Medical History (Optional)</span>
                   </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Rahul Verma"
-                    value={patientName}
-                    onChange={(e) => setPatientName(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#0076d7]"
+                  <textarea
+                    rows={2}
+                    placeholder="e.g. Fever for 3 days, joint pain, prenatal routine visit, ultrasound inquiry..."
+                    value={symptoms}
+                    onChange={(e) => setSymptoms(e.target.value)}
+                    className="form-textarea"
                   />
                 </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-700 flex items-center gap-1">
-                    <Phone className="w-3.5 h-3.5 text-[#0076d7]" />
-                    <span>Contact Number (WhatsApp/Call) *</span>
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="10-digit mobile number"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#0076d7]"
-                  />
-                </div>
               </div>
 
-              {/* Department & Doctor */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-700 flex items-center gap-1">
-                    <Heart className="w-3.5 h-3.5 text-[#0076d7]" />
-                    <span>Department / Speciality</span>
-                  </label>
-                  <select
-                    value={selectedDept}
-                    onChange={(e) => setSelectedDept(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#0076d7] bg-white"
-                  >
-                    {DEPARTMENTS.map((dept) => (
-                      <option key={dept.id} value={dept.name}>
-                        {dept.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-700 flex items-center gap-1">
-                    <Stethoscope className="w-3.5 h-3.5 text-[#0076d7]" />
-                    <span>Preferred Doctor (Optional)</span>
-                  </label>
-                  <select
-                    value={selectedDoctor}
-                    onChange={(e) => setSelectedDoctor(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#0076d7] bg-white"
-                  >
-                    <option value="">Any Available Specialist</option>
-                    {DOCTORS.map((doc) => (
-                      <option key={doc.id} value={doc.name}>
-                        {doc.name} ({doc.department.split(" ")[0]})
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {/* Date & Time Slot */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-stone-700 flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5 text-[#cda250]" />
-                    <span>Preferred Date</span>
-                  </label>
-                  <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-full border border-stone-200 text-sm focus:outline-none focus:border-[#cda250] bg-white"
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-stone-700 flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5 text-[#cda250]" />
-                    <span>Preferred Slot</span>
-                  </label>
-                  <select
-                    value={timeSlot}
-                    onChange={(e) => setTimeSlot(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-full border border-stone-200 text-sm focus:outline-none focus:border-[#cda250] bg-white"
-                  >
-                    <option value="Morning (10:00 AM - 01:00 PM)">Morning (10:00 AM - 01:00 PM)</option>
-                    <option value="Afternoon (01:00 PM - 04:00 PM)">Afternoon (01:00 PM - 04:00 PM)</option>
-                    <option value="Evening (05:00 PM - 08:00 PM)">Evening (05:00 PM - 08:00 PM)</option>
-                    <option value="Emergency / Immediate">Immediate Triage (Emergency)</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* Symptoms / Notes */}
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-stone-700 flex items-center gap-1">
-                  <FileText className="w-3.5 h-3.5 text-[#cda250]" />
-                  <span>Brief Symptoms or Medical History</span>
-                </label>
-                <textarea
-                  rows={2}
-                  placeholder="e.g. Fever for 3 days, joint pain, prenatal routine visit, ultrasound inquiry..."
-                  value={symptoms}
-                  onChange={(e) => setSymptoms(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-2xl border border-stone-200 text-sm focus:outline-none focus:border-[#7c3aed]"
-                />
-              </div>
-
-              {/* Notice */}
-              <div className="bg-[#faf6fd] text-[#3b284c] border border-purple-500/20 p-3.5 rounded-2xl text-[11.5px] leading-relaxed">
+              {/* Direct Emergency Warning */}
+              <div className="maya-dialog-emergency-notice">
                 ℹ️ For emergency injuries, chest pain, or acute labor pain, please head straight to our Emergency Unit on Aira Road Meerpur or call <strong>{HOSPITAL_INFO.emergencyPhone}</strong>.
               </div>
 
-              {/* Submit Button with pill roundness */}
-              <div className="pt-2">
+              {/* Submit Button */}
+              <div style={{ paddingTop: "4px" }}>
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#6d28d9] hover:from-[#6d28d9] hover:to-[#5b21b6] text-white font-bold text-sm shadow-lg shadow-purple-500/25 tracking-wider uppercase transition-all"
+                  className="maya-dialog-submit-btn"
                 >
-                  Confirm Appointment Request
+                  <Calendar size={15} />
+                  <span>Confirm Appointment Request</span>
                 </button>
               </div>
             </form>

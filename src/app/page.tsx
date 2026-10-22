@@ -123,66 +123,136 @@ export default function Home() {
               </p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "30px", alignItems: "center" }}>
-              <div style={{
-                backgroundColor: "#21093a",
-                color: "#ffffff",
-                padding: "40px",
-                borderRadius: "24px",
-                boxShadow: "0 15px 40px rgba(33, 9, 58, 0.25)",
-                border: "1px solid rgba(124, 58, 237, 0.2)"
-              }}>
-                <h3 style={{ color: "#ffffff", fontSize: "24px", fontWeight: 800, marginBottom: "20px" }}>
-                  {HOSPITAL_INFO.name}
-                </h3>
-                <div style={{ marginBottom: "20px", display: "flex", gap: "15px", alignItems: "flex-start" }}>
-                  <i className="fa-solid fa-location-dot" style={{ color: "#c084fc", fontSize: "20px", marginTop: "4px" }}></i>
-                  <div>
-                    <strong style={{ display: "block", color: "#ede9fe", marginBottom: "4px" }}>Address:</strong>
-                    <span style={{ color: "rgba(255,255,255,0.88)", fontSize: "14px", lineHeight: "22px" }}>
-                      {HOSPITAL_INFO.fullAddress}
-                    </span>
+            <div 
+              style={{ 
+                display: "grid", 
+                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+                gap: "0px", 
+                alignItems: "stretch",
+                boxShadow: "0 20px 50px rgba(33, 9, 58, 0.22)",
+                borderRadius: "28px",
+                overflow: "hidden"
+              }}
+            >
+              {/* Left Purple Card: Left corners rounded, right corners squared off to join the map */}
+              <div 
+                style={{
+                  backgroundColor: "#21093a",
+                  color: "#ffffff",
+                  padding: "44px 40px",
+                  border: "1px solid rgba(124, 58, 237, 0.25)",
+                  borderRight: "none",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between"
+                }}
+              >
+                <div>
+                  <h3 style={{ color: "#ffffff", fontSize: "24px", fontWeight: 800, marginBottom: "24px" }}>
+                    {HOSPITAL_INFO.name}
+                  </h3>
+                  
+                  <div style={{ marginBottom: "22px", display: "flex", gap: "15px", alignItems: "flex-start" }}>
+                    <i className="fa-solid fa-location-dot" style={{ color: "#c084fc", fontSize: "20px", marginTop: "4px" }}></i>
+                    <div>
+                      <strong style={{ display: "block", color: "#ede9fe", marginBottom: "4px" }}>Address:</strong>
+                      <span style={{ color: "rgba(255,255,255,0.88)", fontSize: "14px", lineHeight: "22px" }}>
+                        {HOSPITAL_INFO.fullAddress}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div style={{ marginBottom: "22px", display: "flex", gap: "15px", alignItems: "flex-start" }}>
+                    <i className="fa-solid fa-phone" style={{ color: "#c084fc", fontSize: "20px", marginTop: "4px" }}></i>
+                    <div>
+                      <strong style={{ display: "block", color: "#ede9fe", marginBottom: "4px" }}>Emergency 24x7:</strong>
+                      <a href={`tel:${HOSPITAL_INFO.emergencyPhone.replace(/\s+/g, '')}`} style={{ color: "#ffffff", textDecoration: "none", fontWeight: 700 }}>
+                        {HOSPITAL_INFO.emergencyPhone}
+                      </a>
+                    </div>
                   </div>
                 </div>
 
-                <div style={{ marginBottom: "20px", display: "flex", gap: "15px", alignItems: "flex-start" }}>
-                  <i className="fa-solid fa-phone" style={{ color: "#c084fc", fontSize: "20px", marginTop: "4px" }}></i>
-                  <div>
-                    <strong style={{ display: "block", color: "#ede9fe", marginBottom: "4px" }}>Emergency 24x7:</strong>
-                    <a href={`tel:${HOSPITAL_INFO.emergencyPhone.replace(/\s+/g, '')}`} style={{ color: "#ffffff", textDecoration: "none", fontWeight: 700 }}>
-                      {HOSPITAL_INFO.emergencyPhone}
-                    </a>
-                  </div>
-                </div>
-
-                <div style={{ display: "flex", gap: "15px", marginTop: "30px" }}>
+                <div style={{ display: "flex", gap: "12px", marginTop: "32px", flexWrap: "wrap", alignItems: "center" }}>
                   <a
                     href={HOSPITAL_INFO.justdialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="book-btn"
                     style={{
                       margin: 0,
                       textDecoration: "none",
                       backgroundColor: "#ffffff",
                       color: "#21093a",
                       border: "none",
-                      fontWeight: 700
+                      fontWeight: 700,
+                      fontSize: "12.5px",
+                      letterSpacing: "1px",
+                      textTransform: "uppercase",
+                      padding: "13px 24px",
+                      borderRadius: "9999px",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "none",
+                      transition: "all 0.25s ease"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "#ede9fe";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "#ffffff";
                     }}
                   >
-                    View Justdial Profile (5.0 ★)
+                    Justdial Profile (5.0 ★)
+                  </a>
+
+                  <a
+                    href={`tel:${HOSPITAL_INFO.emergencyPhone.replace(/\s+/g, '')}`}
+                    style={{
+                      margin: 0,
+                      textDecoration: "none",
+                      backgroundColor: "transparent",
+                      color: "#ffffff",
+                      border: "1.5px solid #ffffff",
+                      fontWeight: 700,
+                      fontSize: "12.5px",
+                      letterSpacing: "1px",
+                      textTransform: "uppercase",
+                      padding: "12px 24px",
+                      borderRadius: "9999px",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "none",
+                      transition: "all 0.25s ease"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                    }}
+                  >
+                    Contact Us
                   </a>
                 </div>
               </div>
 
-              {/* Map Embed */}
-              <div style={{ borderRadius: "20px", overflow: "hidden", boxShadow: "0 10px 30px rgba(0,0,0,0.1)", height: "380px" }}>
+              {/* Right Map Embed: Right corners rounded, left corners squared off to join the card */}
+              <div 
+                style={{ 
+                  border: "1px solid rgba(124, 58, 237, 0.25)",
+                  borderLeft: "none",
+                  overflow: "hidden", 
+                  minHeight: "420px" 
+                }}
+              >
                 <iframe
                   title="Maya Hospital Map"
                   src={`https://maps.google.com/maps?q=${HOSPITAL_INFO.mapCoordinates.lat},${HOSPITAL_INFO.mapCoordinates.lng}&hl=en&z=15&output=embed`}
                   width="100%"
                   height="100%"
-                  style={{ border: 0 }}
+                  style={{ border: 0, display: "block", width: "100%", height: "100%", minHeight: "420px" }}
                   allowFullScreen={true}
                   loading="lazy"
                 />

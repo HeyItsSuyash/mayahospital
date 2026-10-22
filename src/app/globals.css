@@ -215,20 +215,19 @@ header {
   transform: translateY(0) !important;
 }
 
-/* Slow Smooth Mega Dropdown Reveal Animation */
+/* Smooth Mega Dropdown Reveal Animation (Clean fade in without weird folding/scaling) */
 .dropdown-slow-fade {
-  animation: dropdownSlowOpen 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  transform-origin: top center;
+  animation: dropdownFadeIn 0.22s ease-out forwards;
 }
 
-@keyframes dropdownSlowOpen {
+@keyframes dropdownFadeIn {
   0% {
     opacity: 0;
-    transform: translateY(-10px) scale(0.98);
+    transform: translateY(6px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
@@ -661,27 +660,27 @@ button:not(.square-keep) {
 
 .testimonial-single {
   width: 100% !important;
-  border-radius: 12px !important;
-  background: url('https://www.fathimahospital.com/wp-content/themes/fathimahosptial/images/icons/quotes.png') no-repeat 40px 40px !important;
-  background-color: var(--fadeblue) !important;
-  padding: 45px 50px 25px 120px !important;
+  border-radius: 24px !important;
+  background-image: none !important;
+  background-color: #faf5ff !important;
+  padding: 40px 44px 36px 44px !important;
   box-sizing: border-box !important;
-  border: 1px solid rgba(0, 184, 174, 0.15) !important;
+  border: none !important;
+  box-shadow: 0 10px 35px rgba(36, 11, 59, 0.04) !important;
 }
 
 .testimonial-single p {
-  font-size: 14.5px !important;
-  line-height: 24px !important;
-  color: #444444 !important;
-  margin-bottom: 15px !important;
+  font-size: 17px !important;
+  line-height: 28px !important;
+  color: #334155 !important;
+  margin-bottom: 0 !important;
 }
 
 .testimonial-single .name {
-  font-size: 16px !important;
-  font-weight: 700 !important;
-  color: var(--black) !important;
-  padding-top: 12px !important;
-  border-top: 1px solid #e2e8f0 !important;
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  color: #240b3b !important;
+  border-top: none !important;
 }
 
 .pulse-img {
@@ -1046,6 +1045,45 @@ ul.footerlinks li a:hover {
   gap: 16px !important;
 }
 
+.form-section {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  background: #fbf9fd !important;
+  border: 1px solid #ede9fe !important;
+  border-radius: 16px !important;
+  padding: 16px 18px !important;
+}
+
+.form-section-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding-bottom: 6px !important;
+  border-bottom: 1px solid #f1edfb !important;
+}
+
+.form-section-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 6px !important;
+  background: #240b3b !important;
+  color: #c084fc !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+}
+
+.form-section-title {
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.8px !important;
+  text-transform: uppercase !important;
+  color: #240b3b !important;
+}
+
 .form-group {
   display: flex !important;
   flex-direction: column !important;
@@ -1334,22 +1372,23 @@ ul.footerlinks li a:hover {
   justify-content: center !important;
 }
 
-/* Doctor Image Inside Hexagon */
+/* Doctor Image Inside Hexagon - Properly Aligned & Framed */
 .hex-image-holder {
   position: absolute !important;
   inset: 0 !important;
   display: flex !important;
-  align-items: flex-end !important;
+  align-items: center !important;
   justify-content: center !important;
   background-color: #240b3b !important;
   transition: opacity 0.25s ease !important;
+  overflow: hidden !important;
 }
 
 .hex-img {
-  height: 92% !important;
-  width: auto !important;
-  max-width: 95% !important;
-  object-fit: contain !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
   display: block !important;
 }
 
@@ -1639,31 +1678,44 @@ ul.footerlinks li a:hover {
   }
 }
 
-/* Mobile Slide-Out Drawer Navigation */
+/* Mobile Slide-Out Drawer Navigation (Full Page on Mobile, z-index guaranteed above chatbot) */
 .maya-mobile-drawer-overlay {
   position: fixed !important;
   inset: 0 !important;
-  background-color: rgba(14, 3, 24, 0.7) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  z-index: 99999 !important;
+  background-color: rgba(14, 3, 24, 0.92) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  z-index: 2147483640 !important;
   display: flex !important;
   justify-content: flex-end !important;
-  animation: mayaFadeIn 0.25s ease forwards !important;
+  animation: mayaFadeIn 0.22s ease forwards !important;
 }
 
 .maya-mobile-drawer {
-  width: 85% !important;
-  max-width: 360px !important;
+  width: 100% !important;
+  max-width: 420px !important;
   height: 100vh !important;
-  background-color: #160526 !important;
+  height: 100dvh !important;
+  background-color: #120320 !important;
   background-image: linear-gradient(180deg, #1b072c 0%, #0d0216 100%) !important;
-  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.7) !important;
-  padding: 24px 22px !important;
+  box-shadow: -10px 0 50px rgba(0, 0, 0, 0.9) !important;
+  padding: 24px 20px !important;
   display: flex !important;
   flex-direction: column !important;
   box-sizing: border-box !important;
-  animation: mayaPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  animation: suchiSlideInRight 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  z-index: 2147483647 !important;
+  overflow: hidden !important;
+}
+
+/* Full screen page on mobile devices */
+@media (max-width: 768px) {
+  .maya-mobile-drawer {
+    max-width: 100% !important;
+    width: 100vw !important;
+    width: 100% !important;
+    padding: 22px 18px !important;
+  }
 }
 
 .mobile-nav-item {
@@ -1673,16 +1725,133 @@ ul.footerlinks li a:hover {
   color: #ffffff !important;
   text-decoration: none !important;
   font-family: var(--heading-font), 'Plus Jakarta Sans', sans-serif !important;
-  font-size: 13.5px !important;
+  font-size: 14px !important;
   font-weight: 700 !important;
   letter-spacing: 1.5px !important;
   text-transform: uppercase !important;
-  padding: 13px 4px !important;
+  padding: 14px 6px !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   transition: all 0.2s ease !important;
 }
 
 .mobile-nav-item:hover {
   color: #c084fc !important;
-  padding-left: 8px !important;
+  padding-left: 10px !important;
+}
+
+/* Suchi Side Panel / Drawer */
+@keyframes suchiSlideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes suchiFadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.suchi-drawer-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 100000 !important;
+  background-color: rgba(14, 3, 24, 0.6) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  animation: suchiFadeInOverlay 0.25s ease forwards !important;
+  box-sizing: border-box !important;
+}
+
+.suchi-side-panel {
+  position: relative !important;
+  width: 440px !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  height: 100dvh !important;
+  background-color: #ffffff !important;
+  box-shadow: -12px 0 50px rgba(18, 4, 30, 0.45) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  animation: suchiSlideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 640px) {
+  .suchi-side-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    height: 100dvh !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* Hide scrollbar for Suchi side panel and message box while maintaining smooth scrollability */
+.suchi-messages-container,
+.suchi-side-panel,
+.no-scrollbar {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+.suchi-messages-container::-webkit-scrollbar,
+.suchi-side-panel::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Opera */
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Continuous Moving Testimonials Carousel */
+@keyframes mayaMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.maya-testimonials-track {
+  display: flex !important;
+  gap: 22px !important;
+  width: max-content !important;
+  animation: mayaMarquee 55s linear infinite !important;
+  will-change: transform !important;
+}
+
+.maya-testimonials-track:hover {
+  animation-play-state: paused !important;
+}
+
+.maya-review-card {
+  width: 380px !important;
+  max-width: 85vw !important;
+  background: #ffffff !important;
+  border-radius: 22px !important;
+  padding: 24px 22px !important;
+  border: 1px solid rgba(124, 58, 237, 0.12) !important;
+  box-shadow: 0 10px 30px rgba(36, 11, 59, 0.05) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  transition: all 0.3s ease !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.maya-review-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(124, 58, 237, 0.35) !important;
+  box-shadow: 0 16px 40px rgba(124, 58, 237, 0.12) !important;
 }

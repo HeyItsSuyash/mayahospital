@@ -1,100 +1,363 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+
+interface ReviewItem {
+  id: string;
+  name: string;
+  time: string;
+  rating: number;
+  text: string;
+  location: string;
+}
+
+const ALL_REVIEWS: ReviewItem[] = [
+  {
+    id: "1",
+    name: "Akash Dwivedi",
+    time: "3 months ago",
+    rating: 5,
+    location: "Meerpur, Lakhimpur Kheri",
+    text: "The hospital environment is very clean, organized, and well managed. The staff is polite, cooperative, and supportive throughout our stay. Doctors listen to patients very patiently and provide proper guidance and treatment with complete transparency. Special thanks to Dr. Apoorva and the whole nursing faculty for their heartfelt attention."
+  },
+  {
+    id: "2",
+    name: "Armaan computers and Insurance",
+    time: "4 months ago",
+    rating: 5,
+    location: "Lakhimpur Kheri",
+    text: "The staff is always attentive, caring, and ready to assist round the clock. The doctors are highly knowledgeable and compassionate. All facilities are modern, hygienic, and well-maintained, and doctors and ward coordinators interact with immense politeness."
+  },
+  {
+    id: "3",
+    name: "VINAY KUMAR",
+    time: "5 months ago",
+    rating: 5,
+    location: "Kheri District",
+    text: "Best Hospital in our area. Nice staff, prompt reception, clean admission rooms, and the doctor is very friendly and polite. Felt completely secure and well-treated from arrival to discharge."
+  },
+  {
+    id: "4",
+    name: "Mohit Verma",
+    time: "5 months ago",
+    rating: 5,
+    location: "Lakhimpur Kheri",
+    text: "Best facility ever experienced in Lakhimpur Kheri. The entire hospital premise is neat and clean, medical hygiene is maintained everywhere, and the doctor's humble and simple behavior made us feel completely reassured."
+  },
+  {
+    id: "5",
+    name: "Kushagra Jaiswal",
+    time: "a year ago",
+    rating: 5,
+    location: "Meerpur",
+    text: "The staff is always attentive and caring at every hour. The doctors are knowledgeable, patient-centric, and compassionate. The inpatient facilities, triage ward, and emergency units are clean and modern."
+  },
+  {
+    id: "6",
+    name: "Vineet Kumar Pandey",
+    time: "4 months ago",
+    rating: 5,
+    location: "Lakhimpur Kheri",
+    text: "Very good hospital with high standards of clinical care. All staff members are polite, medicine availability is prompt, and doctors explain every diagnosis thoroughly."
+  },
+  {
+    id: "7",
+    name: "Ragini Shukla",
+    time: "a year ago",
+    rating: 5,
+    location: "Lakhimpur Kheri",
+    text: "Hospital facility is very good and well equipped. All doctors and nursing sisters behave with utmost kindness and care. Highly recommended for family healthcare."
+  },
+  {
+    id: "8",
+    name: "TAUFEEQ ALI",
+    time: "a year ago",
+    rating: 5,
+    location: "Local Guide",
+    text: "Very clean and properly sanitised hospital. Fast patient admissions, round-the-clock doctor availability, and proper hygiene maintained in all wards and corridors."
+  },
+  {
+    id: "9",
+    name: "HariPrasad Verma",
+    time: "a year ago",
+    rating: 5,
+    location: "Meerpur, Lakhimpur Kheri",
+    text: "Doctor behavior is very good, clinical treatment is accurate, and hospital management is caring, polite, and cooperative with patient families."
+  },
+  {
+    id: "10",
+    name: "Dr. Raviraj Singh Bisht",
+    time: "a year ago",
+    rating: 5,
+    location: "Medical Professional",
+    text: "Supportive staff and good clinical experience. Great infrastructure, modern operation theatres, and dedicated intensive care equipment."
+  },
+  {
+    id: "11",
+    name: "Brijendra Verma",
+    time: "4 months ago",
+    rating: 5,
+    location: "Local Guide",
+    text: "Availability of specialist doctors and nursing services is very dependable. Clean premise, transparent communication, and quick attention in emergencies."
+  },
+  {
+    id: "12",
+    name: "Ateek Shaikh",
+    time: "a year ago",
+    rating: 5,
+    location: "Lakhimpur Kheri",
+    text: "Hospital facility is excellent. Doctors listened carefully to our medical history and the recovery response was very fast and smooth."
+  },
+  {
+    id: "13",
+    name: "Mr. Ayush Tiwari",
+    time: "5 months ago",
+    rating: 5,
+    location: "Lakhimpur Kheri",
+    text: "Remarkable experience with the OPD doctor consultations. The administrative team and reception were very helpful and prompt with appointments."
+  },
+  {
+    id: "14",
+    name: "Lalit Singh",
+    time: "10 months ago",
+    rating: 5,
+    location: "Meerpur",
+    text: "Great hospital in Meerpur. Dedicated doctors who prioritize patient recovery and welfare with compassionate nursing support."
+  },
+  {
+    id: "15",
+    name: "Abhinav Patel (Abhii)",
+    time: "4 months ago",
+    rating: 5,
+    location: "Lakhimpur Kheri",
+    text: "Hospitality is very good, the staff is very sweet and helpful, and doctor behavior is exceptionally gentle and caring throughout the treatment."
+  },
+  {
+    id: "16",
+    name: "Atharv Verma",
+    time: "a year ago",
+    rating: 5,
+    location: "Lakhimpur Kheri",
+    text: "Very nice healthcare setup with polite nursing staff, modern diagnostics, prompt medicine dispensary, and spotless patient rooms."
+  },
+  {
+    id: "17",
+    name: "Pooja Verma",
+    time: "a year ago",
+    rating: 5,
+    location: "Kheri District",
+    text: "Great experience during delivery and postnatal care. The doctors made us feel safe, comfortable, and well looked after at every single step."
+  },
+  {
+    id: "18",
+    name: "Vibha Verma",
+    time: "a year ago",
+    rating: 5,
+    location: "Lakhimpur Kheri",
+    text: "Good facilities and clean wards. Doctors and nurses are very attentive, polite, and ensure patients receive timely medications without delay."
+  },
+  {
+    id: "19",
+    name: "Rupali Maurya",
+    time: "a year ago",
+    rating: 5,
+    location: "Lakhimpur Kheri",
+    text: "Good facility, prompt doctor availability, cooperative nursing sisters, and clean atmosphere that aids quick healing and recovery."
+  },
+  {
+    id: "20",
+    name: "Satendra Kumar",
+    time: "a year ago",
+    rating: 5,
+    location: "Meerpur",
+    text: "Good facility and treatment is very dependable. Clean OPD consultation cabins, reasonable charges, and genuinely caring healthcare professionals."
+  }
+];
 
 export default function FathimaTestimonialsSection() {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
 
-  const testimonials = [
-    {
-      text: "The treatment, care and consideration given to the patient as well as the bystanders is really nice. It was amazing to see how they took care of everything from admission to discharge in a seamless manner. Although there was waiting time in between they made sure to prioritise in patients with care. Overall had a good experience from the staff and doctors.",
-      name: "Archita Singh",
-      location: "Meerpur, Lakhimpur Kheri"
-    },
-    {
-      text: "Maya Hospital provided exceptional care from the moment I walked in. The doctors were highly professional, the nursing staff was kind and attentive, and the entire team made me feel safe and well cared for. The facilities are top-notch, and the treatment I received was outstanding. I am truly grateful for their dedication to patient care.",
-      name: "SB Maurya",
-      location: "Lakhimpur Kheri"
-    },
-    {
-      text: "I cannot thank Maya Hospital enough for the incredible service and support I received during my treatment. The doctors took the time to explain everything, the staff was always available to assist, and the hospital maintained the highest standards of cleanliness and comfort. Their commitment to quality healthcare made my recovery smooth and stress-free.",
-      name: "Pranshu Mishra",
-      location: "Kheri District"
-    }
-  ];
+  // Auto slide every 6 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNext();
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [currentIndex]);
 
-  const t = testimonials[currentTestimonial];
+  const handleNext = () => {
+    setAnimating(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % ALL_REVIEWS.length);
+      setAnimating(false);
+    }, 200);
+  };
+
+  const handlePrev = () => {
+    setAnimating(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev - 1 + ALL_REVIEWS.length) % ALL_REVIEWS.length);
+      setAnimating(false);
+    }, 200);
+  };
+
+  const current = ALL_REVIEWS[currentIndex];
 
   return (
-    <section className="pt-100 pb-100 section-testimonials" style={{ padding: "100px 0", backgroundColor: "#ffffff" }}>
+    <section 
+      id="testimonials" 
+      className="pt-100 pb-100 section-testimonials" 
+      style={{ padding: "90px 0", backgroundColor: "#ffffff" }}
+    >
       <div className="container">
-        <div className="row-flex" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center" }}>
-          {/* Left Column: Heading and Testimonial Quote Box */}
+        <div 
+          className="row-flex" 
+          style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center" }}
+        >
+          {/* Left Column: Heading and Sliding Testimonial Box */}
           <div className="smd60 pr-50" style={{ flex: "0 0 58%", paddingRight: "40px", boxSizing: "border-box" }}>
             <div className="row">
-              <span className="subtitle">Patient testimonials</span>
-              <h2 className="heading">What our patients <br /> have to say.</h2>
+              <span className="subtitle" style={{ color: "#7c3aed" }}>Patient testimonials</span>
+              <h2 className="heading" style={{ color: "#240b3b" }}>
+                What our patients <br /> have to say.
+              </h2>
             </div>
 
             <div className="row pt-50" style={{ marginTop: "30px" }}>
+              {/* Sliding Testimonial Box exactly matching the reference card design */}
               <div className="testimonial-box">
-                <div className="testimonial-single">
-                  <p>{t.text}</p>
-                  <div className="border-top name">{t.name}</div>
-                  <p style={{ marginTop: "4px" }}>
-                    <strong>{t.location}</strong>
-                  </p>
+                <div 
+                  style={{
+                    backgroundColor: "#faf7fe",
+                    borderRadius: "20px",
+                    border: "none",
+                    boxShadow: "0 10px 35px rgba(36, 11, 59, 0.04)",
+                    padding: "44px 44px 36px 44px",
+                    position: "relative",
+                    minHeight: "220px",
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "28px",
+                    transition: "opacity 0.25s ease, transform 0.25s ease",
+                    opacity: animating ? 0.3 : 1,
+                    transform: animating ? "translateX(8px)" : "translateX(0)"
+                  }}
+                >
+                  {/* Left Column: Bold Purple Solid Quotation Marks */}
+                  <div style={{ flexShrink: 0, paddingTop: "2px" }}>
+                    <svg 
+                      width="42" 
+                      height="38" 
+                      viewBox="0 0 24 24" 
+                      fill="#7c3aed" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.324 1.433-4.524 3.737-4.524 5.378 0 .543.143.992.428 1.348.647-.48 1.442-.767 2.308-.767 2.016 0 3.651 1.635 3.651 3.651 0 2.016-1.635 3.651-3.651 3.651-1.393 0-2.613-.787-3.238-1.944L4.583 17.321zm10.584 0c-1.03-1.094-1.583-2.321-1.583-4.31 0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.324 1.433-4.524 3.737-4.524 5.378 0 .543.143.992.428 1.348.647-.48 1.442-.767 2.308-.767 2.016 0 3.651 1.635 3.651 3.651 0 2.016-1.635 3.651-3.651 3.651-1.393 0-2.613-.787-3.238-1.944l-.314-.199z"/>
+                    </svg>
+                  </div>
+
+                  {/* Right Content: Quote Paragraph, Thin Divider Line, and Name + Location */}
+                  <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+                    <p 
+                      style={{ 
+                        fontSize: "15px", 
+                        lineHeight: "1.7", 
+                        color: "#334155", 
+                        fontStyle: "normal",
+                        margin: 0,
+                        fontWeight: 500
+                      }}
+                    >
+                      {current.text}
+                    </p>
+
+                    {/* Thin Separator Line */}
+                    <div 
+                      style={{ 
+                        marginTop: "24px", 
+                        paddingTop: "16px", 
+                        borderTop: "1px solid #ede9fe",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "4px"
+                      }}
+                    >
+                      <span 
+                        style={{ 
+                          fontSize: "16px", 
+                          fontWeight: 800, 
+                          color: "#240b3b",
+                          fontFamily: "var(--heading-font), sans-serif"
+                        }}
+                      >
+                        {current.name}
+                      </span>
+
+                      <p style={{ margin: "2px 0 0", fontSize: "13px", color: "#64748b", fontWeight: 600 }}>
+                        {current.location}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Dots Controls */}
-              <div style={{ display: "flex", gap: "8px", marginTop: "20px" }}>
-                {testimonials.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentTestimonial(idx)}
-                    style={{
-                      width: idx === currentTestimonial ? "24px" : "10px",
-                      height: "10px",
-                      borderRadius: "5px",
-                      backgroundColor: idx === currentTestimonial ? "#7c3aed" : "#cbd5e1",
-                      border: "none",
-                      cursor: "pointer",
-                      transition: "all 0.3s ease"
-                    }}
-                    aria-label={`Testimonial ${idx + 1}`}
-                  />
-                ))}
+              {/* Exact Scroll Graphics: Purple Rounded Pills & Dots (Replacing arrows & counters) */}
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "24px" }}>
+                {ALL_REVIEWS.map((_, idx) => {
+                  const isActive = idx === currentIndex;
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => {
+                        setAnimating(true);
+                        setTimeout(() => {
+                          setCurrentIndex(idx);
+                          setAnimating(false);
+                        }, 200);
+                      }}
+                      aria-label={`Go to slide ${idx + 1}`}
+                      style={{
+                        width: isActive ? "26px" : "10px",
+                        height: "10px",
+                        borderRadius: "5px",
+                        backgroundColor: isActive ? "#7c3aed" : "#cbd5e1",
+                        border: "none",
+                        cursor: "pointer",
+                        transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                        padding: 0
+                      }}
+                    />
+                  );
+                })}
               </div>
             </div>
           </div>
 
-          {/* Right Column: Purple Version of the Logo */}
-          <div className="smd40" style={{ flex: "0 0 38%", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <div
+          {/* Right Column: Clean Purple Caduceus Laurel Monogram Logo (NO circles, NO bg, NO borders) */}
+          <div 
+            className="smd40" 
+            style={{ 
+              flex: "0 0 38%", 
+              textAlign: "center", 
+              display: "flex", 
+              alignItems: "center", 
+              justifyContent: "center" 
+            }}
+          >
+            <img
+              src="/Purple Caduceus Laurel Monogram.png"
+              alt="Maya Hospital Caduceus Laurel Monogram"
               style={{
-                width: "280px",
-                height: "280px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "50%",
-                background: "radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, rgba(255, 255, 255, 0) 70%)",
-                padding: "20px"
+                width: "100%",
+                maxWidth: "280px",
+                height: "auto",
+                objectFit: "contain",
+                display: "block",
+                filter: "drop-shadow(0 15px 35px rgba(124, 58, 237, 0.2))"
               }}
-            >
-              <img
-                src="/maya-purple-logo-badge.png"
-                alt="Maya Hospital Crest Logo"
-                style={{
-                  width: "100%",
-                  maxWidth: "240px",
-                  height: "auto",
-                  objectFit: "contain",
-                  filter: "drop-shadow(0 15px 35px rgba(36, 11, 59, 0.2))"
-                }}
-              />
-            </div>
+            />
           </div>
         </div>
       </div>

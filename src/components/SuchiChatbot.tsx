@@ -173,40 +173,29 @@ export default function SuchiChatbot({ onOpenAppointment }: SuchiChatbotProps) {
         </div>
       )}
 
-      {/* Expanded Suchi Chat Window */}
+      {/* Expanded Suchi Chat Window as a Side Section Drawer */}
       {isOpen && (
         <div
-          style={{
-            position: "fixed",
-            bottom: "24px",
-            right: "24px",
-            width: "380px",
-            maxWidth: "calc(100vw - 32px)",
-            height: "560px",
-            maxHeight: "calc(100vh - 48px)",
-            backgroundColor: "#ffffff",
-            borderRadius: "28px",
-            boxShadow: "0 25px 60px rgba(33, 9, 58, 0.45)",
-            border: "1px solid rgba(124, 58, 237, 0.25)",
-            display: "flex",
-            flexDirection: "column",
-            overflow: "hidden",
-            zIndex: 10000,
-            animation: "suchiFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
-          }}
+          className="suchi-drawer-backdrop"
+          onClick={() => setIsOpen(false)}
         >
-          {/* Chat Window Header */}
           <div
-            style={{
-              backgroundColor: "#2e0c4f",
-              padding: "16px 20px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              borderBottom: "1px solid rgba(255, 255, 255, 0.15)",
-              background: "linear-gradient(135deg, #2e0c4f 0%, #4c1d95 100%)"
-            }}
+            className="suchi-side-panel"
+            onClick={(e) => e.stopPropagation()}
           >
+            {/* Chat Window Header */}
+            <div
+              style={{
+                backgroundColor: "#2e0c4f",
+                padding: "16px 20px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                borderBottom: "1px solid rgba(255, 255, 255, 0.15)",
+                background: "linear-gradient(135deg, #2e0c4f 0%, #4c1d95 100%)",
+                flexShrink: 0
+              }}
+            >
             <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
               <div
                 style={{
@@ -268,8 +257,9 @@ export default function SuchiChatbot({ onOpenAppointment }: SuchiChatbotProps) {
             </button>
           </div>
 
-          {/* Chat Messages Body */}
+          {/* Chat Messages Body with hidden scrollbar */}
           <div
+            className="suchi-messages-container"
             style={{
               flex: 1,
               overflowY: "auto",
@@ -428,7 +418,8 @@ export default function SuchiChatbot({ onOpenAppointment }: SuchiChatbotProps) {
             </button>
           </form>
         </div>
-      )}
-    </>
-  );
+      </div>
+    )}
+  </>
+);
 }

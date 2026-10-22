@@ -2,30 +2,36 @@ import React from "react";
 
 export default function FathimaServiceSection() {
   return (
-    <section className="pt-100 section-service" style={{ backgroundColor: "#f9fafb", padding: "100px 0" }}>
+    <section className="section-service" style={{ backgroundColor: "#f9fafb", paddingTop: "90px", paddingBottom: "0px", overflow: "hidden" }}>
       <div className="container">
-        <div className="row-flex space-between" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-start" }}>
-          {/* Left Column: Heading and Lady Doctor Image (No box/border/shadow behind image) */}
-          <div className="smd50 pr-50" style={{ flex: "0 0 46%", boxSizing: "border-box", paddingRight: "40px" }}>
-            <h2 className="heading" style={{ fontSize: "44px", lineHeight: "52px", fontWeight: 800, marginBottom: "20px" }}>
-              Entrust your health <br />
-              in safe hands.
-            </h2>
-            <p className="highlight-text" style={{ fontSize: "18px", lineHeight: "28px", color: "#666", marginBottom: "40px" }}>
-              Dignity, empathy and a patient centric philosophy for an utmost caring experience in Lakhimpur Kheri
-            </p>
+        <div className="row-flex space-between" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end" }}>
+          {/* Left Column: Heading and Lady Doctor Image (No gap at bottom, sits flush) */}
+          <div className="smd50 pr-50" style={{ flex: "0 0 46%", boxSizing: "border-box", paddingRight: "40px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <div>
+              <h2 className="heading" style={{ fontSize: "44px", lineHeight: "52px", fontWeight: 800, marginBottom: "20px" }}>
+                Entrust your health <br />
+                in safe hands.
+              </h2>
+              <p className="highlight-text" style={{ fontSize: "18px", lineHeight: "28px", color: "#666", marginBottom: "20px" }}>
+                Dignity, empathy and a patient centric philosophy for an utmost caring experience in Lakhimpur Kheri
+              </p>
+            </div>
 
-            <div className="row pt-50 pr-100" style={{ marginTop: "30px", background: "none", boxShadow: "none" }}>
+            <div style={{ marginTop: "auto", display: "flex", justifyContent: "flex-start", lineHeight: 0, marginBottom: 0 }}>
               <img
                 src="https://www.fathimahospital.com/wp-content/themes/fathimahosptial/images/lady-doctor.png"
-                className="full-width ladydoc"
+                className="ladydoc"
                 alt="Doctor Consultation"
                 style={{
                   width: "100%",
+                  maxWidth: "480px",
+                  display: "block",
                   borderRadius: "0",
                   boxShadow: "none",
                   border: "none",
-                  backgroundColor: "transparent"
+                  backgroundColor: "transparent",
+                  marginBottom: "0",
+                  verticalAlign: "bottom"
                 }}
               />
             </div>

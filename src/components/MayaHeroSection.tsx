@@ -309,8 +309,10 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
                 )}
               </div>
 
+              <Link href="/consultancy" className="maya-nav-link" style={{ color: "#c084fc" }}>CONSULTANCY</Link>
               <Link href="#doctors" className="maya-nav-link">DOCTORS</Link>
               <Link href="#packages" className="maya-nav-link">PACKAGES</Link>
+              <Link href="#testimonials" className="maya-nav-link">REVIEWS</Link>
               <Link href="#location" className="maya-nav-link">LOCATION</Link>
             </nav>
           </div>
@@ -350,24 +352,24 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
               ENQUIRE
             </button>
 
-            {/* Mobile Hamburger Toggle Button (Visible on screens <= 1023px) */}
+            {/* Mobile Hamburger Toggle Button (Clean without white box) */}
             <div className="maya-mobile-nav-toggle">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle Mobile Menu"
                 style={{
-                  background: "rgba(255, 255, 255, 0.12)",
-                  border: "1px solid rgba(255, 255, 255, 0.25)",
-                  borderRadius: "10px",
+                  background: "transparent",
+                  border: "none",
+                  boxShadow: "none",
                   color: "#ffffff",
-                  width: "42px",
-                  height: "42px",
+                  width: "38px",
+                  height: "38px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  fontSize: "18px",
+                  fontSize: "22px",
                   cursor: "pointer",
-                  backdropFilter: "blur(10px)"
+                  padding: 0
                 }}
               >
                 <i className={`fa-solid ${mobileMenuOpen ? "fa-xmark" : "fa-bars"}`}></i>
@@ -375,228 +377,248 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
             </div>
           </div>
         </div>
+      </header>
 
-        {/* Mobile Slide-Out Drawer Navigation */}
-        {mobileMenuOpen && (
-          <div className="maya-mobile-drawer-overlay" onClick={() => setMobileMenuOpen(false)}>
-            <div
-              className="maya-mobile-drawer"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Drawer Header */}
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                  <img
-                    src="/White Caduceus Laurel Monogram.png"
-                    alt="Maya Logo"
-                    style={{ height: "40px", width: "auto" }}
-                  />
-                  <span style={{ color: "#ffffff", fontWeight: 700, fontSize: "16px", letterSpacing: "-0.01em" }}>
-                    MAYA HOSPITAL
-                  </span>
-                </div>
+      {/* Mobile Full Page Menu (Root Level to ensure absolute top stacking context above all widgets) */}
+      {mobileMenuOpen && (
+        <div className="maya-mobile-drawer-overlay" onClick={() => setMobileMenuOpen(false)}>
+          <div
+            className="maya-mobile-drawer"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Drawer Header */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", flexShrink: 0 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <img
+                  src="/White Caduceus Laurel Monogram.png"
+                  alt="Maya Logo"
+                  style={{ height: "42px", width: "auto" }}
+                />
+                <span style={{ color: "#ffffff", fontWeight: 700, fontSize: "17px", letterSpacing: "-0.01em" }}>
+                  MAYA HOSPITAL
+                </span>
+              </div>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close Mobile Menu"
+                style={{
+                  background: "rgba(255,255,255,0.12)",
+                  border: "none",
+                  borderRadius: "50%",
+                  width: "36px",
+                  height: "36px",
+                  color: "#ffffff",
+                  fontSize: "18px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer"
+                }}
+              >
+                <i className="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+
+            {/* Drawer Links */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "4px", flex: 1, overflowY: "auto", paddingRight: "4px" }}>
+              <Link
+                href="#about"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mobile-nav-item"
+              >
+                <span>ABOUT</span>
+                <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
+              </Link>
+
+              {/* Departments Mobile Accordion */}
+              <div style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.08)" }}>
                 <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  style={{
-                    background: "rgba(255,255,255,0.1)",
-                    border: "none",
-                    borderRadius: "50%",
-                    width: "32px",
-                    height: "32px",
-                    color: "rgba(255, 255, 255, 0.9)",
-                    fontSize: "16px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    cursor: "pointer"
-                  }}
+                  onClick={() => setMobileSubmenu(mobileSubmenu === "departments" ? null : "departments")}
+                  className="mobile-nav-item"
+                  style={{ width: "100%", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
                 >
-                  <i className="fa-solid fa-xmark"></i>
+                  <span>DEPARTMENTS</span>
+                  <i
+                    className="fa-solid fa-chevron-down"
+                    style={{
+                      fontSize: "11px",
+                      transform: mobileSubmenu === "departments" ? "rotate(180deg)" : "rotate(0deg)",
+                      transition: "transform 0.25s ease"
+                    }}
+                  ></i>
                 </button>
+                {mobileSubmenu === "departments" && (
+                  <div style={{ padding: "0 0 12px 14px", display: "flex", flexDirection: "column", gap: "10px" }}>
+                    {[
+                      "Gynaecology & Maternity",
+                      "General Medicine & Diabetology",
+                      "Orthopaedics & Joint Surgery",
+                      "General & Laparoscopic Surgery",
+                      "Paediatrics & Neonatology",
+                      "24x7 Emergency & Critical Care"
+                    ].map((name, i) => (
+                      <Link
+                        key={i}
+                        href="#departments"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          color: "rgba(255, 255, 255, 0.75)",
+                          fontSize: "13px",
+                          textDecoration: "none",
+                          padding: "6px 0",
+                          display: "block"
+                        }}
+                      >
+                        • {name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
 
-              {/* Drawer Links */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "6px", flex: 1, overflowY: "auto" }}>
-                <Link
-                  href="#about"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="mobile-nav-item"
-                >
-                  <span>ABOUT</span>
-                  <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
-                </Link>
-
-                {/* Departments Mobile Accordion */}
-                <div style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.08)" }}>
-                  <button
-                    onClick={() => setMobileSubmenu(mobileSubmenu === "departments" ? null : "departments")}
-                    className="mobile-nav-item"
-                    style={{ width: "100%", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
-                  >
-                    <span>DEPARTMENTS</span>
-                    <i
-                      className="fa-solid fa-chevron-down"
-                      style={{
-                        fontSize: "11px",
-                        transform: mobileSubmenu === "departments" ? "rotate(180deg)" : "rotate(0deg)",
-                        transition: "transform 0.25s ease"
-                      }}
-                    ></i>
-                  </button>
-                  {mobileSubmenu === "departments" && (
-                    <div style={{ padding: "0 0 12px 14px", display: "flex", flexDirection: "column", gap: "10px" }}>
-                      {[
-                        "Gynaecology & Maternity",
-                        "General Medicine & Diabetology",
-                        "Orthopaedics & Joint Surgery",
-                        "General & Laparoscopic Surgery",
-                        "Paediatrics & Neonatology",
-                        "24x7 Emergency & Critical Care"
-                      ].map((name, i) => (
-                        <Link
-                          key={i}
-                          href="#departments"
-                          onClick={() => setMobileMenuOpen(false)}
-                          style={{
-                            color: "rgba(255, 255, 255, 0.75)",
-                            fontSize: "13px",
-                            textDecoration: "none",
-                            padding: "6px 0",
-                            display: "block"
-                          }}
-                        >
-                          • {name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Services Mobile Accordion */}
-                <div style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.08)" }}>
-                  <button
-                    onClick={() => setMobileSubmenu(mobileSubmenu === "services" ? null : "services")}
-                    className="mobile-nav-item"
-                    style={{ width: "100%", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
-                  >
-                    <span>SERVICES</span>
-                    <i
-                      className="fa-solid fa-chevron-down"
-                      style={{
-                        fontSize: "11px",
-                        transform: mobileSubmenu === "services" ? "rotate(180deg)" : "rotate(0deg)",
-                        transition: "transform 0.25s ease"
-                      }}
-                    ></i>
-                  </button>
-                  {mobileSubmenu === "services" && (
-                    <div style={{ padding: "0 0 12px 14px", display: "flex", flexDirection: "column", gap: "10px" }}>
-                      {[
-                        "24x7 Emergency Casualty",
-                        "24x7 ICU & Critical Care",
-                        "24x7 In-House Pharmacy",
-                        "24x7 Ambulance Dispatch",
-                        "Physiotherapy & Rehab",
-                        "Cashless Mediclaim & TPA"
-                      ].map((name, i) => (
-                        <Link
-                          key={i}
-                          href="#services-facilities"
-                          onClick={() => setMobileMenuOpen(false)}
-                          style={{
-                            color: "rgba(255, 255, 255, 0.75)",
-                            fontSize: "13px",
-                            textDecoration: "none",
-                            padding: "6px 0",
-                            display: "block"
-                          }}
-                        >
-                          • {name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                <Link
-                  href="#doctors"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="mobile-nav-item"
-                >
-                  <span>DOCTORS</span>
-                  <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
-                </Link>
-
-                <Link
-                  href="#packages"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="mobile-nav-item"
-                >
-                  <span>PACKAGES</span>
-                  <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
-                </Link>
-
-                <Link
-                  href="#location"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="mobile-nav-item"
-                >
-                  <span>LOCATION</span>
-                  <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
-                </Link>
-              </div>
-
-              {/* Drawer Bottom Actions */}
-              <div style={{ marginTop: "20px", display: "flex", flexDirection: "column", gap: "10px" }}>
-                <a
-                  href="tel:+919935123456"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "8px",
-                    padding: "12px 16px",
-                    borderRadius: "12px",
-                    backgroundColor: "rgba(239, 68, 68, 0.15)",
-                    border: "1px solid rgba(239, 68, 68, 0.4)",
-                    color: "#fca5a5",
-                    fontWeight: 700,
-                    fontSize: "12px",
-                    textDecoration: "none",
-                    letterSpacing: "0.5px",
-                    textTransform: "uppercase"
-                  }}
-                >
-                  <i className="fa-solid fa-phone"></i>
-                  <span>24x7: +91 99351 23456</span>
-                </a>
-
+              {/* Services Mobile Accordion */}
+              <div style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.08)" }}>
                 <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    handleEnquireClick();
-                  }}
-                  style={{
-                    padding: "13px 18px",
-                    borderRadius: "12px",
-                    backgroundColor: "#7c3aed",
-                    border: "none",
-                    color: "#ffffff",
-                    fontWeight: 700,
-                    fontSize: "12px",
-                    cursor: "pointer",
-                    letterSpacing: "1px",
-                    textTransform: "uppercase",
-                    boxShadow: "0 6px 18px rgba(124, 58, 237, 0.35)"
-                  }}
+                  onClick={() => setMobileSubmenu(mobileSubmenu === "services" ? null : "services")}
+                  className="mobile-nav-item"
+                  style={{ width: "100%", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
                 >
-                  Enquire & Consultation
+                  <span>SERVICES</span>
+                  <i
+                    className="fa-solid fa-chevron-down"
+                    style={{
+                      fontSize: "11px",
+                      transform: mobileSubmenu === "services" ? "rotate(180deg)" : "rotate(0deg)",
+                      transition: "transform 0.25s ease"
+                    }}
+                  ></i>
                 </button>
+                {mobileSubmenu === "services" && (
+                  <div style={{ padding: "0 0 12px 14px", display: "flex", flexDirection: "column", gap: "10px" }}>
+                    {[
+                      "24x7 Emergency Casualty",
+                      "24x7 ICU & Critical Care",
+                      "24x7 In-House Pharmacy",
+                      "24x7 Ambulance Dispatch",
+                      "Physiotherapy & Rehab",
+                      "Cashless Mediclaim & TPA"
+                    ].map((name, i) => (
+                      <Link
+                        key={i}
+                        href="#services-facilities"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          color: "rgba(255, 255, 255, 0.75)",
+                          fontSize: "13px",
+                          textDecoration: "none",
+                          padding: "6px 0",
+                          display: "block"
+                        }}
+                      >
+                        • {name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
+
+              <Link
+                href="/consultancy"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mobile-nav-item"
+                style={{ color: "#c084fc" }}
+              >
+                <span>BOOK CONSULTANCY</span>
+                <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
+              </Link>
+
+              <Link
+                href="#doctors"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mobile-nav-item"
+              >
+                <span>DOCTORS</span>
+                <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
+              </Link>
+
+              <Link
+                href="#packages"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mobile-nav-item"
+              >
+                <span>PACKAGES</span>
+                <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
+              </Link>
+
+              <Link
+                href="#testimonials"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mobile-nav-item"
+              >
+                <span>REVIEWS & TESTIMONIALS</span>
+                <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
+              </Link>
+
+              <Link
+                href="#location"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mobile-nav-item"
+              >
+                <span>LOCATION</span>
+                <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
+              </Link>
+            </div>
+
+            {/* Drawer Bottom Actions */}
+            <div style={{ marginTop: "16px", display: "flex", flexDirection: "column", gap: "10px", flexShrink: 0 }}>
+              <a
+                href="tel:+919935123456"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px",
+                  padding: "12px 16px",
+                  borderRadius: "12px",
+                  backgroundColor: "rgba(239, 68, 68, 0.15)",
+                  border: "1px solid rgba(239, 68, 68, 0.4)",
+                  color: "#fca5a5",
+                  fontWeight: 700,
+                  fontSize: "12px",
+                  textDecoration: "none",
+                  letterSpacing: "0.5px",
+                  textTransform: "uppercase"
+                }}
+              >
+                <i className="fa-solid fa-phone"></i>
+                <span>24x7: +91 99351 23456</span>
+              </a>
+
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  handleEnquireClick();
+                }}
+                style={{
+                  padding: "13px 18px",
+                  borderRadius: "12px",
+                  backgroundColor: "#7c3aed",
+                  border: "none",
+                  color: "#ffffff",
+                  fontWeight: 700,
+                  fontSize: "12px",
+                  cursor: "pointer",
+                  letterSpacing: "1px",
+                  textTransform: "uppercase",
+                  boxShadow: "0 6px 18px rgba(124, 58, 237, 0.35)"
+                }}
+              >
+                Enquire & Consultation
+              </button>
             </div>
           </div>
-        )}
-      </header>
+        </div>
+      )}
 
       {/* =========================================================================
           HERO SECTION: Full screen cinematic backdrop with operating room visual
