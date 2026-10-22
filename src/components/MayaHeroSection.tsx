@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { HOSPITAL_INFO } from "@/data/hospitalData";
 
@@ -10,9 +10,23 @@ interface HeaderHeroProps {
 }
 
 export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryModal }: HeaderHeroProps) {
+  const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<"about" | "departments" | "services" | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState<"about" | "departments" | "services" | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleEnquireClick = () => {
     if (onOpenEnquiryModal) {
@@ -26,7 +40,8 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
     <>
       {/* =========================================================================
           NAVBAR: Fixed persistent sticky header across the entire website
-          Consistent compact Amethyst Velvet state without scaling jitter
+          Size and spacing don't change. When at the top (hero), it is transparent;
+          when scrolled, it smoothly gains amethyst velvet backdrop.
           ========================================================================= */}
       <header
         style={{
@@ -37,11 +52,12 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
           zIndex: 1000,
           width: "100%",
           padding: "14px 0",
-          backgroundColor: "rgba(22, 6, 36, 0.98)",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
-          borderBottom: "1px solid rgba(124, 58, 237, 0.25)",
-          boxShadow: "0 10px 30px rgba(0, 0, 0, 0.5)"
+          backgroundColor: scrolled ? "rgba(22, 6, 36, 0.98)" : "transparent",
+          backdropFilter: scrolled ? "blur(16px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(124, 58, 237, 0.25)" : "1px solid transparent",
+          boxShadow: scrolled ? "0 10px 30px rgba(0, 0, 0, 0.5)" : "none",
+          transition: "background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease"
         }}
       >
         <div
@@ -138,12 +154,12 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
                       position: "absolute",
                       top: "100%",
                       left: "0",
-                      width: "480px",
+                      width: "560px",
                       backgroundColor: "#160526",
                       borderRadius: "0px",
                       boxShadow: "0 25px 60px rgba(0,0,0,0.85)",
-                      border: "1px solid rgba(124, 58, 237, 0.3)",
-                      padding: "20px 24px",
+                      border: "none",
+                      padding: "24px 28px",
                       display: "grid",
                       gridTemplateColumns: "1fr 1fr",
                       gap: "0px",
@@ -167,7 +183,7 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
                           display: "flex",
                           alignItems: "flex-start",
                           gap: "12px",
-                          padding: "14px 12px",
+                          padding: "16px 14px",
                           borderRadius: "0px",
                           backgroundColor: "transparent",
                           textDecoration: "none",
@@ -182,7 +198,7 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
                           e.currentTarget.style.backgroundColor = "transparent";
                         }}
                       >
-                        <div style={{ color: "#c084fc", fontSize: "16px", marginTop: "2px" }}>
+                        <div style={{ color: "#ffffff", fontSize: "17px", marginTop: "2px" }}>
                           <i className={`fa-solid ${item.icon}`}></i>
                         </div>
                         <div>
@@ -386,8 +402,6 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
               </div>
 
               <Link href="/consultancy" className="maya-nav-link" style={{ color: "#c084fc" }}>CONSULTANCY</Link>
-              <Link href="#doctors" className="maya-nav-link">DOCTORS</Link>
-              <Link href="#testimonials" className="maya-nav-link">REVIEWS</Link>
             </nav>
           </div>
 
@@ -645,24 +659,6 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
                 style={{ color: "#c084fc" }}
               >
                 <span>BOOK CONSULTANCY</span>
-                <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
-              </Link>
-
-              <Link
-                href="#doctors"
-                onClick={() => setMobileMenuOpen(false)}
-                className="mobile-nav-item"
-              >
-                <span>DOCTORS</span>
-                <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
-              </Link>
-
-              <Link
-                href="#testimonials"
-                onClick={() => setMobileMenuOpen(false)}
-                className="mobile-nav-item"
-              >
-                <span>REVIEWS & TESTIMONIALS</span>
                 <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
               </Link>
             </div>

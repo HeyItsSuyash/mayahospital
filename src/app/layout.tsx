@@ -5,8 +5,8 @@ export const metadata: Metadata = {
   title: "Home - Maya Hospital And Multi-speciality Centre",
   description: "Maya Hospital & Multi-speciality Centre in Meerpur, Lakhimpur Kheri. 24x7 Emergency, Gynaecology, Pediatrics, General Medicine, Orthopedics, Joint Replacement, Modern Operation Theatres.",
   icons: {
-    icon: "/favicon-purple.png",
-    apple: "/favicon-purple.png",
+    icon: "/Purple Caduceus Laurel Monogram.png",
+    apple: "/Purple Caduceus Laurel Monogram.png",
   },
 };
 
@@ -18,8 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon-purple.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/favicon-purple.png" />
+        <link rel="icon" href="/Purple Caduceus Laurel Monogram.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/Purple Caduceus Laurel Monogram.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" />

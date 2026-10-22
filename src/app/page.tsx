@@ -16,8 +16,6 @@ import SchemaMarkup from "@/components/SchemaMarkup";
 import SuchiChatbot from "@/components/SuchiChatbot";
 import MayaPageLoader from "@/components/MayaPageLoader";
 import EnquiryModal from "@/components/EnquiryModal";
-import MayaGallerySection from "@/components/MayaGallerySection";
-import FathimaNewsSection from "@/components/FathimaNewsSection";
 import { HOSPITAL_INFO } from "@/data/hospitalData";
 
 export default function Home() {
@@ -112,14 +110,6 @@ export default function Home() {
         {/* Patient Testimonials */}
         <div className="reveal-on-scroll">
           <FathimaTestimonialsSection />
-        </div>
-
-        {/* Hospital Campus & Facilities Gallery */}
-        <MayaGallerySection />
-
-        {/* Hospital News & Community Events */}
-        <div className="reveal-on-scroll">
-          <FathimaNewsSection />
         </div>
 
         {/* Hospital Location Section (Google Map & Justdial Link) */}

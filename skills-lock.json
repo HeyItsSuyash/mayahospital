@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "hugeicons": {
+      "source": "hugeicons/hugeicons",
+      "sourceType": "github",
+      "skillPath": "skills/hugeicons/SKILL.md",
+      "computedHash": "c2d5300e359c919d96b332335f91165a0fd6592624698610ae917b4b08c5632f"
+    },
+    "hugeicons-migrate": {
+      "source": "hugeicons/hugeicons",
+      "sourceType": "github",
+      "skillPath": "skills/hugeicons-migrate/SKILL.md",
+      "computedHash": "804ed2e2f9b87fc5145623b6003f07377e44955ec6fd64a43fba4a25630b6159"
+    }
+  }
+}
