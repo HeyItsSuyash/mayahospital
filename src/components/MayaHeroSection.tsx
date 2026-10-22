@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import { HOSPITAL_INFO } from "@/data/hospitalData";
 
 interface HeaderHeroProps {
   onOpenAppointmentModal: () => void;
@@ -9,10 +10,9 @@ interface HeaderHeroProps {
 }
 
 export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryModal }: HeaderHeroProps) {
-  const [scrolled, setScrolled] = useState(false);
-  const [openMenu, setOpenMenu] = useState<"departments" | "services" | null>(null);
+  const [openMenu, setOpenMenu] = useState<"about" | "departments" | "services" | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileSubmenu, setMobileSubmenu] = useState<"departments" | "services" | null>(null);
+  const [mobileSubmenu, setMobileSubmenu] = useState<"about" | "departments" | "services" | null>(null);
 
   const handleEnquireClick = () => {
     if (onOpenEnquiryModal) {
@@ -22,23 +22,11 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 40) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <>
       {/* =========================================================================
           NAVBAR: Fixed persistent sticky header across the entire website
-          Transparent at top -> Solid Amethyst Velvet on scroll
+          Consistent compact Amethyst Velvet state without scaling jitter
           ========================================================================= */}
       <header
         style={{
@@ -48,13 +36,12 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
           right: 0,
           zIndex: 1000,
           width: "100%",
-          padding: scrolled ? "14px 0" : "22px 0",
-          backgroundColor: scrolled ? "rgba(22, 6, 36, 0.98)" : "transparent",
-          backdropFilter: scrolled ? "blur(16px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(124, 58, 237, 0.25)" : "none",
-          boxShadow: scrolled ? "0 10px 30px rgba(0, 0, 0, 0.5)" : "none",
-          transition: "all 0.3s ease-in-out"
+          padding: "14px 0",
+          backgroundColor: "rgba(22, 6, 36, 0.98)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+          borderBottom: "1px solid rgba(124, 58, 237, 0.25)",
+          boxShadow: "0 10px 30px rgba(0, 0, 0, 0.5)"
         }}
       >
         <div
@@ -85,24 +72,22 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
                 src="/White Caduceus Laurel Monogram.png"
                 alt="Maya Hospital Monogram Logo"
                 style={{
-                  height: scrolled ? "50px" : "60px",
+                  height: "50px",
                   width: "auto",
                   objectFit: "contain",
-                  filter: "drop-shadow(0 2px 10px rgba(0,0,0,0.5))",
-                  transition: "all 0.3s ease"
+                  filter: "drop-shadow(0 2px 10px rgba(0,0,0,0.5))"
                 }}
               />
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <span
                   style={{
                     fontFamily: "var(--heading-font), 'Plus Jakarta Sans', sans-serif",
-                    fontSize: scrolled ? "20px" : "24px",
+                    fontSize: "20px",
                     fontWeight: 700,
                     letterSpacing: "-0.015em",
                     color: "#ffffff",
                     lineHeight: "1.05",
-                    textShadow: "0 2px 12px rgba(0,0,0,0.6)",
-                    transition: "font-size 0.3s ease"
+                    textShadow: "0 2px 12px rgba(0,0,0,0.6)"
                   }}
                 >
                   MAYA HOSPITAL
@@ -121,7 +106,98 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
                 gap: "38px"
               }}
             >
-              <Link href="#about" className="maya-nav-link">ABOUT</Link>
+              {/* ABOUT DROPDOWN */}
+              <div
+                className="maya-dropdown-wrap"
+                style={{ position: "relative", display: "inline-flex", alignItems: "center" }}
+                onMouseEnter={() => setOpenMenu("about")}
+                onMouseLeave={() => setOpenMenu(null)}
+              >
+                <button
+                  className="maya-nav-link"
+                  onClick={() => setOpenMenu(openMenu === "about" ? null : "about")}
+                >
+                  <span>ABOUT</span>
+                  <i
+                    className="fa-solid fa-chevron-down"
+                    style={{
+                      fontSize: "9px",
+                      marginLeft: "6px",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      transform: openMenu === "about" ? "rotate(180deg)" : "rotate(0deg)",
+                      transition: "transform 0.3s ease"
+                    }}
+                  />
+                </button>
+
+                {openMenu === "about" && (
+                  <div
+                    className="dropdown-slow-fade"
+                    style={{
+                      position: "absolute",
+                      top: "100%",
+                      left: "0",
+                      width: "480px",
+                      backgroundColor: "#160526",
+                      borderRadius: "0px",
+                      boxShadow: "0 25px 60px rgba(0,0,0,0.85)",
+                      border: "1px solid rgba(124, 58, 237, 0.3)",
+                      padding: "20px 24px",
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr",
+                      gap: "0px",
+                      zIndex: 2000,
+                      backdropFilter: "blur(20px)"
+                    }}
+                  >
+                    {[
+                      { name: "Reviews", desc: "Patient ratings & experiences", icon: "fa-star", href: "#testimonials" },
+                      { name: "Vision", desc: "Our core medical philosophy", icon: "fa-eye", href: "#vision" },
+                      { name: "Awards", desc: "5.0 ★ verified recognition", icon: "fa-award", href: "#awards" },
+                      { name: "Events", desc: "Hospital updates & health camps", icon: "fa-calendar-days", href: "#events" },
+                      { name: "Gallery", desc: "Campus & advanced OT photos", icon: "fa-images", href: "#gallery" },
+                      { name: "Doctors", desc: "Specialist consultants & surgeons", icon: "fa-user-doctor", href: "#doctors" }
+                    ].map((item, i) => (
+                      <Link
+                        key={i}
+                        href={item.href}
+                        onClick={() => setOpenMenu(null)}
+                        style={{
+                          display: "flex",
+                          alignItems: "flex-start",
+                          gap: "12px",
+                          padding: "14px 12px",
+                          borderRadius: "0px",
+                          backgroundColor: "transparent",
+                          textDecoration: "none",
+                          borderBottom: i < 4 ? "1px solid rgba(255, 255, 255, 0.12)" : "none",
+                          borderRight: i % 2 === 0 ? "1px solid rgba(255, 255, 255, 0.12)" : "none",
+                          transition: "background-color 0.2s ease"
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = "rgba(168, 85, 247, 0.14)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = "transparent";
+                        }}
+                      >
+                        <div style={{ color: "#c084fc", fontSize: "16px", marginTop: "2px" }}>
+                          <i className={`fa-solid ${item.icon}`}></i>
+                        </div>
+                        <div>
+                          <div style={{ color: "#ffffff", fontSize: "13px", fontWeight: 600, marginBottom: "3px" }}>
+                            {item.name}
+                          </div>
+                          <div style={{ color: "rgba(255, 255, 255, 0.65)", fontSize: "11px", lineHeight: "1.35" }}>
+                            {item.desc}
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               {/* DEPARTMENTS MEGA DROPDOWN */}
               <div
@@ -311,46 +387,49 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
 
               <Link href="/consultancy" className="maya-nav-link" style={{ color: "#c084fc" }}>CONSULTANCY</Link>
               <Link href="#doctors" className="maya-nav-link">DOCTORS</Link>
-              <Link href="#packages" className="maya-nav-link">PACKAGES</Link>
               <Link href="#testimonials" className="maya-nav-link">REVIEWS</Link>
-              <Link href="#location" className="maya-nav-link">LOCATION</Link>
             </nav>
           </div>
 
-          {/* Right: CTA Button (Desktop) & Mobile Toggle */}
+          {/* Right: Emergency Contact Call Button (Desktop) & Mobile Toggle */}
           <div className="maya-nav-right" style={{ display: "flex", alignItems: "center", gap: "16px", flex: "0 0 auto" }}>
-            {/* Ghost CTA Button - Brought to the right of the navbar */}
-            <button
-              onClick={handleEnquireClick}
+            {/* 24x7 Emergency Number Button - Replaces ghost ENQUIRE button */}
+            <a
+              href={`tel:${HOSPITAL_INFO.emergencyPhone.replace(/\s+/g, '')}`}
               className="maya-desktop-cta"
               style={{
                 backgroundColor: "transparent",
                 color: "#ffffff",
-                border: "1.5px solid rgba(255, 255, 255, 0.7)",
+                border: "1.5px solid rgba(255, 255, 255, 0.75)",
                 borderRadius: "9999px",
-                padding: "11px 28px",
-                fontSize: "12.5px",
+                padding: "10px 24px",
+                fontSize: "12px",
                 fontWeight: 700,
-                letterSpacing: "2px",
+                letterSpacing: "1px",
                 textTransform: "uppercase",
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
                 cursor: "pointer",
                 transition: "background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease",
                 fontFamily: "var(--heading-font), 'Plus Jakarta Sans', sans-serif",
                 boxShadow: "none"
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
-                e.currentTarget.style.borderColor = "#ffffff";
+                e.currentTarget.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                e.currentTarget.style.borderColor = "#f87171";
                 e.currentTarget.style.color = "#ffffff";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = "transparent";
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.7)";
+                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.75)";
                 e.currentTarget.style.color = "#ffffff";
               }}
             >
-              ENQUIRE
-            </button>
+              <i className="fa-solid fa-phone" style={{ color: "#f87171", fontSize: "11px" }}></i>
+              <span>{HOSPITAL_INFO.emergencyPhone}</span>
+            </a>
 
             {/* Mobile Hamburger Toggle Button (Clean without white box) */}
             <div className="maya-mobile-nav-toggle">
@@ -421,14 +500,51 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
 
             {/* Drawer Links */}
             <div style={{ display: "flex", flexDirection: "column", gap: "4px", flex: 1, overflowY: "auto", paddingRight: "4px" }}>
-              <Link
-                href="#about"
-                onClick={() => setMobileMenuOpen(false)}
-                className="mobile-nav-item"
-              >
-                <span>ABOUT</span>
-                <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
-              </Link>
+              {/* ABOUT Mobile Accordion */}
+              <div style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.08)" }}>
+                <button
+                  onClick={() => setMobileSubmenu(mobileSubmenu === "about" ? null : "about")}
+                  className="mobile-nav-item"
+                  style={{ width: "100%", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
+                >
+                  <span>ABOUT</span>
+                  <i
+                    className="fa-solid fa-chevron-down"
+                    style={{
+                      fontSize: "11px",
+                      transform: mobileSubmenu === "about" ? "rotate(180deg)" : "rotate(0deg)",
+                      transition: "transform 0.25s ease"
+                    }}
+                  ></i>
+                </button>
+                {mobileSubmenu === "about" && (
+                  <div style={{ padding: "0 0 12px 14px", display: "flex", flexDirection: "column", gap: "10px" }}>
+                    {[
+                      { name: "Reviews", href: "#testimonials" },
+                      { name: "Vision", href: "#vision" },
+                      { name: "Awards", href: "#awards" },
+                      { name: "Events", href: "#events" },
+                      { name: "Gallery", href: "#gallery" },
+                      { name: "Doctors", href: "#doctors" }
+                    ].map((item, i) => (
+                      <Link
+                        key={i}
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          color: "rgba(255, 255, 255, 0.8)",
+                          fontSize: "13px",
+                          textDecoration: "none",
+                          padding: "6px 0",
+                          display: "block"
+                        }}
+                      >
+                        • {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               {/* Departments Mobile Accordion */}
               <div style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.08)" }}>
@@ -542,29 +658,11 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
               </Link>
 
               <Link
-                href="#packages"
-                onClick={() => setMobileMenuOpen(false)}
-                className="mobile-nav-item"
-              >
-                <span>PACKAGES</span>
-                <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
-              </Link>
-
-              <Link
                 href="#testimonials"
                 onClick={() => setMobileMenuOpen(false)}
                 className="mobile-nav-item"
               >
                 <span>REVIEWS & TESTIMONIALS</span>
-                <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
-              </Link>
-
-              <Link
-                href="#location"
-                onClick={() => setMobileMenuOpen(false)}
-                className="mobile-nav-item"
-              >
-                <span>LOCATION</span>
                 <i className="fa-solid fa-chevron-right" style={{ fontSize: "11px", opacity: 0.5 }}></i>
               </Link>
             </div>
@@ -766,7 +864,7 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
                 e.currentTarget.style.color = "var(--primary-color)";
               }}
             >
-              <span>Consult Specialist</span>
+              <span>Book an Appointment</span>
             </button>
 
             {/* Ghost 24x7 Emergency Button (pure ghost: transparent background, clean border, no glass blur) */}

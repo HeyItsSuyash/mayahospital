@@ -53,7 +53,8 @@ export default function MayaAboutSection({ onOpenAppointmentModal }: AboutProps)
               />
             </div>
             {/* Floating Experience Badge */}
-            <div style={{
+            <div id="awards" style={{
+              scrollMarginTop: "100px",
               position: "absolute",
               bottom: "-25px",
               left: "25px",
@@ -103,7 +104,8 @@ export default function MayaAboutSection({ onOpenAppointmentModal }: AboutProps)
           </div>
 
           {/* Vision */}
-          <div style={{
+          <div id="vision" style={{
+            scrollMarginTop: "100px",
             backgroundColor: "rgba(124, 58, 237, 0.04)",
             padding: "32px 26px",
             borderRadius: "20px",
