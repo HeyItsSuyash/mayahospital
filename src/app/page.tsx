@@ -88,8 +88,10 @@ export default function Home() {
           <MayaAboutSection onOpenAppointmentModal={() => handleOpenAppointment()} />
         </div>
 
-        {/* Founder's Vision & Commitment Note */}
-        <MayaFounderSection />
+        {/* Founder's Testimony: Rooted in Lakhimpur Kheri */}
+        <div className="reveal-on-scroll">
+          <MayaFounderSection />
+        </div>
 
         {/* Specialized Clinical Departments */}
         <div className="reveal-on-scroll">

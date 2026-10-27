@@ -2,11 +2,11 @@ import React from "react";
 
 export default function FathimaServiceSection() {
   return (
-    <section className="section-service" style={{ backgroundColor: "#f9fafb", paddingTop: "90px", paddingBottom: "0px", overflow: "hidden" }}>
-      <div className="container">
-        <div className="row-flex space-between" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end" }}>
-          {/* Left Column: Heading and Lady Doctor Image (No gap at bottom, sits flush) */}
-          <div className="smd50 pr-50" style={{ flex: "0 0 46%", boxSizing: "border-box", paddingRight: "40px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+    <section className="section-service" style={{ backgroundColor: "#ffffff", paddingTop: "80px", paddingBottom: "0px", overflow: "hidden", position: "relative" }}>
+      <div className="container" style={{ paddingBottom: "0px", marginBottom: "0px" }}>
+        <div className="row-flex space-between" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "0px" }}>
+          {/* Left Column: Heading and Lady Doctor Image (Sits 100% flush at the bottom edge) */}
+          <div className="smd50 pr-50" style={{ flex: "0 0 46%", boxSizing: "border-box", paddingRight: "40px", display: "flex", flexDirection: "column", justifyContent: "space-between", marginBottom: "0px" }}>
             <div>
               <h2 className="heading" style={{ fontSize: "44px", lineHeight: "52px", fontWeight: 800, marginBottom: "20px" }}>
                 Entrust your health <br />
@@ -17,20 +17,21 @@ export default function FathimaServiceSection() {
               </p>
             </div>
 
-            <div style={{ marginTop: "auto", display: "flex", justifyContent: "flex-start", lineHeight: 0, marginBottom: 0 }}>
+            <div style={{ marginTop: "auto", display: "flex", justifyContent: "flex-start", alignItems: "flex-end", lineHeight: 0, marginBottom: "0px" }}>
               <img
-                src="https://www.fathimahospital.com/wp-content/themes/fathimahosptial/images/lady-doctor.png"
+                src="/female-mayahospital.jpeg"
                 className="ladydoc"
-                alt="Doctor Consultation"
+                alt="Dr. Maya Verma - Chief Consultant Gynecologist & Laparoscopic Surgeon"
                 style={{
                   width: "100%",
-                  maxWidth: "480px",
+                  maxWidth: "460px",
+                  height: "auto",
                   display: "block",
                   borderRadius: "0",
                   boxShadow: "none",
                   border: "none",
                   backgroundColor: "transparent",
-                  marginBottom: "0",
+                  marginBottom: "0px",
                   verticalAlign: "bottom"
                 }}
               />

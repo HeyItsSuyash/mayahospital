@@ -594,8 +594,19 @@ button:not(.square-keep) {
 
 /* Safe Hands & Services Section (bg2) */
 .section-service {
-  background-color: #f7fafc !important;
-  padding: 90px 0 !important;
+  background-color: #ffffff !important;
+  padding-top: 90px !important;
+  padding-bottom: 0px !important;
+}
+
+.section-service .container {
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.section-service .row-flex {
+  margin-bottom: 0px !important;
+  align-items: flex-end !important;
 }
 
 .service-box {
@@ -649,7 +660,10 @@ button:not(.square-keep) {
 .ladydoc {
   max-width: 100% !important;
   height: auto !important;
-  border-radius: 20px !important;
+  border-radius: 0px !important;
+  margin-bottom: 0px !important;
+  vertical-align: bottom !important;
+  display: block !important;
 }
 
 /* Testimonials Section */
