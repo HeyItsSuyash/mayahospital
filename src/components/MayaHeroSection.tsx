@@ -808,8 +808,7 @@ export default function MayaHeroSection({ onOpenAppointmentModal, onOpenEnquiryM
               lineHeight: "1.06",
               color: "#ffffff",
               margin: "0 0 24px 0",
-              letterSpacing: "-0.02em",
-              textShadow: "0 4px 30px rgba(0,0,0,0.8)"
+              letterSpacing: "-0.02em"
             }}
           >
             Here for you,<br />

@@ -259,10 +259,36 @@ export default function FathimaFooter() {
             © 2026 Maya Hospital And Multi-speciality Centre. All rights reserved.
           </span>
 
-          <div style={{ display: "flex", gap: "18px", alignItems: "center" }}>
+          <div style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}>
             <span>Aira Road, Meerpur, Lakhimpur Kheri</span>
             <span style={{ opacity: 0.3 }}>•</span>
-            <span style={{ color: "#c084fc", fontWeight: 500 }}>24x7 Emergency Service</span>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: "rgba(255, 255, 255, 0.85)" }}>
+              <i className="fa-solid fa-certificate" style={{ color: "#c084fc", fontSize: "11px" }}></i>
+              <span>Accreditations &amp; Clinical Quality Standards</span>
+            </span>
+            <span style={{ opacity: 0.3 }}>•</span>
+            <span>
+              Built with care by{" "}
+              <a
+                href="https://needhelpbuilding.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "#c084fc",
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  transition: "color 0.2s ease"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "#ffffff";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "#c084fc";
+                }}
+              >
+                NeedHelpBuilding Team
+              </a>
+            </span>
           </div>
         </div>
       </div>

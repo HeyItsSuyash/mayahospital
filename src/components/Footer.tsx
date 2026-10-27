@@ -171,7 +171,19 @@ export default function Footer() {
             <span>Lakhimpur Kheri, UP - 262701</span>
             <span>•</span>
             <span className="text-emerald-400 font-semibold flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5" /> Open 24 Hours
+              <ShieldCheck className="w-3.5 h-3.5" /> Accredited &amp; Open 24 Hours
+            </span>
+            <span>•</span>
+            <span>
+              Built with care by{" "}
+              <a
+                href="https://needhelpbuilding.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sky-400 font-semibold hover:underline"
+              >
+                NeedHelpBuilding Team
+              </a>
             </span>
           </div>
         </div>
