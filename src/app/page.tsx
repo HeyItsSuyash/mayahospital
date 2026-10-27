@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import MayaHeroSection from "@/components/MayaHeroSection";
 import FathimaTopLinks from "@/components/FathimaTopLinks";
 import MayaAboutSection from "@/components/MayaAboutSection";
+import MayaFounderSection from "@/components/MayaFounderSection";
 import MayaDepartmentsGrid from "@/components/MayaDepartmentsGrid";
 import MayaFacilitiesGrid from "@/components/MayaFacilitiesGrid";
 import FathimaDoctors from "@/components/FathimaDoctors";
@@ -86,6 +87,9 @@ export default function Home() {
         <div className="reveal-on-scroll">
           <MayaAboutSection onOpenAppointmentModal={() => handleOpenAppointment()} />
         </div>
+
+        {/* Founder's Vision & Commitment Note */}
+        <MayaFounderSection />
 
         {/* Specialized Clinical Departments */}
         <div className="reveal-on-scroll">

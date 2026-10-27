@@ -335,29 +335,81 @@ export default function FathimaTestimonialsSection() {
             </div>
           </div>
 
-          {/* Right Column: Clean Purple Caduceus Laurel Monogram Logo (NO circles, NO bg, NO borders) */}
+          {/* Right Column: Amar Ujala Best of My City Award Felicitation */}
           <div 
             className="smd40" 
             style={{ 
-              flex: "0 0 38%", 
-              textAlign: "center", 
+              flex: "0 0 40%", 
               display: "flex", 
               alignItems: "center", 
-              justifyContent: "center" 
+              justifyContent: "center",
+              marginTop: "20px"
             }}
           >
-            <img
-              src="/Purple Caduceus Laurel Monogram.png"
-              alt="Maya Hospital Caduceus Laurel Monogram"
+            <div
               style={{
+                position: "relative",
                 width: "100%",
-                maxWidth: "280px",
-                height: "auto",
-                objectFit: "contain",
-                display: "block",
-                filter: "drop-shadow(0 15px 35px rgba(124, 58, 237, 0.2))"
+                maxWidth: "380px",
+                borderRadius: "22px",
+                overflow: "hidden",
+                boxShadow: "0 22px 50px rgba(36, 11, 59, 0.22)",
+                border: "2px solid rgba(124, 58, 237, 0.22)",
+                backgroundColor: "#240b3b"
               }}
-            />
+            >
+              <img
+                src="/maya-award-felicitation.jpg"
+                alt="Dr. Brijendra Verma receiving Amar Ujala Best of My City Felicitation from Hon. Deputy CM Uttar Pradesh"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  maxHeight: "460px",
+                  objectFit: "cover",
+                  display: "block"
+                }}
+              />
+              {/* Prestigious Recognition Pill Overlay at bottom */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "0",
+                  left: "0",
+                  right: "0",
+                  background: "linear-gradient(to top, rgba(23, 5, 38, 0.95) 0%, rgba(23, 5, 38, 0.8) 65%, transparent 100%)",
+                  padding: "24px 18px 14px 18px",
+                  color: "#ffffff",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px"
+                }}
+              >
+                <div
+                  style={{
+                    width: "36px",
+                    height: "36px",
+                    borderRadius: "50%",
+                    backgroundColor: "rgba(124, 58, 237, 0.55)",
+                    border: "1px solid rgba(255, 255, 255, 0.25)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                    color: "#f59e0b"
+                  }}
+                >
+                  <i className="fa-solid fa-trophy" style={{ fontSize: "16px" }}></i>
+                </div>
+                <div>
+                  <div style={{ fontSize: "12.5px", fontWeight: 700, color: "#ffffff", letterSpacing: "0.2px" }}>
+                    Amar Ujala &ldquo;Best of My City&rdquo; Award
+                  </div>
+                  <div style={{ fontSize: "11px", color: "rgba(255, 255, 255, 0.75)" }}>
+                    Felicitation by Hon. Deputy CM, Uttar Pradesh
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
